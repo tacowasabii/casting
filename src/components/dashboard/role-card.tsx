@@ -29,10 +29,14 @@ function conditionLine(role: RoleWithStats): string {
 export function RoleCard({ role }: { role: RoleWithStats }) {
   return (
     <Link href={`/roles/${role.id}`} className="block">
-      <Card size="sm" className="gap-2 transition-shadow hover:ring-foreground/25">
+      <Card
+        size="sm"
+        className="group relative gap-2 overflow-hidden transition-colors hover:ring-border-strong/60"
+      >
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red-cta to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         <CardHeader className="gap-0.5">
           <CardTitle>{role.name}</CardTitle>
-          <CardDescription className="text-xs">
+          <CardDescription className="font-mono text-[11px] tracking-wide">
             {conditionLine(role)}
           </CardDescription>
         </CardHeader>
@@ -47,8 +51,8 @@ export function RoleCard({ role }: { role: RoleWithStats }) {
             ) : null}
           </div>
           {role.awaitingDirector ? (
-            <div className="flex items-center gap-1.5 text-xs font-medium text-violet-600">
-              <span className="size-1.5 animate-pulse rounded-full bg-violet-500" />
+            <div className="flex items-center gap-1.5 text-xs font-medium text-primary">
+              <span className="size-1.5 animate-pulse rounded-full bg-red-cta" />
               감독 응답 대기
             </div>
           ) : null}

@@ -20,10 +20,10 @@ export function DdayBadge({
       variant="outline"
       className={cn(
         d < 0
-          ? "bg-neutral-100 text-neutral-500 border-neutral-200"
+          ? "border-border bg-chip/60 text-muted-foreground"
           : d <= 3
-            ? "bg-red-100 text-red-700 border-red-200"
-            : "bg-neutral-100 text-neutral-600 border-neutral-200",
+            ? "border-red-cta/40 bg-red-cta/15 text-primary"
+            : "border-border bg-chip/60 text-foreground/70",
         className,
       )}
     >

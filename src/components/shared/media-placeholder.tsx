@@ -22,12 +22,12 @@ export function MediaPlaceholder({
     return (
       <div
         className={cn(
-          "relative flex aspect-video w-full items-center justify-center rounded-lg bg-neutral-900",
+          "relative flex aspect-video w-full items-center justify-center rounded-xl bg-black",
           className,
         )}
       >
-        <div className="flex size-12 items-center justify-center rounded-full bg-white/15 backdrop-blur-sm">
-          <Play className="size-5 fill-white text-white" />
+        <div className="flex size-12 items-center justify-center rounded-full bg-red-cta text-on-red shadow-glow">
+          <Play className="size-5 fill-current" />
         </div>
         {label ? (
           <span className="absolute bottom-2 left-2 max-w-[70%] truncate text-xs text-white/70">
@@ -35,7 +35,7 @@ export function MediaPlaceholder({
           </span>
         ) : null}
         {duration ? (
-          <span className="absolute right-2 bottom-2 rounded bg-black/60 px-1.5 py-0.5 text-xs font-medium text-white">
+          <span className="absolute right-2 bottom-2 rounded bg-black/60 px-1.5 py-0.5 font-mono text-xs font-medium text-white">
             {duration}
           </span>
         ) : null}

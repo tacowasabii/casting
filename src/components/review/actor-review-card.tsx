@@ -23,9 +23,11 @@ export function ActorReviewCard({
           variant="card"
           className="aspect-[3/4] w-full"
         />
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/35 to-transparent px-5 pt-20 pb-5">
-          <p className="text-3xl font-semibold text-white">{actor.name}</p>
-          <p className="mt-1 text-base text-white/85">
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent px-5 pt-20 pb-5">
+          <p className="font-heading text-3xl font-bold text-white">
+            {actor.name}
+          </p>
+          <p className="mt-1 font-mono text-base text-white/85">
             {ageOf(actor.birthYear)}세 · {actor.height}cm
           </p>
         </div>

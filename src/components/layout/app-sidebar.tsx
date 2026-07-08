@@ -30,10 +30,10 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarHeader className="px-4 py-4">
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
+          <div className="flex size-7 items-center justify-center rounded-md bg-red-cta text-on-red">
             <Clapperboard className="size-4" />
           </div>
-          <span className="text-base font-semibold tracking-tight">
+          <span className="font-heading text-base font-bold tracking-tight">
             캐스트보드
           </span>
         </Link>
@@ -49,7 +49,11 @@ export function AppSidebar() {
                     : pathname.startsWith(item.href);
                 return (
                   <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton asChild isActive={active}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={active}
+                      className="rounded-none border-l-2 border-l-transparent data-active:border-l-red-cta data-active:text-primary"
+                    >
                       <Link href={item.href}>
                         <item.icon />
                         <span>{item.title}</span>

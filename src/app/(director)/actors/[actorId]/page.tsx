@@ -44,11 +44,10 @@ function TriageBadge({ triage }: { triage: Triage }) {
   return (
     <Badge
       className={cn(
-        triage === "관심" &&
-          "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400",
+        triage === "관심" && "border-red-cta/40 bg-red-cta/15 text-primary",
         triage === "보류" &&
-          "bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400",
-        triage === "제외" && "bg-muted text-muted-foreground",
+          "border-amber-500/30 bg-amber-500/15 text-amber-400",
+        triage === "제외" && "border-border bg-chip/60 text-muted-foreground",
       )}
     >
       {triage}
@@ -75,7 +74,9 @@ export default async function ActorProfilePage({
       <header className="flex flex-none items-center gap-3 border-b px-6 py-4">
         <SidebarTrigger className="md:hidden" />
         <div>
-          <h1 className="text-lg font-semibold">배우 프로필</h1>
+          <h1 className="font-heading text-lg font-semibold tracking-tight">
+            배우 프로필
+          </h1>
           <p className="text-sm text-muted-foreground">
             <Link href="/actors" className="hover:underline">
               배우 라이브러리
@@ -96,7 +97,9 @@ export default async function ActorProfilePage({
             />
             <div className="min-w-0 flex-1 space-y-2">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <h2 className="text-xl font-semibold">{actor.name}</h2>
+                <h2 className="font-heading text-xl font-semibold tracking-tight">
+                  {actor.name}
+                </h2>
                 <span className="text-sm text-muted-foreground">
                   {ageOf(actor.birthYear)}세 · {actor.height}cm ·{" "}
                   {actor.agency ?? "무소속"}
@@ -117,7 +120,7 @@ export default async function ActorProfilePage({
               {actor.tags.length > 0 ? (
                 <div className="flex flex-wrap gap-1.5">
                   {actor.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">
+                    <Badge key={tag} variant="secondary" className="rounded-full">
                       {tag}
                     </Badge>
                   ))}
@@ -161,11 +164,21 @@ export default async function ActorProfilePage({
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="pl-4">작품</TableHead>
-                        <TableHead>배역</TableHead>
-                        <TableHead>지원일</TableHead>
-                        <TableHead>경로</TableHead>
-                        <TableHead className="pr-4">당시 분류</TableHead>
+                        <TableHead className="pl-4 font-mono text-[11px] uppercase tracking-wider">
+                          작품
+                        </TableHead>
+                        <TableHead className="font-mono text-[11px] uppercase tracking-wider">
+                          배역
+                        </TableHead>
+                        <TableHead className="font-mono text-[11px] uppercase tracking-wider">
+                          지원일
+                        </TableHead>
+                        <TableHead className="font-mono text-[11px] uppercase tracking-wider">
+                          경로
+                        </TableHead>
+                        <TableHead className="pr-4 font-mono text-[11px] uppercase tracking-wider">
+                          당시 분류
+                        </TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>

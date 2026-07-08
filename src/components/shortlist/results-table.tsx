@@ -22,15 +22,15 @@ import { cn } from "@/lib/utils";
 const VERDICT_META: Record<Verdict, { label: string; className: string }> = {
   like: {
     label: "좋아요",
-    className: "border-emerald-200 bg-emerald-100 text-emerald-800",
+    className: "border-red-cta/40 bg-red-cta/15 text-primary",
   },
   hold: {
     label: "보류",
-    className: "border-amber-200 bg-amber-100 text-amber-800",
+    className: "border-amber-500/30 bg-amber-500/15 text-amber-400",
   },
   pass: {
     label: "제외",
-    className: "border-neutral-200 bg-neutral-100 text-neutral-600",
+    className: "border-border bg-chip/60 text-muted-foreground",
   },
 };
 

@@ -23,9 +23,9 @@ function TriageDot({ triage }: { triage: Triage }) {
       title={triage ?? "미분류"}
       className={cn(
         "size-2 shrink-0 rounded-full",
-        triage === "관심" && "bg-emerald-500",
-        triage === "보류" && "bg-amber-500",
-        triage === "제외" && "bg-neutral-400",
+        triage === "관심" && "bg-primary",
+        triage === "보류" && "bg-amber-400",
+        triage === "제외" && "bg-neutral-500",
         triage === null && "border border-muted-foreground/40",
       )}
     />
@@ -81,7 +81,9 @@ export function ApplicantList({
               onClick={() => onSelect(app.id)}
               className={cn(
                 "flex cursor-pointer items-center gap-3 border-b px-3 py-2.5 transition-colors",
-                selectedId === app.id ? "bg-accent" : "hover:bg-muted/50",
+                selectedId === app.id
+                  ? "border-l-2 border-l-red-cta bg-accent"
+                  : "border-l-2 border-l-transparent hover:bg-muted/50",
               )}
             >
               <span

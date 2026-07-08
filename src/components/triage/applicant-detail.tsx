@@ -36,7 +36,9 @@ function formatDate(iso: string): string {
 function Info({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-xs text-muted-foreground">{label}</dt>
+      <dt className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+        {label}
+      </dt>
       <dd className="mt-0.5 font-medium">{value}</dd>
     </div>
   );
@@ -96,19 +98,19 @@ export function ApplicantDetail({
           >
             <ToggleGroupItem
               value="관심"
-              className="data-[state=on]:border-emerald-300 data-[state=on]:bg-emerald-100 data-[state=on]:text-emerald-800"
+              className="data-[state=on]:border-red-cta/40 data-[state=on]:bg-red-cta/15 data-[state=on]:text-primary"
             >
               관심
             </ToggleGroupItem>
             <ToggleGroupItem
               value="보류"
-              className="data-[state=on]:border-amber-300 data-[state=on]:bg-amber-100 data-[state=on]:text-amber-800"
+              className="data-[state=on]:border-amber-500/30 data-[state=on]:bg-amber-500/15 data-[state=on]:text-amber-400"
             >
               보류
             </ToggleGroupItem>
             <ToggleGroupItem
               value="제외"
-              className="data-[state=on]:border-neutral-300 data-[state=on]:bg-neutral-200 data-[state=on]:text-neutral-700"
+              className="data-[state=on]:border-border-strong data-[state=on]:bg-accent data-[state=on]:text-foreground"
             >
               제외
             </ToggleGroupItem>

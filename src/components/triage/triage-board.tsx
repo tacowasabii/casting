@@ -26,9 +26,9 @@ const SORT_KEYS = ["지원일", "나이", "키"] as const;
 type SortKey = (typeof SORT_KEYS)[number];
 
 const CHIP_DOTS: { key: Exclude<Triage, null> | "미분류"; dot: string }[] = [
-  { key: "관심", dot: "bg-emerald-500" },
-  { key: "보류", dot: "bg-amber-500" },
-  { key: "제외", dot: "bg-neutral-400" },
+  { key: "관심", dot: "bg-primary" },
+  { key: "보류", dot: "bg-amber-400" },
+  { key: "제외", dot: "bg-neutral-500" },
   { key: "미분류", dot: "border border-muted-foreground/40 bg-transparent" },
 ];
 

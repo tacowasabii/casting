@@ -13,8 +13,10 @@ export function ProjectKanban({ roles }: { roles: RoleWithStats[] }) {
             className="flex w-[240px] min-w-[220px] shrink-0 flex-col gap-2"
           >
             <div className="flex items-center gap-1.5 px-1">
-              <span className="text-sm font-medium">{status}</span>
-              <span className="rounded-full bg-muted px-1.5 py-0.5 text-xs text-muted-foreground">
+              <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                {status}
+              </span>
+              <span className="rounded-full bg-chip px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
                 {list.length}
               </span>
             </div>

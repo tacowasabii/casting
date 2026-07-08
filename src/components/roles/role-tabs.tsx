@@ -32,7 +32,7 @@ export function RoleTabs({
             className={cn(
               "border-b-2 pb-2.5 text-sm font-medium transition-colors",
               active
-                ? "border-foreground text-foreground"
+                ? "border-red-cta text-foreground"
                 : "border-transparent text-muted-foreground hover:text-foreground",
             )}
           >

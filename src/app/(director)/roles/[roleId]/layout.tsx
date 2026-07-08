@@ -47,7 +47,7 @@ export default async function RoleLayout({
               {project.title}
             </Link>
             <span className="text-muted-foreground/50">›</span>
-            <h1 className="truncate">{role.name}</h1>
+            <h1 className="truncate font-heading tracking-tight">{role.name}</h1>
           </nav>
           <StatusBadge status={role.status} />
           <DdayBadge deadline={role.deadline} />
@@ -58,7 +58,7 @@ export default async function RoleLayout({
             />
           </div>
         </div>
-        <p className="mt-1.5 truncate text-sm text-muted-foreground">
+        <p className="mt-1.5 truncate font-mono text-xs tracking-wide text-muted-foreground">
           {conditionLine(role)}
         </p>
         <RoleTabs roleId={role.id} className="mt-3" />

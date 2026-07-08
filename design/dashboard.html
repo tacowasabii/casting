@@ -1,0 +1,518 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Castboard - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#131313",
+              outline: "#af8782",
+              "on-surface-variant": "#e9bcb6",
+              "tertiary-fixed": "#e4e2e1",
+              "on-secondary": "#313030",
+              background: "#131313",
+              "surface-tint": "#ffb4aa",
+              "on-tertiary-fixed-variant": "#474747",
+              "inverse-primary": "#c0000c",
+              "on-tertiary-container": "#fbf8f8",
+              surface: "#131313",
+              "on-secondary-fixed": "#1c1b1b",
+              "surface-container-low": "#1c1b1b",
+              "tertiary-container": "#737272",
+              "on-tertiary-fixed": "#1b1c1c",
+              "inverse-surface": "#e5e2e1",
+              "surface-container-high": "#2a2a2a",
+              "tertiary-fixed-dim": "#c8c6c6",
+              "on-background": "#e5e2e1",
+              "inverse-on-surface": "#313030",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-variant": "#353534",
+              "on-secondary-fixed-variant": "#474746",
+              tertiary: "#c8c6c6",
+              "on-primary-container": "#fff7f6",
+              "error-container": "#93000a",
+              "on-tertiary": "#303030",
+              "on-error-container": "#ffdad6",
+              "secondary-fixed-dim": "#c8c6c5",
+              primary: "#ffb4aa",
+              "on-primary-fixed": "#410001",
+              "secondary-fixed": "#e5e2e1",
+              secondary: "#c8c6c5",
+              "primary-container": "#e50914",
+              "on-primary": "#690003",
+              "on-error": "#690005",
+              "on-secondary-container": "#b7b5b4",
+              error: "#ffb4ab",
+              "surface-bright": "#3a3939",
+              "on-primary-fixed-variant": "#930007",
+              "primary-fixed": "#ffdad5",
+              "secondary-container": "#474746",
+              "outline-variant": "#5e3f3b",
+              "surface-container-highest": "#353534",
+              "surface-container": "#201f1f",
+              "on-surface": "#e5e2e1",
+              "primary-fixed-dim": "#ffb4aa",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              xs: "4px",
+              gutter: "24px",
+              sm: "8px",
+              xl: "48px",
+              "container-max": "1440px",
+              unit: "4px",
+              md: "16px",
+              lg: "24px",
+            },
+            fontFamily: {
+              "body-lg": ["Hanken Grotesk"],
+              "headline-lg": ["Hanken Grotesk"],
+              "display-lg": ["Hanken Grotesk"],
+              "body-md": ["Hanken Grotesk"],
+              "label-sm": ["JetBrains Mono"],
+              "headline-md": ["Hanken Grotesk"],
+            },
+            fontSize: {
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "800",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+              "label-sm": [
+                "12px",
+                { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "500" },
+              ],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glow-hover:hover {
+        box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+      }
+      /* Custom scrollbar for Kanban board */
+      .kanban-scroll::-webkit-scrollbar {
+        height: 8px;
+      }
+      .kanban-scroll::-webkit-scrollbar-track {
+        background: #1c1b1b;
+        border-radius: 4px;
+      }
+      .kanban-scroll::-webkit-scrollbar-thumb {
+        background: #353534;
+        border-radius: 4px;
+      }
+      .kanban-scroll::-webkit-scrollbar-thumb:hover {
+        background: #474746;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface h-screen flex overflow-hidden font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- SideNavBar (Shared Component) -->
+    <nav
+      class="hidden md:flex flex-col bg-surface-container-low border-r border-outline-variant h-screen w-64 left-0 top-0 py-lg shrink-0"
+    >
+      <!-- Brand -->
+      <div class="px-lg mb-xl">
+        <h1
+          class="font-display-lg text-[32px] font-black text-primary uppercase tracking-tighter"
+        >
+          CASTBOARD
+        </h1>
+      </div>
+      <!-- Header Profile -->
+      <div class="px-lg mb-xl flex items-center gap-md">
+        <div
+          class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden shrink-0 border border-outline-variant"
+        >
+          <img
+            alt="Director Profile"
+            class="w-full h-full object-cover"
+            data-alt="A close up portrait of a professional casting director with short hair, wearing a dark blazer, soft cinematic studio lighting, looking focused."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkGhP4cm1-XRGCmKNtaDTd9gP-o4mmRHMeHI2rET-4SsqX9fe7_FrXQFJr5LPi8d3qcKmbkpeiZX7oQ8uYuFansMLxzz15Fgbg9vga4Y0tXIqWJEvD11WZqW5ejamJ7xvQIz8JZOzc3MD3KibrvXbSYd62SECuA8kN14h54E4rj1SVJFYxsfeFEATe9YUjR8mWDhguRfh0bdFYTTsi41lGeqdDHX3yeNoXOTlMXdd88RZ7blftQAcE_FFo8iJDFU0N5LURcIeUpZkn"
+          />
+        </div>
+        <div>
+          <div class="font-headline-md text-[16px] font-bold text-on-surface">
+            Casting Director
+          </div>
+          <div class="font-label-sm text-on-surface-variant">
+            Elite Production Studio
+          </div>
+        </div>
+      </div>
+      <!-- Navigation Tabs -->
+      <div class="flex-1 px-md flex flex-col gap-sm">
+        <!-- Active Tab -->
+        <a
+          class="text-on-surface bg-surface-container-high rounded-lg font-bold border-l-4 border-primary px-4 py-3 flex items-center gap-md scale-95 transition-transform duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <!-- Inactive Tabs -->
+        <a
+          class="text-on-surface-variant hover:text-on-surface hover:bg-surface-variant px-4 py-3 rounded-lg transition-colors flex items-center gap-md"
+          href="#"
+        >
+          <span class="material-symbols-outlined">group</span>
+          <span>Actor Library</span>
+        </a>
+        <a
+          class="text-on-surface-variant hover:text-on-surface hover:bg-surface-variant px-4 py-3 rounded-lg transition-colors flex items-center gap-md"
+          href="#"
+        >
+          <span class="material-symbols-outlined">movie</span>
+          <span>Projects</span>
+        </a>
+      </div>
+      <!-- CTA & Footer -->
+      <div class="px-lg mt-auto flex flex-col gap-lg">
+        <button
+          class="w-full bg-primary-container text-on-primary-container font-headline-md text-[16px] py-3 rounded-DEFAULT glow-hover transition-all flex justify-center items-center gap-sm"
+        >
+          <span class="material-symbols-outlined text-[20px]">add</span>
+          Add Casting Call
+        </button>
+        <div class="flex flex-col gap-sm">
+          <a
+            class="text-on-surface-variant hover:text-on-surface text-label-sm transition-colors flex items-center gap-md py-2"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-[18px]">settings</span>
+            <span>Settings</span>
+          </a>
+          <a
+            class="text-on-surface-variant hover:text-on-surface text-label-sm transition-colors flex items-center gap-md py-2"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-[18px]">help</span>
+            <span>Support</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <!-- Main Content Canvas -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-background">
+      <!-- Top Action Bar -->
+      <header
+        class="px-xl py-lg flex justify-between items-center shrink-0 border-b border-surface-container-low"
+      >
+        <h2 class="font-headline-lg text-on-surface">Dashboard</h2>
+        <button
+          class="bg-surface-container-high hover:bg-surface-variant text-on-surface border border-outline-variant px-4 py-2 rounded-DEFAULT font-headline-md text-[14px] transition-colors flex items-center gap-sm"
+        >
+          <span class="material-symbols-outlined text-[18px]">add</span>
+          New Project
+        </button>
+      </header>
+      <!-- Project Filters -->
+      <div
+        class="px-xl py-md shrink-0 flex items-center gap-md overflow-x-auto no-scrollbar border-b border-surface-container-low"
+      >
+        <button
+          class="bg-surface-container-high text-on-surface border border-primary px-4 py-1.5 rounded-full font-label-sm whitespace-nowrap"
+        >
+          Project Alpha
+        </button>
+        <button
+          class="bg-transparent text-on-surface-variant hover:text-on-surface border border-outline-variant px-4 py-1.5 rounded-full font-label-sm transition-colors whitespace-nowrap"
+        >
+          Summer Shadows
+        </button>
+      </div>
+      <!-- Project Meta Info -->
+      <div
+        class="px-xl py-md shrink-0 flex items-center gap-gutter text-on-surface-variant font-label-sm"
+      >
+        <div class="flex items-center gap-xs">
+          <span class="material-symbols-outlined text-[16px]">movie</span>
+          <span>Feature Film</span>
+        </div>
+        <div>•</div>
+        <div>Production: Moonlight Pictures</div>
+        <div>•</div>
+        <div>Shooting: 2026.08 ~ 2026.12</div>
+      </div>
+      <!-- Kanban Board Area -->
+      <div
+        class="flex-1 overflow-x-auto kanban-scroll p-xl flex gap-gutter items-start"
+      >
+        <!-- Column 1: Recruiting -->
+        <div class="w-[320px] shrink-0 flex flex-col gap-md">
+          <div class="flex items-center gap-sm px-2">
+            <h3 class="font-headline-md text-[16px] text-on-surface">
+              Recruiting
+            </h3>
+            <span
+              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-0.5 rounded-full"
+              >1</span
+            >
+          </div>
+          <!-- Card 1 -->
+          <div
+            class="bg-surface-container-low border border-outline-variant rounded-xl p-md hover:border-outline transition-colors group cursor-pointer relative overflow-hidden"
+          >
+            <!-- Subtle top highlight for active state -->
+            <div
+              class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-container to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+            ></div>
+            <div class="flex justify-between items-start mb-sm">
+              <h4
+                class="font-headline-md text-[18px] text-on-surface font-bold"
+              >
+                High School Girl
+              </h4>
+              <button class="text-on-surface-variant hover:text-on-surface">
+                <span class="material-symbols-outlined text-[20px]"
+                  >more_vert</span
+                >
+              </button>
+            </div>
+            <div
+              class="font-label-sm text-on-surface-variant mb-md flex flex-wrap gap-x-3 gap-y-1"
+            >
+              <span>Female</span>
+              <span>•</span>
+              <span>17~21 yrs</span>
+            </div>
+            <div
+              class="flex items-center gap-sm mt-auto pt-sm border-t border-surface-container"
+            >
+              <span
+                class="bg-surface-variant text-on-surface px-2 py-1 rounded font-label-sm"
+                >D-5</span
+              >
+              <span class="text-on-surface-variant font-label-sm"
+                >7 Applicants</span
+              >
+              <span
+                class="bg-primary-container text-on-primary-container px-2 py-1 rounded font-label-sm ml-auto"
+                >New</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Column 2: Reviewing -->
+        <div class="w-[320px] shrink-0 flex flex-col gap-md">
+          <div class="flex items-center gap-sm px-2">
+            <h3 class="font-headline-md text-[16px] text-on-surface">
+              Reviewing
+            </h3>
+            <span
+              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-0.5 rounded-full"
+              >1</span
+            >
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="bg-surface-container-low border border-outline-variant rounded-xl p-md hover:border-outline transition-colors group cursor-pointer relative overflow-hidden"
+          >
+            <div class="flex justify-between items-start mb-sm">
+              <h4
+                class="font-headline-md text-[18px] text-on-surface font-bold"
+              >
+                Cafe Owner
+              </h4>
+              <button class="text-on-surface-variant hover:text-on-surface">
+                <span class="material-symbols-outlined text-[20px]"
+                  >more_vert</span
+                >
+              </button>
+            </div>
+            <div
+              class="font-label-sm text-on-surface-variant mb-md flex flex-wrap gap-x-3 gap-y-1"
+            >
+              <span>Female</span>
+              <span>•</span>
+              <span>45~55 yrs</span>
+            </div>
+            <div
+              class="flex items-center gap-sm mt-auto pt-sm border-t border-surface-container"
+            >
+              <span
+                class="bg-primary/20 text-primary border border-primary/30 px-2 py-1 rounded font-label-sm"
+                >D-2</span
+              >
+              <span class="text-on-surface-variant font-label-sm"
+                >12 Applicants</span
+              >
+              <span
+                class="bg-primary-container text-on-primary-container px-2 py-1 rounded font-label-sm ml-auto"
+                >1 New</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Column 3: Director Confirm -->
+        <div class="w-[320px] shrink-0 flex flex-col gap-md">
+          <div class="flex items-center gap-sm px-2">
+            <h3 class="font-headline-md text-[16px] text-on-surface">
+              Director Confirm
+            </h3>
+            <span
+              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-0.5 rounded-full"
+              >1</span
+            >
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="bg-surface-container-low border border-outline-variant rounded-xl p-md hover:border-outline transition-colors group cursor-pointer relative overflow-hidden"
+          >
+            <div class="flex justify-between items-start mb-sm">
+              <h4
+                class="font-headline-md text-[18px] text-on-surface font-bold"
+              >
+                Detective Role 2
+              </h4>
+              <button class="text-on-surface-variant hover:text-on-surface">
+                <span class="material-symbols-outlined text-[20px]"
+                  >more_vert</span
+                >
+              </button>
+            </div>
+            <div
+              class="font-label-sm text-on-surface-variant mb-md flex flex-wrap gap-x-3 gap-y-1"
+            >
+              <span>Male</span>
+              <span>•</span>
+              <span>35~45 yrs</span>
+              <span>•</span>
+              <span>175~185cm</span>
+            </div>
+            <div
+              class="flex flex-col gap-2 mt-auto pt-sm border-t border-surface-container"
+            >
+              <div class="flex items-center gap-sm">
+                <span
+                  class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded font-label-sm"
+                  >Closed</span
+                >
+                <span class="text-on-surface-variant font-label-sm"
+                  >10 Applicants</span
+                >
+              </div>
+              <div
+                class="flex items-center gap-xs text-primary font-label-sm mt-1"
+              >
+                <div
+                  class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"
+                ></div>
+                <span>Awaiting Director Response</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Column 4: Audition -->
+        <div class="w-[320px] shrink-0 flex flex-col gap-md">
+          <div class="flex items-center gap-sm px-2">
+            <h3 class="font-headline-md text-[16px] text-on-surface">
+              Audition
+            </h3>
+            <span
+              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-0.5 rounded-full"
+              >1</span
+            >
+          </div>
+          <!-- Card 4 -->
+          <div
+            class="bg-surface-container-low border border-outline-variant rounded-xl p-md hover:border-outline transition-colors group cursor-pointer relative overflow-hidden"
+          >
+            <div class="flex justify-between items-start mb-sm">
+              <h4
+                class="font-headline-md text-[18px] text-on-surface font-bold"
+              >
+                Syndicate Member 3
+              </h4>
+              <button class="text-on-surface-variant hover:text-on-surface">
+                <span class="material-symbols-outlined text-[20px]"
+                  >more_vert</span
+                >
+              </button>
+            </div>
+            <div
+              class="font-label-sm text-on-surface-variant mb-md flex flex-wrap gap-x-3 gap-y-1"
+            >
+              <span>Male</span>
+              <span>•</span>
+              <span>25~35 yrs</span>
+              <span>•</span>
+              <span>178cm+</span>
+            </div>
+            <div
+              class="flex items-center gap-sm mt-auto pt-sm border-t border-surface-container"
+            >
+              <span
+                class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded font-label-sm"
+                >Closed</span
+              >
+              <span class="text-on-surface-variant font-label-sm"
+                >6 Applicants</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Column 5: Confirmed (Empty) -->
+        <div class="w-[320px] shrink-0 flex flex-col gap-md opacity-60">
+          <div class="flex items-center gap-sm px-2">
+            <h3 class="font-headline-md text-[16px] text-on-surface">
+              Confirmed
+            </h3>
+            <span
+              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-0.5 rounded-full"
+              >0</span
+            >
+          </div>
+          <!-- Empty State Card -->
+          <div
+            class="border border-dashed border-outline-variant rounded-xl p-md h-[140px] flex items-center justify-center text-on-surface-variant font-label-sm bg-surface-container-lowest/50"
+          >
+            No roles confirmed yet
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

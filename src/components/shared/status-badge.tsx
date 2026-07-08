@@ -3,12 +3,12 @@ import { cn } from "@/lib/utils";
 import type { RoleStatus } from "@/lib/types";
 
 const STYLES: Record<RoleStatus, string> = {
-  모집중: "bg-blue-100 text-blue-800 border-blue-200",
-  검토중: "bg-amber-100 text-amber-800 border-amber-200",
-  감독컨펌: "bg-violet-100 text-violet-800 border-violet-200",
-  오디션: "bg-emerald-100 text-emerald-800 border-emerald-200",
-  확정: "bg-teal-100 text-teal-900 border-teal-200",
-  종료: "bg-neutral-100 text-neutral-500 border-neutral-200",
+  모집중: "border-red-cta/40 bg-red-cta/15 text-primary",
+  검토중: "border-amber-500/30 bg-amber-500/15 text-amber-400",
+  감독컨펌: "border-violet-500/30 bg-violet-500/15 text-violet-400",
+  오디션: "border-sky-500/30 bg-sky-500/15 text-sky-400",
+  확정: "border-emerald-500/30 bg-emerald-500/15 text-emerald-400",
+  종료: "border-border bg-chip/60 text-muted-foreground",
 };
 
 export function StatusBadge({

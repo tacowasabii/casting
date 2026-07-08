@@ -71,7 +71,7 @@ export default async function ShortlistsPage({
                   </span>
                 </span>
                 <span className="flex items-center gap-1">
-                  <HeartIcon className="size-3.5 text-emerald-600" />
+                  <HeartIcon className="size-3.5 text-primary" />
                   좋아요 {sl.likeCount}
                 </span>
               </CardContent>

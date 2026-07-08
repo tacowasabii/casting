@@ -25,14 +25,20 @@ import { ageOf } from "@/lib/types";
 function AttendanceBadge({ index }: { index: number }) {
   if (index === 0) {
     return (
-      <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400">
+      <Badge
+        variant="outline"
+        className="border-emerald-500/30 bg-emerald-500/15 text-emerald-400"
+      >
         참석
       </Badge>
     );
   }
   if (index === 1) {
     return (
-      <Badge className="bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400">
+      <Badge
+        variant="outline"
+        className="border-amber-500/30 bg-amber-500/15 text-amber-400"
+      >
         미정
       </Badge>
     );

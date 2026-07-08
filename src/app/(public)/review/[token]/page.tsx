@@ -40,8 +40,10 @@ export default async function ReviewLandingPage({
             <p className="mt-2 text-2xl font-semibold tracking-tight">
               {role.name}
             </p>
-            <p className="mt-1.5 text-sm font-medium">후보 {items.length}명</p>
-            <p className="mt-4 text-xs text-muted-foreground">
+            <p className="mt-1.5 font-mono text-sm font-medium">
+              후보 {items.length}명
+            </p>
+            <p className="mt-4 font-mono text-xs text-muted-foreground">
               {formatDeadline(shortlist.deadline)}까지 검토 부탁드립니다
             </p>
           </CardContent>
@@ -61,7 +63,7 @@ export default async function ReviewLandingPage({
       </div>
 
       <div className="sticky bottom-0 border-t bg-background p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
-        <Button asChild className="h-12 w-full text-base">
+        <Button asChild className="h-12 w-full text-base shadow-glow hover:shadow-glow-lg">
           <Link href={`/review/${token}/cards`}>검토 시작</Link>
         </Button>
       </div>

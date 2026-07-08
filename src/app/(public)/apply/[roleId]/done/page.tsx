@@ -13,7 +13,7 @@ export default async function ApplyDonePage({
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
-      <CheckCircle2 className="size-16 text-emerald-500" strokeWidth={1.5} />
+      <CheckCircle2 className="size-16 text-emerald-400" strokeWidth={1.5} />
       <h1 className="text-xl font-semibold tracking-tight">
         지원이 접수되었습니다
       </h1>

@@ -33,11 +33,10 @@ function TriageBadge({ triage }: { triage: Triage }) {
   return (
     <Badge
       className={cn(
-        triage === "관심" &&
-          "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400",
+        triage === "관심" && "border-red-cta/40 bg-red-cta/15 text-primary",
         triage === "보류" &&
-          "bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400",
-        triage === "제외" && "bg-muted text-muted-foreground",
+          "border-amber-500/30 bg-amber-500/15 text-amber-400",
+        triage === "제외" && "border-border bg-chip/60 text-muted-foreground",
       )}
     >
       {triage}
@@ -86,7 +85,7 @@ export function ActorTable({ actors }: { actors: ActorWithSummary[] }) {
               <Badge
                 key={tag}
                 variant={active ? "default" : "outline"}
-                className="cursor-pointer select-none"
+                className="cursor-pointer rounded-full select-none"
                 onClick={() => toggleTag(tag)}
               >
                 {tag}
@@ -113,13 +112,27 @@ export function ActorTable({ actors }: { actors: ActorWithSummary[] }) {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="pl-4">배우</TableHead>
-                <TableHead>나이</TableHead>
-                <TableHead>키</TableHead>
-                <TableHead>소속사</TableHead>
-                <TableHead>태그</TableHead>
-                <TableHead>지원 이력</TableHead>
-                <TableHead className="pr-4">최근 분류</TableHead>
+                <TableHead className="pl-4 font-mono text-[11px] uppercase tracking-wider">
+                  배우
+                </TableHead>
+                <TableHead className="font-mono text-[11px] uppercase tracking-wider">
+                  나이
+                </TableHead>
+                <TableHead className="font-mono text-[11px] uppercase tracking-wider">
+                  키
+                </TableHead>
+                <TableHead className="font-mono text-[11px] uppercase tracking-wider">
+                  소속사
+                </TableHead>
+                <TableHead className="font-mono text-[11px] uppercase tracking-wider">
+                  태그
+                </TableHead>
+                <TableHead className="font-mono text-[11px] uppercase tracking-wider">
+                  지원 이력
+                </TableHead>
+                <TableHead className="pr-4 font-mono text-[11px] uppercase tracking-wider">
+                  최근 분류
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -149,7 +162,11 @@ export function ActorTable({ actors }: { actors: ActorWithSummary[] }) {
                   <TableCell>
                     <div className="flex flex-wrap gap-1">
                       {actor.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary">
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className="rounded-full"
+                        >
                           {tag}
                         </Badge>
                       ))}

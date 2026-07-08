@@ -39,7 +39,7 @@ export default async function ReviewDonePage({
       <div className="flex-1 px-6 py-10">
         <div className="flex flex-col items-center gap-4 text-center">
           <CheckCircle2
-            className="size-16 text-emerald-500"
+            className="size-16 text-emerald-400"
             strokeWidth={1.5}
           />
           <h1 className="text-xl font-semibold tracking-tight">
@@ -48,19 +48,19 @@ export default async function ReviewDonePage({
           <div className="flex items-center gap-1.5">
             <Badge
               variant="outline"
-              className="border-emerald-200 bg-emerald-50 text-emerald-700"
+              className="border-red-cta/40 bg-red-cta/15 text-primary"
             >
               좋아요 {count("like")}
             </Badge>
             <Badge
               variant="outline"
-              className="border-amber-200 bg-amber-50 text-amber-700"
+              className="border-amber-500/30 bg-amber-500/15 text-amber-400"
             >
               보류 {count("hold")}
             </Badge>
             <Badge
               variant="outline"
-              className="border-neutral-200 bg-neutral-100 text-neutral-500"
+              className="border-border bg-chip/60 text-muted-foreground"
             >
               제외 {count("pass")}
             </Badge>

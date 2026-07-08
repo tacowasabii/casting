@@ -59,23 +59,23 @@ export default async function ShortlistResultPage({
         <div className="flex flex-wrap items-center gap-2">
           <Badge
             variant="outline"
-            className="gap-1.5 border-emerald-200 bg-emerald-50 text-emerald-800"
+            className="gap-1.5 border-red-cta/40 bg-red-cta/15 text-primary"
           >
-            <span className="size-1.5 rounded-full bg-emerald-500" />
+            <span className="size-1.5 rounded-full bg-red-cta" />
             좋아요 {counts.like}
           </Badge>
           <Badge
             variant="outline"
-            className="gap-1.5 border-amber-200 bg-amber-50 text-amber-800"
+            className="gap-1.5 border-amber-500/30 bg-amber-500/15 text-amber-400"
           >
-            <span className="size-1.5 rounded-full bg-amber-500" />
+            <span className="size-1.5 rounded-full bg-amber-400" />
             보류 {counts.hold}
           </Badge>
           <Badge
             variant="outline"
-            className="gap-1.5 border-neutral-200 bg-neutral-100 text-neutral-600"
+            className="gap-1.5 border-border bg-chip/60 text-muted-foreground"
           >
-            <span className="size-1.5 rounded-full bg-neutral-400" />
+            <span className="size-1.5 rounded-full bg-neutral-500" />
             제외 {counts.pass}
           </Badge>
           <Badge variant="outline" className="gap-1.5">

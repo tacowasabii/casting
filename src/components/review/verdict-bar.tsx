@@ -14,21 +14,21 @@ const OPTIONS = [
     label: "제외",
     icon: XIcon,
     idle: "text-muted-foreground",
-    active: "bg-muted text-foreground ring-2 ring-neutral-400",
+    active: "bg-accent text-foreground ring-2 ring-border-strong",
   },
   {
     value: "h",
     label: "보류",
     icon: MinusIcon,
-    idle: "text-amber-600",
-    active: "bg-amber-50 text-amber-700 ring-2 ring-amber-400",
+    idle: "text-amber-400",
+    active: "bg-amber-500/15 text-amber-400 ring-2 ring-amber-500/50",
   },
   {
     value: "l",
     label: "좋아요",
     icon: HeartIcon,
-    idle: "text-emerald-600",
-    active: "bg-emerald-50 text-emerald-700 ring-2 ring-emerald-400",
+    idle: "text-primary",
+    active: "bg-red-cta/20 text-primary ring-2 ring-red-cta/60 shadow-glow",
   },
 ] as const;
 

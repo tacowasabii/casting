@@ -29,11 +29,13 @@ export default async function ApplyPage({
   return (
     <div className="flex flex-1 flex-col">
       <header className="border-b bg-muted/30 px-5 py-6">
-        <p className="text-xs text-muted-foreground">
+        <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
           {project.title} · {project.type}
         </p>
         <div className="mt-1.5 flex items-center gap-2">
-          <h1 className="text-2xl font-semibold tracking-tight">{role.name}</h1>
+          <h1 className="font-heading text-2xl font-bold tracking-tight">
+            {role.name}
+          </h1>
           <DdayBadge deadline={role.deadline} />
         </div>
         <p className="mt-2 text-sm text-muted-foreground">
