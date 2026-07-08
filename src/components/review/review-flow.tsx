@@ -4,23 +4,37 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 
+import { ActionTriad } from "@/components/shared/action-triad";
 import { ActorReviewCard } from "@/components/review/actor-review-card";
-import {
-  VerdictBar,
-  type VerdictLetter,
-} from "@/components/review/verdict-bar";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import type { ShortlistDetailItem } from "@/lib/data";
+import { formatDeadlineLabel } from "@/lib/format";
+import type { Project } from "@/lib/types";
+import { cn } from "@/lib/utils";
+
+/** l=좋아요(like) / h=보류(hold) / p=제외(pass) */
+export type VerdictLetter = "l" | "h" | "p";
+
+const VERDICT_OPTIONS = [
+  { value: "l", label: "좋아요" },
+  { value: "h", label: "보류" },
+  { value: "p", label: "제외" },
+] as const;
 
 interface ReviewFlowProps {
   items: ShortlistDetailItem[];
   token: string;
-  allowComment: boolean;
   roleName: string;
+  project: Project;
+  deadline: string;
 }
 
-export function ReviewFlow({ items, token, roleName }: ReviewFlowProps) {
+export function ReviewFlow({
+  items,
+  token,
+  roleName,
+  project,
+  deadline,
+}: ReviewFlowProps) {
   const router = useRouter();
   const [index, setIndex] = useState(0);
   const [verdicts, setVerdicts] = useState<(VerdictLetter | undefined)[]>(
@@ -43,26 +57,42 @@ export function ReviewFlow({ items, token, roleName }: ReviewFlowProps) {
 
   return (
     <div className="flex h-dvh flex-col">
-      <div className="flex-none border-b px-4 pt-3 pb-3">
-        <div className="flex items-center gap-1">
-          {index > 0 ? (
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              aria-label="이전 후보"
-              onClick={() => setIndex(index - 1)}
-            >
-              <ChevronLeft />
-            </Button>
-          ) : (
-            <span className="size-7" aria-hidden />
-          )}
-          <span className="text-sm font-medium">{roleName}</span>
-          <span className="ml-auto text-xs tabular-nums text-muted-foreground">
-            {index + 1}/{total}
+      {/* 헤더 — 배역 + 진행 + 세그먼트 프로그레스 */}
+      <div className="flex-none border-b border-hairline px-[22px] pb-4 pt-3">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex min-w-0 items-center gap-1">
+            {index > 0 ? (
+              <button
+                type="button"
+                aria-label="이전 후보"
+                onClick={() => setIndex(index - 1)}
+                className="-ml-1.5 cursor-pointer rounded p-1 text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <ChevronLeft className="size-4" />
+              </button>
+            ) : null}
+            <span className="truncate text-base font-extrabold tracking-[-.01em] text-foreground">
+              {roleName} 후보
+            </span>
+          </div>
+          <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
+            {index + 1} / {total}
           </span>
         </div>
-        <Progress value={((index + 1) / total) * 100} className="mt-2.5" />
+        <div className="mt-[5px] text-[11.5px] text-[#9a9a9a]">
+          {project.title} · {project.production} · {formatDeadlineLabel(deadline)}
+        </div>
+        <div className="mt-3 flex gap-1">
+          {items.map((it, i) => (
+            <span
+              key={it.item.id}
+              className={cn(
+                "h-[3px] flex-1 rounded-[2px]",
+                i <= index ? "bg-primary" : "bg-[#e4e4e4]",
+              )}
+            />
+          ))}
+        </div>
       </div>
 
       <div
@@ -75,7 +105,14 @@ export function ReviewFlow({ items, token, roleName }: ReviewFlowProps) {
         />
       </div>
 
-      <VerdictBar current={verdicts[index]} onVote={vote} />
+      <div className="flex-none border-t border-hairline bg-card px-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] pt-1.5">
+        <ActionTriad
+          size="mobile"
+          options={VERDICT_OPTIONS}
+          value={verdicts[index] ?? null}
+          onSelect={vote}
+        />
+      </div>
     </div>
   );
 }

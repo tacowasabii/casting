@@ -7,14 +7,15 @@ export default async function ReviewCardsPage({
   params: Promise<{ token: string }>;
 }) {
   const { token } = await params;
-  const { shortlist, role, items } = await getShortlistDetail(token);
+  const { shortlist, role, project, items } = await getShortlistDetail(token);
 
   return (
     <ReviewFlow
       items={items}
       token={token}
-      allowComment={shortlist.allowComment}
       roleName={role.name}
+      project={project}
+      deadline={shortlist.deadline}
     />
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CopyIcon, ExternalLinkIcon, ListPlusIcon } from "lucide-react";
+import { CopyIcon, ExternalLinkIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -56,10 +56,13 @@ export function CreateShortlistDialog({
       }}
     >
       <DialogTrigger asChild>
-        <Button size="sm" disabled={count === 0}>
-          <ListPlusIcon data-icon="inline-start" />
-          숏리스트 만들기 ({count})
-        </Button>
+        <button
+          type="button"
+          disabled={count === 0}
+          className="cursor-pointer whitespace-nowrap rounded bg-primary px-4 py-2.5 text-[12.5px] font-semibold text-primary-foreground transition-colors hover:bg-primary-hover disabled:cursor-default disabled:opacity-40"
+        >
+          숏리스트 만들기
+        </button>
       </DialogTrigger>
       <DialogContent>
         {created ? (
@@ -108,7 +111,7 @@ export function CreateShortlistDialog({
             <DialogHeader>
               <DialogTitle>숏리스트 만들기</DialogTitle>
               <DialogDescription>
-                선택된 후보{" "}
+                관심 분류 후보{" "}
                 <span className="font-medium text-foreground">{count}명</span>
                 을 감독 리뷰 링크로 공유합니다.
               </DialogDescription>

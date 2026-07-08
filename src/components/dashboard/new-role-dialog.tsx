@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { PlusIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -38,9 +37,12 @@ export function NewRoleDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          <PlusIcon data-icon="inline-start" />새 배역
-        </Button>
+        <button
+          type="button"
+          className="cursor-pointer whitespace-nowrap rounded bg-primary px-[17px] py-2.5 text-[12.5px] font-semibold tracking-[.02em] text-primary-foreground transition-colors hover:bg-primary-hover"
+        >
+          ＋ 새 배역 만들기
+        </button>
       </DialogTrigger>
       <DialogContent className="max-h-[min(85svh,44rem)] overflow-y-auto sm:max-w-lg">
         <DialogHeader>

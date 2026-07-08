@@ -1,57 +1,33 @@
-import { FolderOpenIcon, MailIcon, PhoneIcon } from "lucide-react";
 import Link from "next/link";
 
+import { AddToShortlistButton } from "@/components/actors/add-to-shortlist-button";
 import { NoteEditor } from "@/components/actors/note-editor";
 import { AvatarPlaceholder } from "@/components/shared/avatar-placeholder";
+import { BreadcrumbBar } from "@/components/shared/breadcrumb-bar";
+import { CaptionLabel } from "@/components/shared/caption-label";
+import { Chip } from "@/components/shared/chip";
+import { EmptyBlock } from "@/components/shared/empty-block";
 import { MediaPlaceholder } from "@/components/shared/media-placeholder";
-import { Badge } from "@/components/ui/badge";
-import {
-  Empty,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui/empty";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SectionHeader } from "@/components/shared/section-header";
+import { TriageChip } from "@/components/shared/triage-chip";
 import { getActorById, getApplicationsByActor } from "@/lib/data";
-import { ageOf, type ApplicationSource, type Triage } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { formatRelativeDays } from "@/lib/format";
+import { ageOf, type ApplicationSource } from "@/lib/types";
 
 const SOURCE_LABELS: Record<ApplicationSource, string> = {
-  form: "지원폼",
-  email: "이메일",
+  form: "지원 폼 접수",
+  email: "이메일 접수",
   manual: "직접 등록",
 };
 
-function formatDate(iso: string) {
-  const d = new Date(iso);
-  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
-}
-
-function TriageBadge({ triage }: { triage: Triage }) {
-  if (triage === null) {
-    return <span className="text-muted-foreground">—</span>;
-  }
+function KeyValue({ label, value }: { label: string; value: string }) {
   return (
-    <Badge
-      className={cn(
-        triage === "관심" && "border-red-cta/40 bg-red-cta/15 text-primary",
-        triage === "보류" &&
-          "border-amber-500/30 bg-amber-500/15 text-amber-400",
-        triage === "제외" && "border-border bg-chip/60 text-muted-foreground",
-      )}
-    >
-      {triage}
-    </Badge>
+    <div className="flex items-center justify-between gap-4">
+      <CaptionLabel size="sm" className="text-[10.5px] tracking-[.06em]">
+        {label}
+      </CaptionLabel>
+      <span className="truncate text-[13px] text-foreground">{value}</span>
+    </div>
   );
 }
 
@@ -68,196 +44,140 @@ export default async function ActorProfilePage({
 
   const videos = applications.filter((a) => a.videoUrl !== null);
   const pdfs = applications.flatMap((a) => a.files);
+  const projectCount = new Set(applications.map((a) => a.project.id)).size;
+  const firstAppliedAt =
+    applications.length > 0
+      ? applications[applications.length - 1].createdAt
+      : null;
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col">
-      <header className="flex flex-none items-center gap-3 border-b px-6 py-4">
-        <SidebarTrigger className="md:hidden" />
+    <div className="flex min-h-0 flex-1 flex-col overflow-y-auto bg-card">
+      <BreadcrumbBar
+        parentHref="/actors"
+        parentLabel="배우 라이브러리"
+        current={actor.name}
+      />
+
+      <div className="grid grid-cols-1 gap-[34px] p-[30px] lg:grid-cols-[300px_1fr]">
+        {/* 좌측 — 프로필 요약 */}
         <div>
-          <h1 className="font-heading text-lg font-semibold tracking-tight">
-            배우 프로필
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            <Link href="/actors" className="hover:underline">
-              배우 라이브러리
-            </Link>{" "}
-            / {actor.name}
-          </p>
-        </div>
-      </header>
-
-      <div className="flex-1 overflow-y-auto px-6 py-5">
-        <div className="space-y-6">
-          {/* 프로필 헤더 */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-            <AvatarPlaceholder
-              name={actor.name}
-              photo={actor.photo}
-              className="size-16 text-xl"
-            />
-            <div className="min-w-0 flex-1 space-y-2">
-              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <h2 className="font-heading text-xl font-semibold tracking-tight">
-                  {actor.name}
-                </h2>
-                <span className="text-sm text-muted-foreground">
-                  {ageOf(actor.birthYear)}세 · {actor.height}cm ·{" "}
-                  {actor.agency ?? "무소속"}
-                </span>
-              </div>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
-                <span className="inline-flex items-center gap-1.5">
-                  <PhoneIcon className="size-3.5" />
-                  {actor.phone}
-                </span>
-                {actor.email ? (
-                  <span className="inline-flex items-center gap-1.5">
-                    <MailIcon className="size-3.5" />
-                    {actor.email}
-                  </span>
-                ) : null}
-              </div>
-              {actor.tags.length > 0 ? (
-                <div className="flex flex-wrap gap-1.5">
-                  {actor.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="rounded-full">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              ) : null}
-              {actor.note ? (
-                <div className="rounded-lg bg-muted/50 px-3 py-2 text-sm">
-                  <span className="mr-2 font-medium text-muted-foreground">
-                    라이브러리 메모
-                  </span>
-                  {actor.note}
-                </div>
-              ) : null}
-            </div>
+          <AvatarPlaceholder
+            name={actor.name}
+            photo={actor.photo}
+            variant="photo"
+            stripe={7}
+            className="aspect-[3/4] w-full border border-border text-[64px]"
+          />
+          <h2 className="m-0 mt-5 text-[26px] font-extrabold tracking-[-.02em] text-foreground">
+            {actor.name}
+          </h2>
+          <div className="mt-1.5 text-[13px] text-muted-foreground">
+            {ageOf(actor.birthYear)}세 · {actor.height}cm ·{" "}
+            {actor.agency ?? "소속사 없음"}
           </div>
+          {actor.tags.length > 0 ? (
+            <div className="mt-3.5 flex flex-wrap gap-1.5">
+              {actor.tags.map((tag) => (
+                <Chip key={tag} variant="outline" className="px-[11px] py-[5px]">
+                  {tag}
+                </Chip>
+              ))}
+            </div>
+          ) : null}
+          <div className="mt-[22px] flex flex-col gap-3.5 border-t border-hairline pt-[18px]">
+            <KeyValue label="생년" value={String(actor.birthYear)} />
+            <KeyValue label="연락처" value={actor.phone} />
+            {actor.email ? <KeyValue label="이메일" value={actor.email} /> : null}
+            {firstAppliedAt ? (
+              <KeyValue
+                label="최초 지원"
+                value={formatRelativeDays(firstAppliedAt)}
+              />
+            ) : null}
+          </div>
+          <div className="mt-[22px]">
+            <AddToShortlistButton actorName={actor.name} />
+          </div>
+        </div>
 
-          <Tabs defaultValue="history">
-            <TabsList>
-              <TabsTrigger value="history">
-                지원 이력 ({applications.length})
-              </TabsTrigger>
-              <TabsTrigger value="media">파일·영상</TabsTrigger>
-              <TabsTrigger value="note">메모</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="history" className="mt-2">
-              {applications.length === 0 ? (
-                <Empty className="border py-16">
-                  <EmptyHeader>
-                    <EmptyMedia variant="icon">
-                      <FolderOpenIcon />
-                    </EmptyMedia>
-                    <EmptyTitle>지원 이력이 없습니다</EmptyTitle>
-                    <EmptyDescription>
-                      아직 이 배우의 지원 기록이 없습니다.
-                    </EmptyDescription>
-                  </EmptyHeader>
-                </Empty>
-              ) : (
-                <div className="rounded-xl border">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="pl-4 font-mono text-[11px] uppercase tracking-wider">
-                          작품
-                        </TableHead>
-                        <TableHead className="font-mono text-[11px] uppercase tracking-wider">
-                          배역
-                        </TableHead>
-                        <TableHead className="font-mono text-[11px] uppercase tracking-wider">
-                          지원일
-                        </TableHead>
-                        <TableHead className="font-mono text-[11px] uppercase tracking-wider">
-                          경로
-                        </TableHead>
-                        <TableHead className="pr-4 font-mono text-[11px] uppercase tracking-wider">
-                          당시 분류
-                        </TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {applications.map((app) => (
-                        <TableRow key={app.id}>
-                          <TableCell className="pl-4">
-                            {app.project.title}
-                          </TableCell>
-                          <TableCell>
-                            <Link
-                              href={`/roles/${app.roleId}`}
-                              className="font-medium hover:underline"
-                            >
-                              {app.role.name}
-                            </Link>
-                          </TableCell>
-                          <TableCell className="text-muted-foreground">
-                            {formatDate(app.createdAt)}
-                          </TableCell>
-                          <TableCell className="text-muted-foreground">
-                            {SOURCE_LABELS[app.source]}
-                          </TableCell>
-                          <TableCell className="pr-4">
-                            <TriageBadge triage={app.triage} />
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              )}
-            </TabsContent>
-
-            <TabsContent value="media" className="mt-2">
-              {videos.length === 0 && pdfs.length === 0 ? (
-                <Empty className="border py-16">
-                  <EmptyHeader>
-                    <EmptyMedia variant="icon">
-                      <FolderOpenIcon />
-                    </EmptyMedia>
-                    <EmptyTitle>등록된 파일이 없습니다</EmptyTitle>
-                    <EmptyDescription>
-                      지원 시 첨부된 파일과 영상이 여기에 모입니다.
-                    </EmptyDescription>
-                  </EmptyHeader>
-                </Empty>
-              ) : (
-                <div className="space-y-5">
-                  {videos.length > 0 ? (
-                    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                      {videos.map((app) => (
-                        <MediaPlaceholder
-                          key={app.id}
-                          kind="video"
-                          label={`${app.project.title} · ${app.role.name}`}
-                          duration={app.videoDuration}
-                        />
-                      ))}
+        {/* 우측 — 지원 이력 · 누적 자료 · 디렉터 메모 */}
+        <div className="min-w-0">
+          <SectionHeader
+            title="지원 이력"
+            meta={`${applications.length}건 · ${projectCount}작품`}
+          />
+          {applications.length === 0 ? (
+            <EmptyBlock
+              className="mt-4"
+              title="No History"
+              description="아직 이 배우의 지원 기록이 없습니다."
+            />
+          ) : (
+            <div className="flex flex-col">
+              {applications.map((app) => (
+                <Link
+                  key={app.id}
+                  href={`/roles/${app.roleId}`}
+                  className="flex items-center gap-4 border-b border-hairline px-0.5 py-4 transition-colors hover:bg-panel"
+                >
+                  <div className="w-16 shrink-0 font-mono text-[11px] text-[#b0b0b0]">
+                    {formatRelativeDays(app.createdAt)}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="truncate text-[14.5px] font-bold text-foreground">
+                      {app.role.name}{" "}
+                      <span className="text-xs font-normal text-[#9a9a9a]">
+                        · {app.project.title}
+                      </span>
                     </div>
-                  ) : null}
-                  {pdfs.length > 0 ? (
-                    <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                      {pdfs.map((file, i) => (
-                        <MediaPlaceholder
-                          key={`${file}-${i}`}
-                          kind="pdf"
-                          label={file}
-                        />
-                      ))}
+                    <div className="mt-1 truncate text-xs text-muted-foreground">
+                      {app.note
+                        ? `“${app.note}”`
+                        : app.intro
+                          ? `“${app.intro}”`
+                          : SOURCE_LABELS[app.source]}
                     </div>
-                  ) : null}
-                </div>
-              )}
-            </TabsContent>
+                  </div>
+                  <TriageChip triage={app.triage} className="shrink-0" />
+                </Link>
+              ))}
+            </div>
+          )}
 
-            <TabsContent value="note" className="mt-2 max-w-xl">
-              <NoteEditor defaultValue={actor.note} />
-            </TabsContent>
-          </Tabs>
+          <SectionHeader
+            className="mt-[30px]"
+            title="누적 자료"
+            meta={`영상 ${videos.length} · 파일 ${pdfs.length}`}
+          />
+          {videos.length === 0 && pdfs.length === 0 ? (
+            <EmptyBlock
+              className="mt-4"
+              title="No Files"
+              description="지원 시 첨부된 파일과 영상이 여기에 모입니다."
+            />
+          ) : (
+            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {videos.map((app) => (
+                <MediaPlaceholder
+                  key={app.id}
+                  kind="video"
+                  duration={app.videoDuration}
+                  playSize="sm"
+                  className="aspect-[16/10]"
+                />
+              ))}
+              {pdfs.map((file, i) => (
+                <MediaPlaceholder key={`${file}-${i}`} kind="pdf" label={file} />
+              ))}
+            </div>
+          )}
+
+          <div className="mt-6 rounded border border-border bg-panel px-[18px] py-4">
+            <CaptionLabel size="sm" className="mb-2.5">
+              디렉터 메모
+            </CaptionLabel>
+            <NoteEditor defaultValue={actor.note} />
+          </div>
         </div>
       </div>
     </div>

@@ -1,22 +1,6 @@
 import { ApplyForm } from "@/components/apply/apply-form";
-import { DdayBadge } from "@/components/shared/dday-badge";
 import { getRoleById } from "@/lib/data";
-import type { Role } from "@/lib/types";
-
-// 배역 요건 한 줄 요약 — "여 · 17~21세 · 키 무관" 형식
-function requirementLine(role: Role): string {
-  const gender = role.gender === "무관" ? "성별 무관" : role.gender;
-  const age = `${role.ageMin}~${role.ageMax}세`;
-  const height =
-    role.heightMin && role.heightMax
-      ? `${role.heightMin}~${role.heightMax}cm`
-      : role.heightMin
-        ? `${role.heightMin}cm 이상`
-        : role.heightMax
-          ? `${role.heightMax}cm 이하`
-          : "키 무관";
-  return `${gender} · ${age} · ${height}`;
-}
+import { conditionLine, formatDeadlineLabel } from "@/lib/format";
 
 export default async function ApplyPage({
   params,
@@ -28,24 +12,28 @@ export default async function ApplyPage({
 
   return (
     <div className="flex flex-1 flex-col">
-      <header className="border-b bg-muted/30 px-5 py-6">
-        <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-          {project.title} · {project.type}
-        </p>
-        <div className="mt-1.5 flex items-center gap-2">
-          <h1 className="font-heading text-2xl font-bold tracking-tight">
-            {role.name}
-          </h1>
-          <DdayBadge deadline={role.deadline} />
+      {/* 검정 헤더 블록 — 배역·조건·마감을 반전 위계로 */}
+      <header className="bg-primary px-6 pb-5 pt-6">
+        <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#8a8a8a]">
+          지원서
         </div>
-        <p className="mt-2 text-sm text-muted-foreground">
-          {requirementLine(role)}
+        <h1 className="m-0 mt-2 text-xl font-extrabold tracking-[-.01em] text-primary-foreground">
+          {role.name}{" "}
+          <span className="text-[13px] font-normal text-primary-foreground/65">
+            · {project.title}
+          </span>
+        </h1>
+        <p className="m-0 mt-2 text-[11.5px] leading-normal text-primary-foreground/60">
+          {conditionLine(role)}
+          {role.requirements ? ` · ${role.requirements}` : ""}
+          <br />
+          지원 마감 · {formatDeadlineLabel(role.deadline)}
         </p>
       </header>
 
       <ApplyForm roleId={roleId} />
 
-      <footer className="px-5 py-3 text-center text-[10px] text-muted-foreground/70">
+      <footer className="px-5 py-3 text-center text-[10px] text-faint">
         Powered by 캐스트보드
       </footer>
     </div>

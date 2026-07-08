@@ -1,82 +1,244 @@
 "use client";
 
-import { Clapperboard, LayoutDashboard, Users } from "lucide-react";
+import {
+  AlignJustify,
+  Bookmark,
+  LayoutGrid,
+  SlidersHorizontal,
+  UserRound,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { AvatarPlaceholder } from "@/components/shared/avatar-placeholder";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import type { SidebarData } from "@/lib/data";
 import { MOCK_USER } from "@/lib/types";
+import { cn } from "@/lib/utils";
+
+/* 사이드바 좌우 패딩 22px + 항목 내부 패딩 6px = 28px. 활성 세로바는 우측 가장자리(right-0)에 밀착. */
 
 const MENU = [
-  { title: "대시보드", href: "/", icon: LayoutDashboard },
-  { title: "배우 라이브러리", href: "/actors", icon: Users },
-];
+  { title: "대시보드", href: "/", icon: LayoutGrid, exact: true },
+  { title: "배역 · 선별", href: "/roles", icon: AlignJustify, exact: false },
+  { title: "배우 라이브러리", href: "/actors", icon: UserRound, exact: false },
+  { title: "숏리스트", href: "/shortlists", icon: Bookmark, exact: false },
+] as const;
 
-export function AppSidebar() {
+export function AppSidebar({ data }: { data: SidebarData }) {
   const pathname = usePathname();
+  const segments = pathname.split("/").filter(Boolean);
 
   return (
     <Sidebar>
-      <SidebarHeader className="px-4 py-4">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex size-7 items-center justify-center rounded-md bg-red-cta text-on-red">
-            <Clapperboard className="size-4" />
+      <SidebarHeader className="gap-0 px-7 pb-[34px] pt-[30px]">
+        <Link href="/" className="block">
+          <div className="text-2xl font-extrabold leading-none tracking-tight text-sidebar-primary">
+            CASTBOARD
           </div>
-          <span className="font-heading text-base font-bold tracking-tight">
-            캐스트보드
-          </span>
+          <div className="mt-2 text-[11px] tracking-[.04em] text-[#9a9a9a]">
+            캐스팅 워크스페이스
+          </div>
         </Link>
       </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {MENU.map((item) => {
-                const active =
-                  item.href === "/"
-                    ? pathname === "/" || pathname.startsWith("/roles")
-                    : pathname.startsWith(item.href);
-                return (
-                  <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton
-                      asChild
-                      isActive={active}
-                      className="rounded-none border-l-2 border-l-transparent data-active:border-l-red-cta data-active:text-primary"
-                    >
-                      <Link href={item.href}>
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                );
-              })}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+
+      <SidebarContent className="gap-0 overflow-x-hidden">
+        <nav className="flex flex-col">
+          {MENU.map((item) => {
+            const active = item.exact
+              ? pathname === item.href
+              : pathname.startsWith(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "relative flex items-center gap-[13px] px-7 py-[11px] text-sm transition-colors",
+                  active
+                    ? "font-bold text-sidebar-primary"
+                    : "font-medium text-sidebar-foreground hover:text-sidebar-primary",
+                )}
+              >
+                <item.icon
+                  className={cn(
+                    "size-[18px]",
+                    active ? "text-sidebar-primary" : "text-icon-mute",
+                  )}
+                  strokeWidth={1.4}
+                />
+                <span>{item.title}</span>
+                {item.href === "/shortlists" &&
+                data.pendingShortlistCount > 0 ? (
+                  <span className="ml-auto rounded-full bg-muted px-[7px] py-px font-mono text-[10px] text-muted-foreground">
+                    {data.pendingShortlistCount}
+                  </span>
+                ) : null}
+                {active ? (
+                  <span className="absolute right-0 top-1/2 h-5 w-0.5 -translate-y-1/2 bg-sidebar-primary" />
+                ) : null}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <ContextSection
+          data={data}
+          section={segments[0]}
+          currentId={segments[1]}
+        />
       </SidebarContent>
-      <SidebarFooter className="px-4 py-3">
-        <div className="flex items-center gap-2.5">
-          <AvatarPlaceholder name={MOCK_USER.name} className="size-8 text-xs" />
-          <div className="min-w-0">
-            <p className="truncate text-sm font-medium">{MOCK_USER.name}</p>
-            <p className="truncate text-xs text-muted-foreground">
+
+      <SidebarFooter className="gap-0 px-7 pb-5">
+        <div className="flex cursor-default items-center gap-[13px] py-[11px] text-sm font-medium text-sidebar-foreground">
+          <SlidersHorizontal className="size-[18px] text-icon-mute" strokeWidth={1.4} />
+          <span>설정</span>
+        </div>
+        <div className="mt-3.5 flex items-center gap-3 border-t border-hairline pt-4">
+          <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
+            {MOCK_USER.name.charAt(0)}
+          </div>
+          <div className="min-w-0 leading-snug">
+            <div className="truncate text-[13px] font-bold text-sidebar-primary">
+              {MOCK_USER.name}
+            </div>
+            <div className="truncate text-[11px] text-[#9a9a9a]">
               {MOCK_USER.role}
-            </p>
+            </div>
           </div>
         </div>
       </SidebarFooter>
     </Sidebar>
+  );
+}
+
+/** 화면별 컨텍스트 — 선별: 현재 작품의 배역 / 라이브러리: 저장된 태그 / 숏리스트: 공유 중 */
+function ContextSection({
+  data,
+  section,
+  currentId,
+}: {
+  data: SidebarData;
+  section: string | undefined;
+  currentId: string | undefined;
+}) {
+  if (section === "roles") {
+    const current =
+      data.projects.find((p) => p.roles.some((r) => r.id === currentId)) ??
+      data.projects[0];
+    if (!current) return null;
+    return (
+      <ContextFrame label={`${current.project.title} · 배역`}>
+        <nav className="flex flex-col gap-px">
+          {current.roles.map((role) => {
+            const active = role.id === currentId;
+            return (
+              <Link
+                key={role.id}
+                href={`/roles/${role.id}`}
+                className={cn(
+                  "flex items-center gap-2.5 rounded-sm px-2.5 py-2",
+                  active
+                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                    : "text-muted-foreground hover:text-sidebar-primary",
+                )}
+              >
+                <span
+                  className={cn("truncate text-[13px]", active && "font-semibold")}
+                >
+                  {role.name}
+                </span>
+                <span
+                  className={cn(
+                    "ml-auto font-mono text-[10.5px]",
+                    active ? "text-sidebar-primary" : "text-[#b0b0b0]",
+                  )}
+                >
+                  {role.totalApplications}
+                </span>
+              </Link>
+            );
+          })}
+        </nav>
+      </ContextFrame>
+    );
+  }
+
+  if (section === "actors") {
+    if (data.tags.length === 0) return null;
+    return (
+      <ContextFrame label="저장된 태그">
+        <div className="flex flex-wrap gap-1.5">
+          {data.tags.slice(0, 8).map(({ tag, count }) => (
+            <span
+              key={tag}
+              className="rounded-sm bg-sidebar-accent px-[9px] py-1 text-[11px] text-secondary-foreground"
+            >
+              {tag} {count}
+            </span>
+          ))}
+        </div>
+      </ContextFrame>
+    );
+  }
+
+  if (section === "shortlists") {
+    if (data.sharedShortlists.length === 0) return null;
+    return (
+      <ContextFrame label="공유 중">
+        <nav className="flex flex-col gap-0.5">
+          {data.sharedShortlists.map((sl) => {
+            const active = sl.id === currentId;
+            return (
+              <Link
+                key={sl.id}
+                href={`/shortlists/${sl.id}`}
+                className={cn(
+                  "rounded-sm px-2.5 py-2",
+                  active
+                    ? "bg-sidebar-accent"
+                    : "hover:bg-sidebar-accent/60",
+                )}
+              >
+                <div className="truncate text-[12.5px] font-semibold text-sidebar-primary">
+                  {sl.title}
+                </div>
+                <div className="mt-1 flex items-center justify-between gap-2">
+                  <span className="truncate text-[10.5px] text-[#9a9a9a]">
+                    {sl.role.name} · {sl.project.title}
+                  </span>
+                  <span className="shrink-0 font-mono text-[10px] text-muted-foreground">
+                    {sl.reviewedCount}/{sl.itemCount}
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </nav>
+      </ContextFrame>
+    );
+  }
+
+  return null;
+}
+
+function ContextFrame({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="px-7">
+      <div className="my-[18px] h-px bg-hairline" />
+      <div className="caption-sm pb-3 tracking-[.12em] text-[#b0b0b0]">
+        {label}
+      </div>
+      {children}
+    </div>
   );
 }

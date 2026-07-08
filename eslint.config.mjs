@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // NAS 이슈: 변경된 distDir + SMB delete-pending 잔해 (스캔 시 EPERM)
+    ".next-dist/**",
+    ".trash-*/**",
+    // 앱 코드가 아닌 자산: 디자인 목업 지원 스크립트, CJS 노드 shim
+    "design/**",
+    "scripts/*.cjs",
   ]),
 ]);
 

@@ -1,131 +1,95 @@
 "use client";
 
-import { BellRingIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import { AvatarPlaceholder } from "@/components/shared/avatar-placeholder";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { GridTable, GridTableRow } from "@/components/shared/grid-table";
+import { VerdictChip } from "@/components/shared/verdict-chip";
 import type { ShortlistDetailItem } from "@/lib/data";
-import type { Verdict } from "@/lib/types";
+import { formatSeconds, parseDurationToSeconds } from "@/lib/format";
 import { ageOf } from "@/lib/types";
-import { cn } from "@/lib/utils";
 
-const VERDICT_META: Record<Verdict, { label: string; className: string }> = {
-  like: {
-    label: "좋아요",
-    className: "border-red-cta/40 bg-red-cta/15 text-primary",
-  },
-  hold: {
-    label: "보류",
-    className: "border-amber-500/30 bg-amber-500/15 text-amber-400",
-  },
-  pass: {
-    label: "제외",
-    className: "border-border bg-chip/60 text-muted-foreground",
-  },
-};
-
-function formatWatch(seconds: number): string {
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  return m > 0 ? `${m}분 ${s}초` : `${s}초`;
-}
-
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
-
-export function RemindButton() {
+export function RemindButton({ count }: { count: number }) {
   return (
-    <Button
-      variant="outline"
-      size="sm"
+    <button
+      type="button"
       onClick={() => toast("리마인드를 보냈습니다 (데모)")}
+      className="cursor-pointer whitespace-nowrap rounded bg-primary px-4 py-2.5 text-[12.5px] font-semibold text-primary-foreground transition-colors hover:bg-primary-hover disabled:cursor-default disabled:opacity-40"
+      disabled={count === 0}
     >
-      <BellRingIcon data-icon="inline-start" />
-      리마인드 재전송
-    </Button>
+      미응답 {count}명 리마인드
+    </button>
   );
 }
 
 export function ResultsTable({ items }: { items: ShortlistDetailItem[] }) {
   return (
-    <div className="overflow-hidden rounded-xl border">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-12 pl-4">순번</TableHead>
-            <TableHead>후보</TableHead>
-            <TableHead>감독 판정</TableHead>
-            <TableHead>코멘트</TableHead>
-            <TableHead>시청 시간</TableHead>
-            <TableHead className="pr-4">응답일</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {items.map(({ item, actor, review }) => (
-            <TableRow
-              key={item.id}
-              className={cn(!review && "bg-muted/30 text-muted-foreground")}
-            >
-              <TableCell className="pl-4 text-muted-foreground">
-                {item.order}
-              </TableCell>
-              <TableCell>
-                <div className="flex items-center gap-2.5">
-                  <AvatarPlaceholder
-                    name={actor.name}
-                    photo={actor.photo}
-                    className="size-8 text-xs"
-                  />
-                  <div>
-                    <p className="text-sm font-medium text-foreground">
-                      {actor.name}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {ageOf(actor.birthYear)}세 · {actor.height}cm
-                    </p>
-                  </div>
+    <GridTable
+      columns="2fr 104px 1.5fr 2fr"
+      gap={16}
+      headers={[
+        { label: "후보" },
+        { label: "감독 반응" },
+        { label: "영상 시청" },
+        { label: "코멘트" },
+      ]}
+    >
+      {items.map(({ item, application, actor, review }) => {
+        const durationSeconds = application.videoDuration
+          ? parseDurationToSeconds(application.videoDuration)
+          : null;
+        const watchRatio =
+          review && durationSeconds
+            ? Math.min(1, review.watchSeconds / durationSeconds)
+            : 0;
+        return (
+          <GridTableRow key={item.id} className="py-[15px]">
+            <div className="flex min-w-0 items-center gap-3">
+              <AvatarPlaceholder
+                name={actor.name}
+                photo={actor.photo}
+                className="size-[38px] text-[15px]"
+              />
+              <div className="min-w-0">
+                <div className="truncate text-sm font-bold text-foreground">
+                  {actor.name}
                 </div>
-              </TableCell>
-              <TableCell>
-                {review ? (
-                  <Badge
-                    variant="outline"
-                    className={VERDICT_META[review.verdict].className}
-                  >
-                    {VERDICT_META[review.verdict].label}
-                  </Badge>
-                ) : (
-                  <Badge variant="outline">미응답</Badge>
-                )}
-              </TableCell>
-              <TableCell className="max-w-[280px] whitespace-normal text-muted-foreground">
-                {review?.comment ?? "—"}
-              </TableCell>
-              <TableCell>
-                {review ? formatWatch(review.watchSeconds) : "—"}
-              </TableCell>
-              <TableCell className="pr-4 text-muted-foreground">
-                {review ? formatDate(review.reviewedAt) : "—"}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+                <div className="mt-[3px] font-mono text-[10.5px] text-faint">
+                  {ageOf(actor.birthYear)}세 · {actor.height}cm
+                </div>
+              </div>
+            </div>
+            <div>
+              <VerdictChip verdict={review?.verdict ?? null} />
+            </div>
+            <div className="min-w-0">
+              {application.videoDuration ? (
+                <>
+                  <div className="font-mono text-[11.5px] text-secondary-foreground">
+                    {review ? formatSeconds(review.watchSeconds) : "0:00"}{" "}
+                    <span className="text-[#b8b8b8]">
+                      / {application.videoDuration}
+                    </span>
+                  </div>
+                  <div className="mt-1.5 h-1 overflow-hidden rounded-[2px] bg-muted">
+                    <div
+                      className="h-full bg-primary"
+                      style={{ width: `${watchRatio * 100}%` }}
+                    />
+                  </div>
+                </>
+              ) : (
+                <span className="font-mono text-[11px] text-[#b0b0b0]">
+                  영상 없음
+                </span>
+              )}
+            </div>
+            <div className="min-w-0 text-[12.5px] leading-normal text-[#6b6b6b]">
+              {review?.comment ?? "—"}
+            </div>
+          </GridTableRow>
+        );
+      })}
+    </GridTable>
   );
 }

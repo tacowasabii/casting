@@ -1,63 +1,51 @@
 import Link from "next/link";
 
 import { DdayBadge } from "@/components/shared/dday-badge";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { StatusBadge } from "@/components/shared/status-badge";
 import type { RoleWithStats } from "@/lib/data";
+import { conditionLine } from "@/lib/format";
 
-function conditionLine(role: RoleWithStats): string {
-  const parts: string[] = [
-    role.gender === "무관" ? "성별 무관" : role.gender,
-    `${role.ageMin}~${role.ageMax}세`,
-  ];
-  if (role.heightMin && role.heightMax) {
-    parts.push(`${role.heightMin}~${role.heightMax}cm`);
-  } else if (role.heightMin) {
-    parts.push(`${role.heightMin}cm 이상`);
-  } else if (role.heightMax) {
-    parts.push(`${role.heightMax}cm 이하`);
-  }
-  return parts.join(" · ");
+/* 카드 푸터 좌측 mono 메타 — 신규 지원 우선, 없으면 촬영 일정 */
+function extraLabel(role: RoleWithStats): string {
+  if (role.newApplications > 0) return `신규 ${role.newApplications}`;
+  if (role.shootDate) return `촬영 ${role.shootDate}`;
+  return "";
 }
 
 export function RoleCard({ role }: { role: RoleWithStats }) {
   return (
-    <Link href={`/roles/${role.id}`} className="block">
-      <Card
-        size="sm"
-        className="group relative gap-2 overflow-hidden transition-colors hover:ring-border-strong/60"
-      >
-        <span className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red-cta to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        <CardHeader className="gap-0.5">
-          <CardTitle>{role.name}</CardTitle>
-          <CardDescription className="font-mono text-[11px] tracking-wide">
+    <Link
+      href={`/roles/${role.id}`}
+      className="flex flex-col rounded border border-border bg-card px-[17px] pb-[13px] pt-[15px] transition-colors hover:border-primary"
+    >
+      <div className="flex items-center justify-between">
+        <StatusBadge status={role.status} />
+        <DdayBadge deadline={role.deadline} />
+      </div>
+      <div className="mt-[13px] flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h4 className="m-0 truncate text-base font-extrabold tracking-[-.01em] text-foreground">
+            {role.name}
+          </h4>
+          <div className="mt-[5px] text-[11.5px] leading-normal text-muted-foreground">
             {conditionLine(role)}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-2">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <DdayBadge deadline={role.deadline} />
-            <span className="text-xs text-muted-foreground">
-              지원 {role.totalApplications}명
-            </span>
-            {role.newApplications > 0 ? (
-              <Badge>신규 {role.newApplications}</Badge>
-            ) : null}
           </div>
-          {role.awaitingDirector ? (
-            <div className="flex items-center gap-1.5 text-xs font-medium text-primary">
-              <span className="size-1.5 animate-pulse rounded-full bg-red-cta" />
-              감독 응답 대기
-            </div>
-          ) : null}
-        </CardContent>
-      </Card>
+        </div>
+        <div className="shrink-0 text-right">
+          <div className="num-display text-[22px] text-foreground">
+            {role.totalApplications}
+          </div>
+          <div className="mt-[3px] text-[10.5px] text-[#9a9a9a]">지원</div>
+        </div>
+      </div>
+      <div className="mt-[13px] flex items-center justify-between border-t border-hairline pt-[11px]">
+        <span className="font-mono text-[11px] text-[#9a9a9a]">
+          {extraLabel(role)}
+        </span>
+        <span className="text-[12.5px] font-bold text-foreground">
+          선별 보드 →
+        </span>
+      </div>
     </Link>
   );
 }

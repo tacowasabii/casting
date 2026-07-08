@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { PlusIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -40,9 +39,13 @@ export function NewProjectDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="sm">
-          <PlusIcon data-icon="inline-start" />새 작품
-        </Button>
+        {/* 디자인에 없는 진입점 — 마지막 작품 섹션 아래의 조용한 텍스트 버튼 */}
+        <button
+          type="button"
+          className="cursor-pointer text-[12.5px] font-semibold text-muted-foreground transition-colors hover:text-foreground"
+        >
+          ＋ 새 작품
+        </button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

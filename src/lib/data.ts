@@ -17,6 +17,7 @@ import type {
   Project,
   Review,
   Role,
+  RoleStatus,
   Shortlist,
   ShortlistItem,
   Triage,
@@ -43,6 +44,8 @@ export interface ActorWithSummary extends Actor {
   applicationCount: number;
   lastAppliedAt: string | null;
   lastTriage: Triage;
+  /** '관심' 분류를 받은 지원 수 — 라이브러리 "'관심' 이력" 필터 */
+  interestCount: number;
 }
 
 export interface ShortlistWithStats extends Shortlist {
@@ -122,6 +125,7 @@ export async function getActors(): Promise<ActorWithSummary[]> {
       applicationCount: apps.length,
       lastAppliedAt: apps[0]?.createdAt ?? null,
       lastTriage: apps[0]?.triage ?? null,
+      interestCount: apps.filter((a) => a.triage === "관심").length,
     };
   });
 }
@@ -161,6 +165,108 @@ export async function getShortlistsByRole(
         likeCount: itemReviews.filter((r) => r.verdict === "like").length,
       };
     });
+}
+
+export interface ProjectWithRoles {
+  project: Project;
+  roles: RoleWithStats[];
+}
+
+/** 대시보드 작품 섹션 + 사이드바 "{작품} · 배역" 컨텍스트 공용 */
+export async function getProjectsWithRoles(): Promise<ProjectWithRoles[]> {
+  return projects.map((project) => ({
+    project,
+    roles: roles.filter((r) => r.projectId === project.id).map(roleStats),
+  }));
+}
+
+export interface DashboardMetrics {
+  /** 확정·종료가 아닌 배역 수 */
+  activeRoles: number;
+  /** 전체 미분류(triage null) 지원 수 */
+  newApplications: number;
+  /** 감독 미응답 항목이 남은 숏리스트 수 — 리마인드 필요 */
+  awaitingDirector: number;
+}
+
+export async function getDashboardMetrics(): Promise<DashboardMetrics> {
+  const pendingShortlists = shortlists.filter((s) => {
+    const items = shortlistItems.filter((i) => i.shortlistId === s.id);
+    const reviewed = items.filter((i) =>
+      reviews.some((r) => r.shortlistItemId === i.id),
+    );
+    return items.length > 0 && reviewed.length < items.length;
+  });
+  return {
+    // mock-data의 리터럴 유니온은 "확정"/"종료"를 안 담을 수 있어 직접 비교하면 TS2367 — includes로 우회
+    activeRoles: roles.filter(
+      (r) => !(["확정", "종료"] as RoleStatus[]).includes(r.status),
+    ).length,
+    newApplications: applications.filter((a) => a.triage === null).length,
+    awaitingDirector: pendingShortlists.length,
+  };
+}
+
+export interface ShortlistWithContext extends ShortlistWithStats {
+  role: Role;
+  project: Project;
+}
+
+/** 전체 숏리스트 인덱스 + 사이드바 "공유 중" — 최신 생성순 */
+export async function getAllShortlists(): Promise<ShortlistWithContext[]> {
+  const all = await Promise.all(
+    projects.flatMap((p) =>
+      roles
+        .filter((r) => r.projectId === p.id)
+        .map(async (r) => {
+          const lists = await getShortlistsByRole(r.id);
+          return lists.map((s) => ({ ...s, role: r as Role, project: p }));
+        }),
+    ),
+  );
+  return all.flat().sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+}
+
+export interface TagCount {
+  tag: string;
+  count: number;
+}
+
+/** 배우 태그 집계, count 내림차순 — 사이드바 "저장된 태그" */
+export async function getTagCounts(): Promise<TagCount[]> {
+  const counts = new Map<string, number>();
+  for (const actor of actors) {
+    for (const tag of actor.tags) {
+      counts.set(tag, (counts.get(tag) ?? 0) + 1);
+    }
+  }
+  return [...counts.entries()]
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count);
+}
+
+export interface SidebarData {
+  projects: ProjectWithRoles[];
+  tags: TagCount[];
+  sharedShortlists: ShortlistWithContext[];
+  /** 감독 미응답이 남은 숏리스트 수 — 메뉴 뱃지 */
+  pendingShortlistCount: number;
+}
+
+export async function getSidebarData(): Promise<SidebarData> {
+  const [projectsWithRoles, tags, sharedShortlists, metrics] =
+    await Promise.all([
+      getProjectsWithRoles(),
+      getTagCounts(),
+      getAllShortlists(),
+      getDashboardMetrics(),
+    ]);
+  return {
+    projects: projectsWithRoles,
+    tags,
+    sharedShortlists,
+    pendingShortlistCount: metrics.awaitingDirector,
+  };
 }
 
 /** id 또는 token 어느 쪽으로도 조회 — 디렉터 결과 화면(id)과 감독 리뷰(token)가 공유 */

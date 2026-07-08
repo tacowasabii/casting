@@ -1,9 +1,6 @@
 "use client";
 
-import { CopyIcon } from "lucide-react";
 import { toast } from "sonner";
-
-import { Button } from "@/components/ui/button";
 
 export function CopyTextButton({ text }: { text: string }) {
   async function handleCopy() {
@@ -16,9 +13,12 @@ export function CopyTextButton({ text }: { text: string }) {
   }
 
   return (
-    <Button onClick={handleCopy} className="w-full">
-      <CopyIcon data-icon="inline-start" />
+    <button
+      type="button"
+      onClick={handleCopy}
+      className="w-full cursor-pointer rounded bg-primary py-2.5 text-[12.5px] font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
+    >
       안내 문자 복사
-    </Button>
+    </button>
   );
 }

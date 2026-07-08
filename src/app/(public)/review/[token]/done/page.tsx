@@ -1,8 +1,7 @@
-import { CheckCircle2 } from "lucide-react";
-
 import { CommentPanel } from "@/components/review/comment-panel";
 import { AvatarPlaceholder } from "@/components/shared/avatar-placeholder";
-import { Badge } from "@/components/ui/badge";
+import { CaptionLabel } from "@/components/shared/caption-label";
+import { Chip } from "@/components/shared/chip";
 import { getShortlistDetail } from "@/lib/data";
 import { ageOf } from "@/lib/types";
 import type { Verdict } from "@/lib/types";
@@ -36,55 +35,39 @@ export default async function ReviewDonePage({
 
   return (
     <div className="flex flex-1 flex-col">
-      <div className="flex-1 px-6 py-10">
+      <div className="flex-1 px-7 py-12">
         <div className="flex flex-col items-center gap-4 text-center">
-          <CheckCircle2
-            className="size-16 text-emerald-400"
-            strokeWidth={1.5}
-          />
-          <h1 className="text-xl font-semibold tracking-tight">
+          <CaptionLabel className="tracking-[.18em]">
+            Review Complete
+          </CaptionLabel>
+          <h1 className="m-0 text-xl font-extrabold tracking-[-.015em] text-foreground">
             검토가 완료되었습니다
           </h1>
           <div className="flex items-center gap-1.5">
-            <Badge
-              variant="outline"
-              className="border-red-cta/40 bg-red-cta/15 text-primary"
-            >
-              좋아요 {count("like")}
-            </Badge>
-            <Badge
-              variant="outline"
-              className="border-amber-500/30 bg-amber-500/15 text-amber-400"
-            >
-              보류 {count("hold")}
-            </Badge>
-            <Badge
-              variant="outline"
-              className="border-border bg-chip/60 text-muted-foreground"
-            >
-              제외 {count("pass")}
-            </Badge>
+            <Chip variant="solid">좋아요 {count("like")}</Chip>
+            <Chip variant="ink-outline">보류 {count("hold")}</Chip>
+            <Chip variant="ghost">제외 {count("pass")}</Chip>
           </div>
         </div>
 
         {liked.length > 0 ? (
-          <section className="mt-8">
-            <h2 className="text-sm font-medium text-muted-foreground">
-              좋아요한 후보
-            </h2>
-            <ul className="mt-3 space-y-2">
+          <section className="mt-10">
+            <CaptionLabel size="sm">좋아요한 후보</CaptionLabel>
+            <ul className="m-0 mt-2 list-none p-0">
               {liked.map(({ item, actor }) => (
                 <li
                   key={item.id}
-                  className="flex items-center gap-3 rounded-lg border px-3 py-2.5"
+                  className="flex items-center gap-3 border-b border-hairline py-3"
                 >
                   <AvatarPlaceholder
                     name={actor.name}
                     photo={actor.photo}
-                    className="size-9"
+                    className="size-9 text-sm"
                   />
-                  <span className="text-sm font-medium">{actor.name}</span>
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-sm font-bold text-foreground">
+                    {actor.name}
+                  </span>
+                  <span className="font-mono text-[10.5px] text-faint">
                     {ageOf(actor.birthYear)}세
                   </span>
                 </li>
@@ -96,7 +79,7 @@ export default async function ReviewDonePage({
         {shortlist.allowComment ? <CommentPanel /> : null}
       </div>
 
-      <footer className="px-5 py-3 text-center text-[10px] text-muted-foreground/70">
+      <footer className="px-5 py-3 text-center text-[10px] text-faint">
         Powered by 캐스트보드
       </footer>
     </div>

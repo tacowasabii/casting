@@ -1,14 +1,14 @@
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { Chip, type ChipVariant } from "@/components/shared/chip";
 import type { RoleStatus } from "@/lib/types";
 
-const STYLES: Record<RoleStatus, string> = {
-  모집중: "border-red-cta/40 bg-red-cta/15 text-primary",
-  검토중: "border-amber-500/30 bg-amber-500/15 text-amber-400",
-  감독컨펌: "border-violet-500/30 bg-violet-500/15 text-violet-400",
-  오디션: "border-sky-500/30 bg-sky-500/15 text-sky-400",
-  확정: "border-emerald-500/30 bg-emerald-500/15 text-emerald-400",
-  종료: "border-border bg-chip/60 text-muted-foreground",
+/* 모노크롬 위계: 모집중만 검정 반전, 진행 단계는 아웃라인, 확정은 검정 보더, 종료는 뮤트 */
+const VARIANT: Record<RoleStatus, ChipVariant> = {
+  모집중: "solid",
+  검토중: "outline",
+  감독컨펌: "outline",
+  오디션: "outline",
+  확정: "ink-outline",
+  종료: "muted",
 };
 
 export function StatusBadge({
@@ -19,8 +19,8 @@ export function StatusBadge({
   className?: string;
 }) {
   return (
-    <Badge variant="outline" className={cn(STYLES[status], className)}>
+    <Chip variant={VARIANT[status]} className={className}>
       {status}
-    </Badge>
+    </Chip>
   );
 }

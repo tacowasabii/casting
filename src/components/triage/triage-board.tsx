@@ -1,49 +1,38 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 
+import { CaptionLabel } from "@/components/shared/caption-label";
+import { CopyLinkButton } from "@/components/roles/copy-link-button";
 import { ApplicantDetail } from "@/components/triage/applicant-detail";
 import { ApplicantList } from "@/components/triage/applicant-list";
 import { CreateShortlistDialog } from "@/components/triage/create-shortlist-dialog";
-import { ShortcutBar } from "@/components/triage/shortcut-bar";
-import { Badge } from "@/components/ui/badge";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import type { ApplicationWithActor } from "@/lib/data";
-import type { Triage } from "@/lib/types";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import type { ApplicationWithActor, RoleWithStats } from "@/lib/data";
+import { conditionLine } from "@/lib/format";
+import type { Project, Triage } from "@/lib/types";
 import { ageOf } from "@/lib/types";
-import { cn } from "@/lib/utils";
 
 const TRIAGE_FILTERS = ["전체", "미분류", "관심", "보류", "제외"] as const;
-type TriageFilter = (typeof TRIAGE_FILTERS)[number];
+export type TriageFilter = (typeof TRIAGE_FILTERS)[number];
 
 const SORT_KEYS = ["지원일", "나이", "키"] as const;
-type SortKey = (typeof SORT_KEYS)[number];
-
-const CHIP_DOTS: { key: Exclude<Triage, null> | "미분류"; dot: string }[] = [
-  { key: "관심", dot: "bg-primary" },
-  { key: "보류", dot: "bg-amber-400" },
-  { key: "제외", dot: "bg-neutral-500" },
-  { key: "미분류", dot: "border border-muted-foreground/40 bg-transparent" },
-];
+export type SortKey = (typeof SORT_KEYS)[number];
 
 export function TriageBoard({
-  roleName,
+  role,
+  project,
   applications,
 }: {
-  roleName: string;
+  role: RoleWithStats;
+  project: Project;
   applications: ApplicationWithActor[];
 }) {
   const [selectedId, setSelectedId] = useState<string | null>(
     applications[0]?.id ?? null,
   );
   const [overrides, setOverrides] = useState<Record<string, Triage>>({});
-  const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set());
   const [filter, setFilter] = useState<TriageFilter>("전체");
   const [sort, setSort] = useState<SortKey>("지원일");
 
@@ -71,7 +60,8 @@ export function TriageBoard({
       return triageMap[app.id] === filter;
     });
     return [...filtered].sort((a, b) => {
-      if (sort === "나이") return ageOf(a.actor.birthYear) - ageOf(b.actor.birthYear);
+      if (sort === "나이")
+        return ageOf(a.actor.birthYear) - ageOf(b.actor.birthYear);
       if (sort === "키") return b.actor.height - a.actor.height;
       return b.createdAt.localeCompare(a.createdAt);
     });
@@ -79,63 +69,49 @@ export function TriageBoard({
 
   const selected = applications.find((a) => a.id === selectedId) ?? null;
 
-  function toggleChecked(id: string, checked: boolean) {
-    setCheckedIds((prev) => {
-      const next = new Set(prev);
-      if (checked) next.add(id);
-      else next.delete(id);
-      return next;
-    });
-  }
-
   function handleTriage(value: Triage) {
     if (!selected) return;
     setOverrides((prev) => ({ ...prev, [selected.id]: value }));
   }
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col">
-      {/* 필터 바 */}
-      <div className="flex flex-none flex-wrap items-center gap-2 border-b px-4 py-2.5">
-        <Select
-          value={filter}
-          onValueChange={(v) => setFilter(v as TriageFilter)}
-        >
-          <SelectTrigger size="sm" aria-label="분류 상태 필터">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {TRIAGE_FILTERS.map((f) => (
-              <SelectItem key={f} value={f}>
-                {f}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Select value={sort} onValueChange={(v) => setSort(v as SortKey)}>
-          <SelectTrigger size="sm" aria-label="정렬 기준">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {SORT_KEYS.map((s) => (
-              <SelectItem key={s} value={s}>
-                {s}순
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-
-        <div className="flex items-center gap-1.5">
-          {CHIP_DOTS.map(({ key, dot }) => (
-            <Badge key={key} variant="outline" className="gap-1.5">
-              <span className={cn("size-1.5 rounded-full", dot)} />
-              {key} {counts[key]}
-            </Badge>
-          ))}
+    <div className="flex min-h-0 flex-1 flex-col bg-card">
+      {/* 헤더 — 작품 캡션 + 배역명 + 조건 + 트리아지 카운트 + 액션 */}
+      <div className="flex flex-none flex-wrap items-center justify-between gap-4 border-b border-border px-[30px] py-[22px]">
+        <div className="flex min-w-0 items-start gap-2">
+          <SidebarTrigger className="mt-1 md:hidden" />
+          <div className="min-w-0">
+            <CaptionLabel className="text-[10.5px]">
+              {project.title} · 선별
+            </CaptionLabel>
+            <div className="mt-[7px] flex items-baseline gap-3">
+              <h2 className="m-0 truncate text-2xl font-extrabold tracking-[-.015em] text-foreground">
+                {role.name}
+              </h2>
+              <span className="hidden whitespace-nowrap text-xs text-[#9a9a9a] lg:inline">
+                {conditionLine(role)}
+              </span>
+            </div>
+          </div>
         </div>
-
-        <div className="ml-auto">
-          <CreateShortlistDialog roleName={roleName} count={checkedIds.size} />
+        <div className="flex flex-wrap items-center gap-[18px]">
+          <div className="flex gap-4 text-xs text-muted-foreground">
+            {(["관심", "보류", "제외", "미분류"] as const).map((key) => (
+              <span key={key}>
+                {key} <b className="text-foreground">{counts[key]}</b>
+              </span>
+            ))}
+          </div>
+          <div className="flex items-center gap-2">
+            <CopyLinkButton path={`/apply/${role.id}`} label="지원 폼 링크" />
+            <Link
+              href={`/roles/${role.id}/audition`}
+              className="whitespace-nowrap rounded border border-input bg-card px-3 py-2 text-[12px] font-medium text-secondary-foreground transition-colors hover:border-primary hover:text-foreground"
+            >
+              오디션 안내
+            </Link>
+            <CreateShortlistDialog roleName={role.name} count={counts.관심} />
+          </div>
         </div>
       </div>
 
@@ -147,8 +123,15 @@ export function TriageBoard({
           triageMap={triageMap}
           selectedId={selectedId}
           onSelect={setSelectedId}
-          checkedIds={checkedIds}
-          onCheckedChange={toggleChecked}
+          filter={filter}
+          onFilterChange={setFilter}
+          filters={TRIAGE_FILTERS}
+          sort={sort}
+          onSortChange={() => {
+            const next =
+              SORT_KEYS[(SORT_KEYS.indexOf(sort) + 1) % SORT_KEYS.length];
+            setSort(next);
+          }}
         />
         <ApplicantDetail
           application={selected}
@@ -156,8 +139,6 @@ export function TriageBoard({
           onTriageChange={handleTriage}
         />
       </div>
-
-      <ShortcutBar />
     </div>
   );
 }

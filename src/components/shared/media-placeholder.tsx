@@ -1,13 +1,15 @@
-import { FileText, ImageIcon, Play } from "lucide-react";
-
 import { cn } from "@/lib/utils";
+
+const PLAY_SIZE = { sm: 36, md: 54, lg: 60 } as const;
 
 interface MediaPlaceholderProps {
   kind: "video" | "pdf" | "photo";
-  /** pdf: 파일명 / video: 부가 라벨 */
+  /** pdf: 파일명 / video: 좌하단 mono uppercase 라벨 */
   label?: string;
-  /** video 우하단 길이 칩 (예: "1:24") */
+  /** video 우하단 mono 길이 (예: "1:24") */
   duration?: string;
+  /** video 재생 버튼 크기 */
+  playSize?: keyof typeof PLAY_SIZE;
   className?: string;
 }
 
@@ -16,26 +18,31 @@ export function MediaPlaceholder({
   kind,
   label,
   duration,
+  playSize = "md",
   className,
 }: MediaPlaceholderProps) {
   if (kind === "video") {
+    const size = PLAY_SIZE[playSize];
     return (
       <div
         className={cn(
-          "relative flex aspect-video w-full items-center justify-center rounded-xl bg-black",
+          "relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-sm bg-[#161616]",
           className,
         )}
       >
-        <div className="flex size-12 items-center justify-center rounded-full bg-red-cta text-on-red shadow-glow">
-          <Play className="size-5 fill-current" />
-        </div>
+        <span
+          className="flex items-center justify-center rounded-full border-[1.5px] border-white/90 pl-[3px] text-white"
+          style={{ width: size, height: size, fontSize: size * 0.3 }}
+        >
+          ▶
+        </span>
         {label ? (
-          <span className="absolute bottom-2 left-2 max-w-[70%] truncate text-xs text-white/70">
+          <span className="absolute bottom-3 left-3.5 max-w-[65%] truncate font-mono text-[10.5px] uppercase tracking-[.08em] text-[#cfcfcf]">
             {label}
           </span>
         ) : null}
         {duration ? (
-          <span className="absolute right-2 bottom-2 rounded bg-black/60 px-1.5 py-0.5 font-mono text-xs font-medium text-white">
+          <span className="absolute bottom-3 right-3.5 font-mono text-[10.5px] text-[#cfcfcf]">
             {duration}
           </span>
         ) : null}
@@ -47,12 +54,11 @@ export function MediaPlaceholder({
     return (
       <div
         className={cn(
-          "flex items-center gap-2 rounded-lg border bg-muted/50 px-3 py-2.5",
+          "flex aspect-[16/10] items-center justify-center rounded-sm border border-border bg-secondary",
           className,
         )}
       >
-        <FileText className="size-4 shrink-0 text-muted-foreground" />
-        <span className="truncate text-sm text-foreground/80">
+        <span className="max-w-[85%] truncate font-mono text-[10.5px] text-muted-foreground">
           {label ?? "파일.pdf"}
         </span>
       </div>
@@ -61,12 +67,11 @@ export function MediaPlaceholder({
 
   return (
     <div
-      className={cn(
-        "flex items-center justify-center rounded-lg bg-muted",
-        className,
-      )}
-    >
-      <ImageIcon className="size-6 text-muted-foreground/50" />
-    </div>
+      className={cn("rounded-sm", className)}
+      style={{
+        backgroundImage:
+          "repeating-linear-gradient(45deg, #e6e6e6, #e6e6e6 6px, #efefef 6px, #efefef 12px)",
+      }}
+    />
   );
 }

@@ -7,10 +7,12 @@ export default async function RoleApplicantsPage({
   params: Promise<{ roleId: string }>;
 }) {
   const { roleId } = await params;
-  const [{ role }, applications] = await Promise.all([
+  const [{ role, project }, applications] = await Promise.all([
     getRoleById(roleId),
     getApplicationsByRole(roleId),
   ]);
 
-  return <TriageBoard roleName={role.name} applications={applications} />;
+  return (
+    <TriageBoard role={role} project={project} applications={applications} />
+  );
 }

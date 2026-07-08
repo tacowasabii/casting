@@ -17,6 +17,9 @@
 /.next*/
 /out/
 
+# NAS SMB delete-pending 잔해 (라우트 트리 밖으로 옮겨둔 삭제 대기 디렉터리)
+/.trash-*/
+
 # production
 /build
 
