@@ -1,86 +1,101 @@
 ---
-name: Cinematic Casting Authority
+name: Cinematic Gallery System
 colors:
-  surface: "#131313"
-  surface-dim: "#131313"
-  surface-bright: "#3a3939"
-  surface-container-lowest: "#0e0e0e"
-  surface-container-low: "#1c1b1b"
-  surface-container: "#201f1f"
-  surface-container-high: "#2a2a2a"
-  surface-container-highest: "#353534"
-  on-surface: "#e5e2e1"
-  on-surface-variant: "#e9bcb6"
-  inverse-surface: "#e5e2e1"
-  inverse-on-surface: "#313030"
-  outline: "#af8782"
-  outline-variant: "#5e3f3b"
-  surface-tint: "#ffb4aa"
-  primary: "#ffb4aa"
-  on-primary: "#690003"
-  primary-container: "#e50914"
-  on-primary-container: "#fff7f6"
-  inverse-primary: "#c0000c"
-  secondary: "#c8c6c5"
-  on-secondary: "#313030"
-  secondary-container: "#474746"
-  on-secondary-container: "#b7b5b4"
-  tertiary: "#c8c6c6"
-  on-tertiary: "#303030"
-  tertiary-container: "#737272"
-  on-tertiary-container: "#fbf8f8"
-  error: "#ffb4ab"
-  on-error: "#690005"
-  error-container: "#93000a"
-  on-error-container: "#ffdad6"
-  primary-fixed: "#ffdad5"
-  primary-fixed-dim: "#ffb4aa"
-  on-primary-fixed: "#410001"
-  on-primary-fixed-variant: "#930007"
-  secondary-fixed: "#e5e2e1"
-  secondary-fixed-dim: "#c8c6c5"
-  on-secondary-fixed: "#1c1b1b"
-  on-secondary-fixed-variant: "#474746"
-  tertiary-fixed: "#e4e2e1"
-  tertiary-fixed-dim: "#c8c6c6"
-  on-tertiary-fixed: "#1b1c1c"
+  surface: "#f9f9f9"
+  surface-dim: "#dadada"
+  surface-bright: "#f9f9f9"
+  surface-container-lowest: "#ffffff"
+  surface-container-low: "#f3f3f3"
+  surface-container: "#eeeeee"
+  surface-container-high: "#e8e8e8"
+  surface-container-highest: "#e2e2e2"
+  on-surface: "#1b1b1b"
+  on-surface-variant: "#4c4546"
+  inverse-surface: "#303030"
+  inverse-on-surface: "#f1f1f1"
+  outline: "#7e7576"
+  outline-variant: "#cfc4c5"
+  surface-tint: "#5e5e5e"
+  primary: "#000000"
+  on-primary: "#ffffff"
+  primary-container: "#1b1b1b"
+  on-primary-container: "#848484"
+  inverse-primary: "#c6c6c6"
+  secondary: "#5f5e5e"
+  on-secondary: "#ffffff"
+  secondary-container: "#e4e2e1"
+  on-secondary-container: "#656464"
+  tertiary: "#000000"
+  on-tertiary: "#ffffff"
+  tertiary-container: "#1b1b1b"
+  on-tertiary-container: "#848484"
+  error: "#ba1a1a"
+  on-error: "#ffffff"
+  error-container: "#ffdad6"
+  on-error-container: "#93000a"
+  primary-fixed: "#e2e2e2"
+  primary-fixed-dim: "#c6c6c6"
+  on-primary-fixed: "#1b1b1b"
+  on-primary-fixed-variant: "#474747"
+  secondary-fixed: "#e4e2e1"
+  secondary-fixed-dim: "#c8c6c6"
+  on-secondary-fixed: "#1b1c1c"
+  on-secondary-fixed-variant: "#474747"
+  tertiary-fixed: "#e2e2e2"
+  tertiary-fixed-dim: "#c6c6c6"
+  on-tertiary-fixed: "#1b1b1b"
   on-tertiary-fixed-variant: "#474747"
-  background: "#131313"
-  on-background: "#e5e2e1"
-  surface-variant: "#353534"
+  background: "#f9f9f9"
+  on-background: "#1b1b1b"
+  surface-variant: "#e2e2e2"
 typography:
   display-lg:
     fontFamily: Hanken Grotesk
     fontSize: 48px
-    fontWeight: "800"
+    fontWeight: "700"
     lineHeight: "1.1"
     letterSpacing: -0.02em
   headline-lg:
     fontFamily: Hanken Grotesk
     fontSize: 32px
-    fontWeight: "700"
+    fontWeight: "600"
     lineHeight: "1.2"
+    letterSpacing: -0.01em
   headline-md:
     fontFamily: Hanken Grotesk
     fontSize: 24px
     fontWeight: "600"
     lineHeight: "1.3"
+    letterSpacing: 0.02em
   body-lg:
     fontFamily: Hanken Grotesk
     fontSize: 18px
     fontWeight: "400"
     lineHeight: "1.6"
+    letterSpacing: 0.01em
   body-md:
     fontFamily: Hanken Grotesk
     fontSize: 16px
     fontWeight: "400"
-    lineHeight: "1.5"
+    lineHeight: "1.6"
+    letterSpacing: 0.01em
+  label-lg:
+    fontFamily: Hanken Grotesk
+    fontSize: 14px
+    fontWeight: "600"
+    lineHeight: "1"
+    letterSpacing: 0.1em
   label-sm:
-    fontFamily: JetBrains Mono
+    fontFamily: Hanken Grotesk
     fontSize: 12px
     fontWeight: "500"
     lineHeight: "1"
     letterSpacing: 0.05em
+  headline-lg-mobile:
+    fontFamily: Hanken Grotesk
+    fontSize: 28px
+    fontWeight: "600"
+    lineHeight: "1.2"
 rounded:
   sm: 0.125rem
   DEFAULT: 0.25rem
@@ -94,96 +109,67 @@ spacing:
   sm: 8px
   md: 16px
   lg: 24px
-  xl: 48px
+  xl: 40px
+  xxl: 80px
   container-max: 1440px
   gutter: 24px
 ---
 
 ## Brand & Style
 
-This design system is engineered for the high-stakes world of professional film and television casting. The brand personality is **authoritative, prestigious, and cinematic**, mirroring the intensity of a darkened theater or a production studio. It serves a dual purpose: providing an ultra-efficient toolset for casting directors while presenting actors in a high-end, gallery-like environment.
+The design system is engineered for a premium casting environment, prioritizing visual clarity and high-fidelity presentation. The aesthetic is rooted in **Minimalism** with a **Gallery-like** sensibility, ensuring that talent profiles and cinematic content remain the focal point.
 
-The visual style is a fusion of **Minimalism** and **Modern Corporate**, utilizing a "Dark Mode First" philosophy. By stripping away non-essential UI clutter and using a monochromatic base with a single high-energy accent, the focus remains entirely on the talent's headshots and showreels. The aesthetic evokes the feeling of premium digital cinema equipment—precise, rugged, and uncompromisingly professional.
-
-- **Atmosphere:** Immersive, focused, and elite.
-- **Visual Strategy:** Deep blacks for depth, vibrant reds for action, and razor-sharp typography for clarity.
+The brand personality is professional, authoritative, and sophisticated. It avoids decorative trends in favor of architectural precision, utilizing thin lines, generous whitespace, and a high-contrast monochromatic foundation to evoke the feeling of a high-end fashion editorial or a modern film production office.
 
 ## Colors
 
-The palette is anchored in **Deep Black (#0A0A0A)** to provide maximum contrast for actor photography and video content. The **Vibrant Red (#E50914)**—reminiscent of "Recording" lights and velvet theater curtains—is reserved strictly for primary actions, critical notifications, and active navigation states.
+The palette is strictly curated to eliminate visual noise.
 
-- **Primary (Vibrant Red):** Used for 'Hire', 'Cast', 'Search', and primary CTA buttons.
-- **Surface Tiers:**
-  - `Level 0`: Background (#0A0A0A)
-  - `Level 1`: Sidebars and Navigation (#121212)
-  - `Level 2`: Cards and Input fields (#1A1A1A)
-  - `Level 3`: Hover states and popovers (#2F2F2F)
-- **Neutral Accents:** Greyscale tones are used to establish hierarchy in metadata (age, height, agency) without competing with the red primary accent.
+- **Primary (Pure Black):** Reserved for primary actions, critical text, and structural headers. It represents the "Action" state of a film set.
+- **Secondary (Charcoal):** Used for secondary interactions, icons, and supporting information to provide a subtle hierarchy.
+- **Surface (Off-White):** A light grey/off-white used for container backgrounds and section dividers to distinguish between different content blocks without the weight of shadows.
+- **Base (Pure White):** The canvas. Used for the primary page background to maximize the perceived brightness and "premium" feel.
+- **Border:** A very thin, light grey used for the "High-fidelity" wireframe look.
 
 ## Typography
 
-Typography centers on **Hanken Grotesk**, a typeface that balances Swiss-style neutrality with a contemporary, sharp edge. It provides the legibility required for dense actor lists while maintaining a "tech-forward" appearance.
+The typography utilizes **Hanken Grotesk** for its sharp, contemporary geometry.
 
-- **Display & Headlines:** Use heavy weights (700-800) with tight letter spacing to create a commanding presence on dashboard titles and actor names.
-- **Labels & Metadata:** **JetBrains Mono** is introduced for technical data (e.g., timestamps, physical measurements, ID numbers). This monospaced font reinforces the "management tool" aspect of the platform, making data easy to scan in columns.
-- **Mobile Scale:** On mobile devices, `display-lg` should scale down to `headline-lg` to prevent text wrapping issues.
+- **Display & Headlines:** Use tight tracking on larger sizes but shift to generous letter spacing for subtitles and labels to create an "architectural" look.
+- **Labels:** Always utilize increased letter-spacing and, where appropriate, uppercase styling to denote metadata (e.g., Eye Color, Height, Experience).
+- **Hierarchy:** Contrast is achieved through weight and spacing rather than color variations.
 
 ## Layout & Spacing
 
-The layout follows a **structured 12-column fluid grid** for desktop, optimized for media-heavy content.
+The layout follows a **Fixed Grid** system for desktop to maintain the "Portfolio" feel, shifting to a fluid model for smaller devices.
 
-- **Dashboard:** Uses a "kanban" style vertical column layout for casting stages (Audition, Callback, Booked). Each column has a fixed width of 320px with 16px gutters to ensure horizontal scrollability on smaller laptops.
-- **Actor Profiles:** Features a 60/40 split on desktop. The left side (6 columns) is dedicated to the visual showreel and gallery, while the right side (4 columns) contains the scrollable data and notes.
-- **Responsiveness:**
-  - **Desktop (1440px+):** Full 12-column layout with 48px side margins.
-  - **Tablet (768px - 1024px):** Reflows to a single column for profiles; lists become 2-column grids.
-  - **Mobile (<768px):** Navigation moves to a bottom bar; actor cards occupy 100% width.
+- **Grid:** A 12-column grid with 24px gutters. Elements should align strictly to these grid lines to maintain the "precise" look.
+- **Rhythm:** An 8px linear scale is used for internal component spacing, while 40px and 80px increments (XL/XXL) are used to separate major sections, ensuring a high-end "breatheable" experience.
+- **Mobile:** Margins reduce to 16px, and multi-column grids collapse into a single-column stack, prioritizing full-width imagery.
 
 ## Elevation & Depth
 
-In a dark theme, depth is communicated through **Tonal Layering** rather than traditional shadows. Surfaces closer to the user are lighter in color.
+In this design system, depth is communicated through **Low-contrast outlines** and **Tonal layering** rather than traditional shadows.
 
-- **Base Layer:** #0A0A0A (The void).
-- **Secondary Layer (Sidebars/Cards):** #121212 with a subtle 1px border of #2F2F2F.
-- **Elevated States (Modals/Hover):** #1A1A1A.
-- **Interaction:** Buttons do not use shadows. Instead, they use "glow" effects—a soft red outer glow (5px blur, 20% opacity) appears when a primary red button is hovered or active, mimicking the light of a projector.
-- **Overlays:** Modals use a 60% black backdrop blur (20px) to maintain context while focusing on the form.
+- **Borders:** Use 1px solid `#E5E5E5` for containers. Avoid any blur or drop-shadows to keep the interface feeling "flat" and "printed."
+- **Layering:** Elements "lift" by moving from a White (#FFFFFF) background to an Off-White (#F9F9F9) container.
+- **Interactive States:** On hover, a container might transition from a light grey border to a 1px Black border.
 
 ## Shapes
 
-The shape language is **Soft (0.25rem)**. This provides a professional, geometric look that feels precise rather than "bubbly."
+To maintain the professional and serious tone, the design system utilizes **Soft (0.25rem)** roundedness only where necessary for modern feel.
 
-- **Standard Elements:** Buttons, input fields, and tags use a 4px corner radius.
-- **Actor Thumbnails:** Maintain a strict 4px radius. Avoid circles for headshots; the rectangular frame is more reminiscent of a film frame.
-- **Chips/Status Tags:** Can utilize `rounded-xl` (12px) to differentiate them as interactive labels compared to the structural containers.
+- **Buttons and Inputs:** Should remain nearly sharp or use the base 4px (0.25rem) radius.
+- **Media/Photography:** Can be kept at 0px (sharp) to reinforce the gallery/cinematic aesthetic, allowing the photography to feel like a film frame.
+- **Strictly avoid:** Pill shapes, circles (except for profile avatars), or heavy rounding.
 
 ## Components
 
-### Buttons
-
-- **Primary:** Solid Red (#E50914) with white text. Bold weight.
-- **Secondary:** Transparent with a 1px white border.
-- **Tertiary:** Ghost style, grey text, turning white on hover.
-
-### Actor Cards
-
-- High-aspect ratio image (4:5).
-- Bottom-aligned gradient overlay (Black to Transparent) to house the actor's name and age in white text for legibility over any photo.
-
-### Input Fields
-
-- Background #1A1A1A. Border #2F2F2F.
-- Focus state: Border changes to #E50914 with no "glow" to keep the UI sharp.
-
-### Filters & Chips
-
-- Filter bars should be sticky at the top of lists.
-- Active filters use a Red background; inactive filters use a dark grey stroke.
-
-### Casting Status Badges
-
-- **Applied:** Grey.
-- **Auditioning:** Amber.
-- **Shortlisted:** Vibrant Red.
-- **Cast:** Success Green.
-- Use the monospaced Label-sm font for these badges to imply a "dossier" or "file" status.
+- **Buttons:** Primary buttons are Solid Black with White text, using `label-lg` typography. Secondary buttons are Ghost-style with a 1px Black border. No rounded corners beyond 4px.
+- **Cards (Talent Profiles):** Use a sharp edge or 4px radius. Content is separated by a 1px horizontal line. Use `label-lg` for categories.
+- **Input Fields:** 1px `#E5E5E5` border that turns Black on focus. Labels sit above the field in `label-sm` uppercase.
+- **Chips/Status:** Rectangular with a 1px border. Backgrounds are strictly transparent or Off-White.
+- **Lists:** Clean rows separated by 1px light grey lines. High whitespace between text elements.
+- **Additional Components:**
+  - **The Strip:** A specialized navigation component for scrubbing through "Headshots" or "Showreels."
+  - **The Metadata Block:** A layout pattern for talent stats (Height, Weight, Hair) using high-tracking labels and bold values.

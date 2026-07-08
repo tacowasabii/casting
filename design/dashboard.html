@@ -1,17 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 
-<html class="dark" lang="en">
+<html class="light" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Castboard - Dashboard</title>
+    <title>CASTING.PRO | Elite Talent Management</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
     <link
@@ -24,53 +24,52 @@
         theme: {
           extend: {
             colors: {
-              "surface-dim": "#131313",
-              outline: "#af8782",
-              "on-surface-variant": "#e9bcb6",
-              "tertiary-fixed": "#e4e2e1",
-              "on-secondary": "#313030",
-              background: "#131313",
-              "surface-tint": "#ffb4aa",
+              background: "#f9f9f9",
+              "outline-variant": "#cfc4c5",
+              "surface-variant": "#e2e2e2",
+              "on-background": "#1b1b1b",
+              "secondary-container": "#e4e2e1",
+              "surface-container-highest": "#e2e2e2",
+              "on-tertiary-fixed": "#1b1b1b",
+              "on-tertiary": "#ffffff",
+              "on-secondary-container": "#656464",
+              "inverse-on-surface": "#f1f1f1",
+              primary: "#000000",
+              error: "#ba1a1a",
+              secondary: "#5f5e5e",
+              "surface-dim": "#dadada",
+              "surface-container-low": "#f3f3f3",
+              "secondary-fixed-dim": "#c8c6c6",
+              "on-primary-container": "#848484",
+              "on-surface": "#1b1b1b",
+              "on-primary-fixed-variant": "#474747",
+              "on-error-container": "#93000a",
+              "surface-container-high": "#e8e8e8",
+              "error-container": "#ffdad6",
+              outline: "#7e7576",
+              "on-primary": "#ffffff",
+              "primary-container": "#1b1b1b",
+              "primary-fixed-dim": "#c6c6c6",
+              "inverse-surface": "#303030",
+              "on-primary-fixed": "#1b1b1b",
+              "inverse-primary": "#c6c6c6",
+              "surface-container": "#eeeeee",
+              "tertiary-fixed-dim": "#c6c6c6",
+              tertiary: "#000000",
+              "secondary-fixed": "#e4e2e1",
+              "on-secondary": "#ffffff",
+              surface: "#f9f9f9",
+              "tertiary-fixed": "#e2e2e2",
+              "surface-bright": "#f9f9f9",
+              "on-tertiary-container": "#848484",
+              "on-surface-variant": "#4c4546",
+              "on-error": "#ffffff",
+              "on-secondary-fixed-variant": "#474747",
+              "on-secondary-fixed": "#1b1c1c",
+              "primary-fixed": "#e2e2e2",
+              "tertiary-container": "#1b1b1b",
+              "surface-container-lowest": "#ffffff",
               "on-tertiary-fixed-variant": "#474747",
-              "inverse-primary": "#c0000c",
-              "on-tertiary-container": "#fbf8f8",
-              surface: "#131313",
-              "on-secondary-fixed": "#1c1b1b",
-              "surface-container-low": "#1c1b1b",
-              "tertiary-container": "#737272",
-              "on-tertiary-fixed": "#1b1c1c",
-              "inverse-surface": "#e5e2e1",
-              "surface-container-high": "#2a2a2a",
-              "tertiary-fixed-dim": "#c8c6c6",
-              "on-background": "#e5e2e1",
-              "inverse-on-surface": "#313030",
-              "surface-container-lowest": "#0e0e0e",
-              "surface-variant": "#353534",
-              "on-secondary-fixed-variant": "#474746",
-              tertiary: "#c8c6c6",
-              "on-primary-container": "#fff7f6",
-              "error-container": "#93000a",
-              "on-tertiary": "#303030",
-              "on-error-container": "#ffdad6",
-              "secondary-fixed-dim": "#c8c6c5",
-              primary: "#ffb4aa",
-              "on-primary-fixed": "#410001",
-              "secondary-fixed": "#e5e2e1",
-              secondary: "#c8c6c5",
-              "primary-container": "#e50914",
-              "on-primary": "#690003",
-              "on-error": "#690005",
-              "on-secondary-container": "#b7b5b4",
-              error: "#ffb4ab",
-              "surface-bright": "#3a3939",
-              "on-primary-fixed-variant": "#930007",
-              "primary-fixed": "#ffdad5",
-              "secondary-container": "#474746",
-              "outline-variant": "#5e3f3b",
-              "surface-container-highest": "#353534",
-              "surface-container": "#201f1f",
-              "on-surface": "#e5e2e1",
-              "primary-fixed-dim": "#ffb4aa",
             },
             borderRadius: {
               DEFAULT: "0.125rem",
@@ -79,440 +78,629 @@
               full: "0.75rem",
             },
             spacing: {
-              xs: "4px",
-              gutter: "24px",
-              sm: "8px",
-              xl: "48px",
-              "container-max": "1440px",
-              unit: "4px",
+              xxl: "80px",
               md: "16px",
+              sm: "8px",
+              unit: "4px",
               lg: "24px",
+              gutter: "24px",
+              "container-max": "1440px",
+              xl: "40px",
+              xs: "4px",
             },
             fontFamily: {
-              "body-lg": ["Hanken Grotesk"],
-              "headline-lg": ["Hanken Grotesk"],
               "display-lg": ["Hanken Grotesk"],
-              "body-md": ["Hanken Grotesk"],
-              "label-sm": ["JetBrains Mono"],
+              "label-lg": ["Hanken Grotesk"],
+              "label-sm": ["Hanken Grotesk"],
+              "headline-lg": ["Hanken Grotesk"],
               "headline-md": ["Hanken Grotesk"],
+              "headline-lg-mobile": ["Hanken Grotesk"],
+              "body-lg": ["Hanken Grotesk"],
+              "body-md": ["Hanken Grotesk"],
             },
             fontSize: {
-              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
-              "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
               "display-lg": [
                 "48px",
                 {
                   lineHeight: "1.1",
                   letterSpacing: "-0.02em",
-                  fontWeight: "800",
+                  fontWeight: "700",
                 },
               ],
-              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+              "label-lg": [
+                "14px",
+                { lineHeight: "1", letterSpacing: "0.1em", fontWeight: "600" },
+              ],
               "label-sm": [
                 "12px",
                 { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "500" },
               ],
-              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "1.3",
+                  letterSpacing: "0.02em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "1.2", fontWeight: "600" },
+              ],
+              "body-lg": [
+                "18px",
+                {
+                  lineHeight: "1.6",
+                  letterSpacing: "0.01em",
+                  fontWeight: "400",
+                },
+              ],
+              "body-md": [
+                "16px",
+                {
+                  lineHeight: "1.6",
+                  letterSpacing: "0.01em",
+                  fontWeight: "400",
+                },
+              ],
             },
           },
         },
       };
     </script>
     <style>
+      body {
+        font-family: "Hanken Grotesk", sans-serif;
+        background-color: #f9f9f9;
+        color: #1b1b1b;
+      }
       .material-symbols-outlined {
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 400,
-          "GRAD" 0,
-          "opsz" 24;
+        font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
       }
-      .glow-hover:hover {
-        box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
       }
-      /* Custom scrollbar for Kanban board */
-      .kanban-scroll::-webkit-scrollbar {
-        height: 8px;
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
       }
-      .kanban-scroll::-webkit-scrollbar-track {
-        background: #1c1b1b;
-        border-radius: 4px;
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cfc4c5;
       }
-      .kanban-scroll::-webkit-scrollbar-thumb {
-        background: #353534;
-        border-radius: 4px;
+      .border-fine {
+        border: 1px solid #e5e5e5;
       }
-      .kanban-scroll::-webkit-scrollbar-thumb:hover {
-        background: #474746;
+      .transition-standard {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
     </style>
   </head>
-  <body
-    class="bg-background text-on-surface h-screen flex overflow-hidden font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container"
-  >
-    <!-- SideNavBar (Shared Component) -->
-    <nav
-      class="hidden md:flex flex-col bg-surface-container-low border-r border-outline-variant h-screen w-64 left-0 top-0 py-lg shrink-0"
+  <body class="bg-background overflow-hidden">
+    <!-- Sidebar Navigation -->
+    <aside
+      class="fixed left-0 top-0 h-full w-64 border-r border-outline-variant bg-surface flex flex-col p-lg z-50"
     >
-      <!-- Brand -->
-      <div class="px-lg mb-xl">
+      <div class="mb-xl">
         <h1
-          class="font-display-lg text-[32px] font-black text-primary uppercase tracking-tighter"
+          class="font-display-lg text-display-lg font-bold text-primary dark:text-on-surface tracking-tighter"
         >
-          CASTBOARD
+          CASTING
         </h1>
+        <p class="font-label-sm text-label-sm text-secondary mt-xs">
+          Elite Management
+        </p>
       </div>
-      <!-- Header Profile -->
-      <div class="px-lg mb-xl flex items-center gap-md">
-        <div
-          class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden shrink-0 border border-outline-variant"
-        >
-          <img
-            alt="Director Profile"
-            class="w-full h-full object-cover"
-            data-alt="A close up portrait of a professional casting director with short hair, wearing a dark blazer, soft cinematic studio lighting, looking focused."
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkGhP4cm1-XRGCmKNtaDTd9gP-o4mmRHMeHI2rET-4SsqX9fe7_FrXQFJr5LPi8d3qcKmbkpeiZX7oQ8uYuFansMLxzz15Fgbg9vga4Y0tXIqWJEvD11WZqW5ejamJ7xvQIz8JZOzc3MD3KibrvXbSYd62SECuA8kN14h54E4rj1SVJFYxsfeFEATe9YUjR8mWDhguRfh0bdFYTTsi41lGeqdDHX3yeNoXOTlMXdd88RZ7blftQAcE_FFo8iJDFU0N5LURcIeUpZkn"
-          />
-        </div>
-        <div>
-          <div class="font-headline-md text-[16px] font-bold text-on-surface">
-            Casting Director
-          </div>
-          <div class="font-label-sm text-on-surface-variant">
-            Elite Production Studio
-          </div>
-        </div>
-      </div>
-      <!-- Navigation Tabs -->
-      <div class="flex-1 px-md flex flex-col gap-sm">
-        <!-- Active Tab -->
+      <nav class="flex-grow space-y-md">
         <a
-          class="text-on-surface bg-surface-container-high rounded-lg font-bold border-l-4 border-primary px-4 py-3 flex items-center gap-md scale-95 transition-transform duration-200"
+          class="flex items-center gap-md px-md py-sm text-primary font-bold border-r-2 border-primary transition-standard"
           href="#"
         >
           <span class="material-symbols-outlined">dashboard</span>
-          <span>Dashboard</span>
-        </a>
-        <!-- Inactive Tabs -->
-        <a
-          class="text-on-surface-variant hover:text-on-surface hover:bg-surface-variant px-4 py-3 rounded-lg transition-colors flex items-center gap-md"
-          href="#"
-        >
-          <span class="material-symbols-outlined">group</span>
-          <span>Actor Library</span>
+          <span class="font-label-lg text-label-lg">Dashboard</span>
         </a>
         <a
-          class="text-on-surface-variant hover:text-on-surface hover:bg-surface-variant px-4 py-3 rounded-lg transition-colors flex items-center gap-md"
+          class="flex items-center gap-md px-md py-sm text-secondary font-medium hover:text-primary transition-standard group"
           href="#"
         >
-          <span class="material-symbols-outlined">movie</span>
-          <span>Projects</span>
+          <span
+            class="material-symbols-outlined group-hover:scale-110 transition-transform"
+            >groups</span
+          >
+          <span class="font-label-lg text-label-lg">Actor Library</span>
         </a>
-      </div>
-      <!-- CTA & Footer -->
-      <div class="px-lg mt-auto flex flex-col gap-lg">
-        <button
-          class="w-full bg-primary-container text-on-primary-container font-headline-md text-[16px] py-3 rounded-DEFAULT glow-hover transition-all flex justify-center items-center gap-sm"
+        <a
+          class="flex items-center gap-md px-md py-sm text-secondary font-medium hover:text-primary transition-standard group"
+          href="#"
         >
-          <span class="material-symbols-outlined text-[20px]">add</span>
-          Add Casting Call
-        </button>
-        <div class="flex flex-col gap-sm">
-          <a
-            class="text-on-surface-variant hover:text-on-surface text-label-sm transition-colors flex items-center gap-md py-2"
-            href="#"
+          <span
+            class="material-symbols-outlined group-hover:scale-110 transition-transform"
+            >layers</span
           >
-            <span class="material-symbols-outlined text-[18px]">settings</span>
-            <span>Settings</span>
-          </a>
-          <a
-            class="text-on-surface-variant hover:text-on-surface text-label-sm transition-colors flex items-center gap-md py-2"
-            href="#"
+          <span class="font-label-lg text-label-lg">Projects</span>
+        </a>
+      </nav>
+      <div class="mt-auto pt-lg border-t border-outline-variant">
+        <div class="flex items-center gap-md">
+          <div
+            class="w-10 h-10 bg-surface-variant border border-outline-variant rounded-sm overflow-hidden"
           >
-            <span class="material-symbols-outlined text-[18px]">help</span>
-            <span>Support</span>
-          </a>
+            <img
+              class="w-full h-full object-cover"
+              data-alt="A professional studio portrait of a high-end casting director in a minimalist black outfit, set against a stark white background. The lighting is crisp and editorial, reflecting a premium film industry aesthetic with clean lines and sophisticated composition."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsgAyoXEOW6-uFPbRAjf9PQSrMkPHwoIEUJmur0y1fJC2EQe4gpVPs7X9C42N8u0nHd3RdlkQVe1S_1nWj1gYB0yjNAuzZgqJZnI3XoDZ095saNzTKsTXjdFZOkP-z6S35uUs-EOSUEDWsktQcPh4xg2IYPacpqewnaVQso4G72L4CESfGAySUcLDTYIyXT0jJnny_-tA45NGBJhMaIeSy9KREeIL2bNj9BiqgAMBG7sVblUCD8CCBj7-3fNVngSotXSzGegWovDRx"
+            />
+          </div>
+          <div>
+            <p class="font-label-lg text-label-lg text-on-surface">
+              Casting Director
+            </p>
+            <p class="font-label-sm text-label-sm text-secondary">
+              Elite Management
+            </p>
+          </div>
         </div>
       </div>
-    </nav>
+    </aside>
+    <!-- Top Navigation Bar -->
+    <header
+      class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 border-b border-outline-variant bg-surface flex justify-between items-center px-gutter z-40"
+    >
+      <div class="flex items-center gap-xl">
+        <h2
+          class="font-label-lg text-label-lg font-bold tracking-widest text-primary"
+        >
+          CASTING.PRO
+        </h2>
+        <div class="relative w-96">
+          <span
+            class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-secondary"
+            >search</span
+          >
+          <input
+            class="w-full pl-xl pr-md py-xs bg-surface-container-lowest border-fine font-label-sm text-label-sm focus:border-primary outline-none transition-standard uppercase"
+            placeholder="SEARCH PROJECTS OR TALENT..."
+            type="text"
+          />
+        </div>
+      </div>
+      <div class="flex items-center gap-lg">
+        <button class="relative hover:opacity-80 transition-standard">
+          <span class="material-symbols-outlined text-secondary"
+            >notifications</span
+          >
+          <span
+            class="absolute top-0 right-0 w-1.5 h-1.5 bg-primary rounded-full"
+          ></span>
+        </button>
+        <button class="hover:opacity-80 transition-standard">
+          <span class="material-symbols-outlined text-secondary">settings</span>
+        </button>
+      </div>
+    </header>
     <!-- Main Content Canvas -->
-    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-background">
-      <!-- Top Action Bar -->
-      <header
-        class="px-xl py-lg flex justify-between items-center shrink-0 border-b border-surface-container-low"
-      >
-        <h2 class="font-headline-lg text-on-surface">Dashboard</h2>
-        <button
-          class="bg-surface-container-high hover:bg-surface-variant text-on-surface border border-outline-variant px-4 py-2 rounded-DEFAULT font-headline-md text-[14px] transition-colors flex items-center gap-sm"
-        >
-          <span class="material-symbols-outlined text-[18px]">add</span>
-          New Project
-        </button>
-      </header>
-      <!-- Project Filters -->
-      <div
-        class="px-xl py-md shrink-0 flex items-center gap-md overflow-x-auto no-scrollbar border-b border-surface-container-low"
-      >
-        <button
-          class="bg-surface-container-high text-on-surface border border-primary px-4 py-1.5 rounded-full font-label-sm whitespace-nowrap"
-        >
-          Project Alpha
-        </button>
-        <button
-          class="bg-transparent text-on-surface-variant hover:text-on-surface border border-outline-variant px-4 py-1.5 rounded-full font-label-sm transition-colors whitespace-nowrap"
-        >
-          Summer Shadows
-        </button>
-      </div>
-      <!-- Project Meta Info -->
-      <div
-        class="px-xl py-md shrink-0 flex items-center gap-gutter text-on-surface-variant font-label-sm"
-      >
-        <div class="flex items-center gap-xs">
-          <span class="material-symbols-outlined text-[16px]">movie</span>
-          <span>Feature Film</span>
-        </div>
-        <div>•</div>
-        <div>Production: Moonlight Pictures</div>
-        <div>•</div>
-        <div>Shooting: 2026.08 ~ 2026.12</div>
-      </div>
-      <!-- Kanban Board Area -->
-      <div
-        class="flex-1 overflow-x-auto kanban-scroll p-xl flex gap-gutter items-start"
-      >
-        <!-- Column 1: Recruiting -->
-        <div class="w-[320px] shrink-0 flex flex-col gap-md">
-          <div class="flex items-center gap-sm px-2">
-            <h3 class="font-headline-md text-[16px] text-on-surface">
-              Recruiting
+    <main
+      class="ml-64 mt-16 p-gutter h-[calc(100vh-4rem)] overflow-y-auto custom-scrollbar"
+    >
+      <!-- Dashboard Header & Metrics -->
+      <section class="mb-xxl">
+        <div class="flex justify-between items-end mb-xl">
+          <div>
+            <p
+              class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-xs"
+            >
+              Portfolio Overview
+            </p>
+            <h3 class="font-headline-lg text-headline-lg text-on-surface">
+              Project Dashboard
             </h3>
-            <span
-              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-0.5 rounded-full"
-              >1</span
-            >
           </div>
-          <!-- Card 1 -->
-          <div
-            class="bg-surface-container-low border border-outline-variant rounded-xl p-md hover:border-outline transition-colors group cursor-pointer relative overflow-hidden"
+          <button
+            class="bg-primary text-on-primary px-lg py-sm font-label-lg text-label-lg flex items-center gap-sm hover:opacity-90 transition-standard"
           >
-            <!-- Subtle top highlight for active state -->
-            <div
-              class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-container to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
-            ></div>
-            <div class="flex justify-between items-start mb-sm">
-              <h4
-                class="font-headline-md text-[18px] text-on-surface font-bold"
-              >
-                High School Girl
-              </h4>
-              <button class="text-on-surface-variant hover:text-on-surface">
-                <span class="material-symbols-outlined text-[20px]"
-                  >more_vert</span
-                >
-              </button>
-            </div>
-            <div
-              class="font-label-sm text-on-surface-variant mb-md flex flex-wrap gap-x-3 gap-y-1"
+            <span class="material-symbols-outlined">add</span>
+            CREATE NEW CALL
+          </button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+          <div
+            class="bg-surface-container-lowest border-fine p-lg flex flex-col gap-sm"
+          >
+            <span
+              class="font-label-sm text-label-sm text-secondary uppercase tracking-tighter"
+              >Recruiting</span
             >
-              <span>Female</span>
-              <span>•</span>
-              <span>17~21 yrs</span>
+            <div class="flex items-baseline gap-sm">
+              <span class="font-display-lg text-display-lg">08</span>
+              <span class="font-label-sm text-label-sm text-secondary"
+                >Active Calls</span
+              >
             </div>
-            <div
-              class="flex items-center gap-sm mt-auto pt-sm border-t border-surface-container"
+          </div>
+          <div
+            class="bg-surface-container-lowest border-fine p-lg flex flex-col gap-sm"
+          >
+            <span
+              class="font-label-sm text-label-sm text-secondary uppercase tracking-tighter"
+              >Reviewing</span
             >
-              <span
-                class="bg-surface-variant text-on-surface px-2 py-1 rounded font-label-sm"
-                >D-5</span
+            <div class="flex items-baseline gap-sm">
+              <span class="font-display-lg text-display-lg">12</span>
+              <span class="font-label-sm text-label-sm text-secondary"
+                >In Evaluation</span
               >
-              <span class="text-on-surface-variant font-label-sm"
-                >7 Applicants</span
-              >
-              <span
-                class="bg-primary-container text-on-primary-container px-2 py-1 rounded font-label-sm ml-auto"
-                >New</span
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-lowest border-fine p-lg flex flex-col gap-sm"
+          >
+            <span
+              class="font-label-sm text-label-sm text-secondary uppercase tracking-tighter"
+              >Confirmed</span
+            >
+            <div class="flex items-baseline gap-sm">
+              <span class="font-display-lg text-display-lg">24</span>
+              <span class="font-label-sm text-label-sm text-secondary"
+                >Closed Projects</span
               >
             </div>
           </div>
         </div>
-        <!-- Column 2: Reviewing -->
-        <div class="w-[320px] shrink-0 flex flex-col gap-md">
-          <div class="flex items-center gap-sm px-2">
-            <h3 class="font-headline-md text-[16px] text-on-surface">
-              Reviewing
-            </h3>
-            <span
-              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-0.5 rounded-full"
-              >1</span
-            >
-          </div>
-          <!-- Card 2 -->
-          <div
-            class="bg-surface-container-low border border-outline-variant rounded-xl p-md hover:border-outline transition-colors group cursor-pointer relative overflow-hidden"
+      </section>
+      <!-- Active Casting Calls (The Grid) -->
+      <section class="mb-xxl">
+        <div
+          class="flex items-center gap-md mb-lg border-b border-outline-variant pb-md"
+        >
+          <h4 class="font-label-lg text-label-lg text-primary">
+            ACTIVE CASTING CALLS
+          </h4>
+          <span
+            class="font-label-sm text-label-sm text-secondary bg-surface-variant px-sm py-[2px] rounded-sm"
+            >20 TOTAL</span
           >
-            <div class="flex justify-between items-start mb-sm">
-              <h4
-                class="font-headline-md text-[18px] text-on-surface font-bold"
-              >
-                Cafe Owner
-              </h4>
-              <button class="text-on-surface-variant hover:text-on-surface">
-                <span class="material-symbols-outlined text-[20px]"
-                  >more_vert</span
-                >
-              </button>
-            </div>
-            <div
-              class="font-label-sm text-on-surface-variant mb-md flex flex-wrap gap-x-3 gap-y-1"
-            >
-              <span>Female</span>
-              <span>•</span>
-              <span>45~55 yrs</span>
-            </div>
-            <div
-              class="flex items-center gap-sm mt-auto pt-sm border-t border-surface-container"
-            >
-              <span
-                class="bg-primary/20 text-primary border border-primary/30 px-2 py-1 rounded font-label-sm"
-                >D-2</span
-              >
-              <span class="text-on-surface-variant font-label-sm"
-                >12 Applicants</span
-              >
-              <span
-                class="bg-primary-container text-on-primary-container px-2 py-1 rounded font-label-sm ml-auto"
-                >1 New</span
-              >
-            </div>
-          </div>
         </div>
-        <!-- Column 3: Director Confirm -->
-        <div class="w-[320px] shrink-0 flex flex-col gap-md">
-          <div class="flex items-center gap-sm px-2">
-            <h3 class="font-headline-md text-[16px] text-on-surface">
-              Director Confirm
-            </h3>
-            <span
-              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-0.5 rounded-full"
-              >1</span
-            >
-          </div>
-          <!-- Card 3 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 xxl:grid-cols-3 gap-lg">
+          <!-- Card 1: Recruiting -->
           <div
-            class="bg-surface-container-low border border-outline-variant rounded-xl p-md hover:border-outline transition-colors group cursor-pointer relative overflow-hidden"
+            class="bg-white border-fine transition-standard hover:border-primary group"
           >
-            <div class="flex justify-between items-start mb-sm">
-              <h4
-                class="font-headline-md text-[18px] text-on-surface font-bold"
-              >
-                Detective Role 2
-              </h4>
-              <button class="text-on-surface-variant hover:text-on-surface">
-                <span class="material-symbols-outlined text-[20px]"
-                  >more_vert</span
-                >
-              </button>
-            </div>
-            <div
-              class="font-label-sm text-on-surface-variant mb-md flex flex-wrap gap-x-3 gap-y-1"
-            >
-              <span>Male</span>
-              <span>•</span>
-              <span>35~45 yrs</span>
-              <span>•</span>
-              <span>175~185cm</span>
-            </div>
-            <div
-              class="flex flex-col gap-2 mt-auto pt-sm border-t border-surface-container"
-            >
-              <div class="flex items-center gap-sm">
+            <div class="aspect-video relative overflow-hidden">
+              <img
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-standard"
+                data-alt="A cinematic wide shot of a modern film production set with high-end lighting equipment and a minimalist aesthetic. The scene is bathed in soft, neutral tones with deep black accents, reflecting a professional high-budget feature film environment. The mood is sophisticated and authoritative."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhdGgqykF_JZTqzL1rjVg_B-LJTNOzKK8dzLxJCg9WfSVNTBmGON04YQtBPiAKcRxNZ_wjIQIPVpC_xKtFdNn8EKdUKy3nE0wbNy3FjIhdHccpBDE3BsYKpfIFA0ZfmCT2UDiAgcraJLAi1G1V1qoPewaszn1rXmRrgy--6uEZ6gFqs-PnpRXOFH8A8TxdpBsJY7xxwCvE0RfRhWzUQre0INKyxG02UXTz4Mrny3loAzyhcX_r5g7FEW828L4d1RHEN26M92jsTFfg"
+              />
+              <div class="absolute top-md left-md">
                 <span
-                  class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded font-label-sm"
-                  >Closed</span
+                  class="bg-primary text-white font-label-sm text-label-sm px-md py-xs tracking-widest uppercase"
+                  >Recruiting</span
                 >
-                <span class="text-on-surface-variant font-label-sm"
-                  >10 Applicants</span
-                >
+              </div>
+            </div>
+            <div class="p-lg">
+              <div class="flex justify-between items-start mb-md">
+                <div>
+                  <h5 class="font-headline-md text-headline-md mb-xs">
+                    Project: Obsidian
+                  </h5>
+                  <p
+                    class="font-label-sm text-label-sm text-secondary uppercase"
+                  >
+                    Lead Role • Feature Film
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="font-headline-md text-headline-md leading-none">
+                    142
+                  </p>
+                  <p
+                    class="font-label-sm text-label-sm text-secondary uppercase"
+                  >
+                    Applied
+                  </p>
+                </div>
               </div>
               <div
-                class="flex items-center gap-xs text-primary font-label-sm mt-1"
+                class="border-t border-outline-variant pt-md flex items-center justify-between"
               >
-                <div
-                  class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"
-                ></div>
-                <span>Awaiting Director Response</span>
+                <div class="flex -space-x-2">
+                  <div
+                    class="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-surface-variant"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      data-alt="Close-up headshot of a diverse male actor with strong features, editorial lighting, black and white photography, high-end fashion portfolio style."
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_X6EvRmxV9We4ZMdNxnMKhKyvSkczeERX8_99UDaOGh5_qc3SV-FZq27KID9vKV2fvvlvFn-BPI5GwR-Ap4XZMzd3R0jgpiHNBPVKXyWrAnMXo-8Dot6d8CyOvpwPSHQMKplF1s0XeIgpGbFhritpEZipU121QwJ5OTk3OU1aMyVH0hcshNuIH0lpMQKnNJTQ0NFfoI4QBZ67NWeXnansFqaxsTDWaxQ0-Ys8XDc8IMvkHRXh30vOZ2mgnvbPfFHzpYRt7Rh2cAff"
+                    />
+                  </div>
+                  <div
+                    class="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-surface-variant"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      data-alt="Close-up headshot of a female actress with a minimalist look, soft key lighting, neutral background, professional cinematic casting style."
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCWbXZADzt_2JRV_fZPtkE14Pt7PFv3rZh9HcgHX0ZeV9qR0tjR0T3kguRXqpTqxDVTTGEPCOE5R-fTuciqjqBXo4o_J1F4F9JDKWWKQhRtDey2PKjJ30IpcUGSpztfN1HB86Lg5MrVOLjiqDLanNUk0GWubXJGPK3JrmdUS818x_7R67vlgFelGEuzt9TbnJOmaFyGCZ7KPmZewWfaSsRyITy_OjINdyqyEF5DReJSW5NyiB8y4aVFHK8qFphrLAFlmnB4u1Dwdjd"
+                    />
+                  </div>
+                  <div
+                    class="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-surface-variant"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      data-alt="Editorial portrait of a gender-neutral model with sharp cheekbones, high contrast lighting, professional photography, studio setting."
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDn76bzNGkGd-sNtE88Q2Dv_qxeOsl2A7EB3S9mu5fBWhynuQIEZAFT8UXTVAHV--SZkOSEcaSMKLFiEObRrDpV7bRB1SJ7qhifTJRXYx0EAL_iG7u3lgxeXow_oENUmupZ3w_72qEJfErVRCyFZyLNqGpn8GBPO69D--PN44FLmPkp3jHj4gJkWtiO41uDI3Bmn_NB5_stqx6YcYPMeT624uGK5y_0QUKRJQOu1fyDV7Qy-vS41jj-ke7OpdFH3xj50eNbJRJ2s0if"
+                    />
+                  </div>
+                  <div
+                    class="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center bg-secondary text-white font-label-sm text-[10px]"
+                  >
+                    +139
+                  </div>
+                </div>
+                <button
+                  class="font-label-lg text-label-lg text-primary border-b border-primary hover:pb-1 transition-all"
+                >
+                  VIEW CALL
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2: Reviewing -->
+          <div
+            class="bg-white border-fine transition-standard hover:border-primary group"
+          >
+            <div class="aspect-video relative overflow-hidden">
+              <img
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-standard"
+                data-alt="A sophisticated architectural detail of a modern studio interior, featuring clean glass partitions and minimalist black furniture. The lighting is atmospheric and bright, consistent with a high-end light-mode UI theme. Professional and gallery-like atmosphere."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5uUBfOCCsDOLwa2p3RIJHWpfGwyReNNW16ScYCuiqJLU2vL6G3zkPD-eELyyR1kVAN6_s7zBBF2RJNzUQXq25AHdD8wIkTzmqMkfph4nytSuMYK0ZYhnXuCxZfpgfue8c70Tt5iV1LXDxDkGoyNltUMMA7ChkhEutvikW-ZU0olxfZjAb9liFD6o-3epM4cGPahVwsK60_p2V4XTFTrTAjOIpl0bHyTND0DlqHUJ7mCcQEeeDskcoTUEo1ZgXT03PGYuyM3-rAEUY"
+              />
+              <div class="absolute top-md left-md">
+                <span
+                  class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-md py-xs tracking-widest uppercase"
+                  >Reviewing</span
+                >
+              </div>
+            </div>
+            <div class="p-lg">
+              <div class="flex justify-between items-start mb-md">
+                <div>
+                  <h5 class="font-headline-md text-headline-md mb-xs">
+                    Noir Campaign
+                  </h5>
+                  <p
+                    class="font-label-sm text-label-sm text-secondary uppercase"
+                  >
+                    Supporting • Commercial
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="font-headline-md text-headline-md leading-none">
+                    28
+                  </p>
+                  <p
+                    class="font-label-sm text-label-sm text-secondary uppercase"
+                  >
+                    Shortlist
+                  </p>
+                </div>
+              </div>
+              <div
+                class="border-t border-outline-variant pt-md flex items-center justify-between"
+              >
+                <div class="flex items-center gap-sm">
+                  <span class="material-symbols-outlined text-secondary text-md"
+                    >schedule</span
+                  >
+                  <span
+                    class="font-label-sm text-label-sm text-secondary uppercase"
+                    >Ends in 2 days</span
+                  >
+                </div>
+                <button
+                  class="font-label-lg text-label-lg text-primary border-b border-primary hover:pb-1 transition-all"
+                >
+                  CONTINUE REVIEW
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3: Confirmed -->
+          <div
+            class="bg-white border-fine transition-standard hover:border-primary group opacity-80 hover:opacity-100"
+          >
+            <div class="aspect-video relative overflow-hidden">
+              <img
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-standard"
+                data-alt="A minimalist theater stage or rehearsal space with dramatic, focused spotlighting on a single black chair. The aesthetic is extremely clean, using a palette of white, grey, and black to evoke a sense of professional focus and artistic precision."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD7jiLVMEzRmf9QlFT7rdOPxm62UdQ5-dpKFDdG3WMgVcXAAv4RPB3kP651bOLP14Z2cL17finNGvhlaWFfER0C-9s-ihlfEmMJCZY2aCn2_5ReHlB1AtgXv7YcAk7KiBJJhvWh_UZufLDjs8pVSctFyM5g5QEZaYVPdsQ204iS_tHbvMGqRuwOofMHHjEIiy3yeOvQAGAlVhNyqcL5HQPSYjqsr1vBmLXtbzw-8S20fVWgJlJ2C_phydlTl7l1AWxdCkCbN8VqHUp"
+              />
+              <div class="absolute top-md left-md">
+                <span
+                  class="bg-on-primary-container text-white font-label-sm text-label-sm px-md py-xs tracking-widest uppercase"
+                  >Confirmed</span
+                >
+              </div>
+            </div>
+            <div class="p-lg">
+              <div class="flex justify-between items-start mb-md">
+                <div>
+                  <h5 class="font-headline-md text-headline-md mb-xs">
+                    Project: Horizon
+                  </h5>
+                  <p
+                    class="font-label-sm text-label-sm text-secondary uppercase"
+                  >
+                    Full Cast • TV Series
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="font-headline-md text-headline-md leading-none">
+                    12
+                  </p>
+                  <p
+                    class="font-label-sm text-label-sm text-secondary uppercase"
+                  >
+                    Hired
+                  </p>
+                </div>
+              </div>
+              <div
+                class="border-t border-outline-variant pt-md flex items-center justify-between"
+              >
+                <div class="flex items-center gap-sm">
+                  <span class="material-symbols-outlined text-primary text-md"
+                    >check_circle</span
+                  >
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface uppercase"
+                    >Onboarding phase</span
+                  >
+                </div>
+                <button
+                  class="font-label-lg text-label-lg text-primary border-b border-primary hover:pb-1 transition-all"
+                >
+                  PROJECT DETAILS
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <!-- Column 4: Audition -->
-        <div class="w-[320px] shrink-0 flex flex-col gap-md">
-          <div class="flex items-center gap-sm px-2">
-            <h3 class="font-headline-md text-[16px] text-on-surface">
-              Audition
-            </h3>
-            <span
-              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-0.5 rounded-full"
-              >1</span
+      </section>
+      <!-- Secondary Information Strip -->
+      <section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-xl">
+        <!-- Metadata Block: Upcoming Sessions -->
+        <div class="lg:col-span-2 bg-surface-container p-lg border-fine">
+          <div class="flex justify-between items-center mb-lg">
+            <h4
+              class="font-label-lg text-label-lg tracking-widest text-primary uppercase"
+            >
+              Upcoming Casting Sessions
+            </h4>
+            <a
+              class="font-label-sm text-label-sm text-secondary hover:text-primary underline"
+              href="#"
+              >FULL SCHEDULE</a
             >
           </div>
-          <!-- Card 4 -->
-          <div
-            class="bg-surface-container-low border border-outline-variant rounded-xl p-md hover:border-outline transition-colors group cursor-pointer relative overflow-hidden"
-          >
-            <div class="flex justify-between items-start mb-sm">
-              <h4
-                class="font-headline-md text-[18px] text-on-surface font-bold"
-              >
-                Syndicate Member 3
-              </h4>
-              <button class="text-on-surface-variant hover:text-on-surface">
-                <span class="material-symbols-outlined text-[20px]"
-                  >more_vert</span
+          <div class="space-y-md">
+            <div
+              class="flex items-center gap-lg bg-surface-container-lowest p-md border-fine hover:border-primary transition-standard cursor-pointer"
+            >
+              <div class="text-center w-12">
+                <p class="font-headline-md text-headline-md leading-none">24</p>
+                <p class="font-label-sm text-label-sm text-secondary uppercase">
+                  OCT
+                </p>
+              </div>
+              <div class="h-8 w-px bg-outline-variant"></div>
+              <div class="flex-grow">
+                <p
+                  class="font-label-lg text-label-lg text-primary uppercase tracking-tight"
                 >
-              </button>
-            </div>
-            <div
-              class="font-label-sm text-on-surface-variant mb-md flex flex-wrap gap-x-3 gap-y-1"
-            >
-              <span>Male</span>
-              <span>•</span>
-              <span>25~35 yrs</span>
-              <span>•</span>
-              <span>178cm+</span>
-            </div>
-            <div
-              class="flex items-center gap-sm mt-auto pt-sm border-t border-surface-container"
-            >
-              <span
-                class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded font-label-sm"
-                >Closed</span
+                  Main Lead Chemistry Read
+                </p>
+                <p class="font-label-sm text-label-sm text-secondary">
+                  Studio A • 09:00 AM - 02:00 PM
+                </p>
+              </div>
+              <span class="material-symbols-outlined text-secondary"
+                >chevron_right</span
               >
-              <span class="text-on-surface-variant font-label-sm"
-                >6 Applicants</span
+            </div>
+            <div
+              class="flex items-center gap-lg bg-surface-container-lowest p-md border-fine hover:border-primary transition-standard cursor-pointer"
+            >
+              <div class="text-center w-12">
+                <p class="font-headline-md text-headline-md leading-none">25</p>
+                <p class="font-label-sm text-label-sm text-secondary uppercase">
+                  OCT
+                </p>
+              </div>
+              <div class="h-8 w-px bg-outline-variant"></div>
+              <div class="flex-grow">
+                <p
+                  class="font-label-lg text-label-lg text-primary uppercase tracking-tight"
+                >
+                  Background Extras Sorting
+                </p>
+                <p class="font-label-sm text-label-sm text-secondary">
+                  Virtual Room 4 • 11:00 AM
+                </p>
+              </div>
+              <span class="material-symbols-outlined text-secondary"
+                >chevron_right</span
               >
             </div>
           </div>
         </div>
-        <!-- Column 5: Confirmed (Empty) -->
-        <div class="w-[320px] shrink-0 flex flex-col gap-md opacity-60">
-          <div class="flex items-center gap-sm px-2">
-            <h3 class="font-headline-md text-[16px] text-on-surface">
-              Confirmed
-            </h3>
-            <span
-              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-0.5 rounded-full"
-              >0</span
-            >
-          </div>
-          <!-- Empty State Card -->
-          <div
-            class="border border-dashed border-outline-variant rounded-xl p-md h-[140px] flex items-center justify-center text-on-surface-variant font-label-sm bg-surface-container-lowest/50"
+        <!-- Activity Feed / Quick Metadata -->
+        <div class="bg-surface-container-lowest p-lg border-fine">
+          <h4
+            class="font-label-lg text-label-lg tracking-widest text-primary uppercase mb-lg"
           >
-            No roles confirmed yet
+            Recent Activity
+          </h4>
+          <div class="space-y-lg">
+            <div class="flex gap-md">
+              <div class="w-2 h-2 mt-2 bg-primary flex-shrink-0"></div>
+              <div>
+                <p class="font-body-md text-body-md">
+                  New application for <strong>Project Obsidian</strong> from
+                  <em>Elena Rossi</em>.
+                </p>
+                <p class="font-label-sm text-label-sm text-secondary mt-xs">
+                  2 MINS AGO
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-md">
+              <div class="w-2 h-2 mt-2 bg-outline-variant flex-shrink-0"></div>
+              <div>
+                <p class="font-body-md text-body-md">
+                  Meeting scheduled with <strong>Elite Agency</strong> for
+                  tomorrow.
+                </p>
+                <p class="font-label-sm text-label-sm text-secondary mt-xs">
+                  45 MINS AGO
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-md">
+              <div class="w-2 h-2 mt-2 bg-outline-variant flex-shrink-0"></div>
+              <div>
+                <p class="font-body-md text-body-md">
+                  Showreel updated for <em>Marcus Thorne</em> in short-list.
+                </p>
+                <p class="font-label-sm text-label-sm text-secondary mt-xs">
+                  3 HOURS AGO
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </main>
+    <!-- Micro-interaction Scripts -->
+    <script>
+      document.querySelectorAll("button, a").forEach((el) => {
+        el.addEventListener("mousedown", () => {
+          el.style.transform = "scale(0.98)";
+        });
+        el.addEventListener("mouseup", () => {
+          el.style.transform = "scale(1)";
+        });
+        el.addEventListener("mouseleave", () => {
+          el.style.transform = "scale(1)";
+        });
+      });
+    </script>
   </body>
 </html>

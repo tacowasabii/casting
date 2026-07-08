@@ -13,8 +13,8 @@
 # testing
 /coverage
 
-# next.js
-/.next/
+# next.js (.next-dist = NAS 이슈로 변경된 distDir, .next-stale*/.next-ghost* = SMB 락 잔해)
+/.next*/
 /out/
 
 # production
