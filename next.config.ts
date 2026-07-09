@@ -6,7 +6,8 @@ import "./scripts/fs-nas-shim.cjs";
 const nextConfig: NextConfig = {
   // 기본 .next 경로는 NAS(SMB)에서 dev/types 하위가 delete-pending 유령으로 고착됨
   // (mkdir→EEXIST, write→ENOENT). 오염 안 된 새 경로로 이사. 되돌리지 말 것.
-  distDir: ".next-dist",
+  // 단 Vercel 빌더는 산출물을 .next에서 찾으므로 배포 환경에서는 기본값을 쓴다.
+  ...(process.env.VERCEL ? {} : { distDir: ".next-dist" }),
 };
 
 export default nextConfig;

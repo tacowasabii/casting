@@ -5,7 +5,8 @@
 // 여기서 promises API를 감싸 재시도한다. next.config.ts에서 모든 프로세스에 주입됨.
 "use strict";
 
-if (!global.__FS_NAS_SHIM__) {
+// Vercel(리눅스) 빌드에서는 NAS 이슈가 없으므로 개입하지 않는다
+if (!process.env.VERCEL && !global.__FS_NAS_SHIM__) {
   global.__FS_NAS_SHIM__ = true;
 
   const fs = require("fs");
