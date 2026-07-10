@@ -1,0 +1,273 @@
+/* 색상 테마 오버라이드 — design/캐스트보드-풀-4a~4f.dc.html에서 실측 추출.
+   기본 테마(mono)는 globals.css의 :root 값 자체이므로 블록이 없다.
+   선택자 문자열은 src/lib/themes.ts의 THEMES id와 1:1 — 함께 수정할 것.
+   선택자는 반드시 :root[data-theme=…] (특이도 0,2,0) — 이 파일은 @import 순서상
+   globals.css의 :root(0,1,0)보다 앞에 인라인되므로, [data-theme=…]만 쓰면
+   동률 특이도에서 후행 :root의 mono 값에 전부 밀려 테마가 죽는다.
+   unlayered로 유지해야 4E 상태칩 규칙이 Tailwind 유틸리티를 이긴다. */
+
+/* ── 4A 딥 옥스블러드 ─────────────────────────────── */
+:root[data-theme="oxblood"] {
+  --background: #f3ebe9;
+  --foreground: #241014;
+  --card: #ffffff;
+  --card-foreground: #241014;
+  --popover: #ffffff;
+  --popover-foreground: #241014;
+  --primary: #8a2a2a;
+  --primary-foreground: #ffffff;
+  --secondary: #f7f0ee;
+  --secondary-foreground: #5c5c5c;
+  --muted: #f7f0ee;
+  --muted-foreground: #8a8a8a;
+  --accent: #f7f0ee;
+  --accent-foreground: #241014;
+  --border: #eadfdd;
+  --input: #eadfdd;
+  --ring: #8a2a2a;
+  --chart-1: #241014;
+  --chart-5: #eadfdd;
+  --sidebar: #2e1417;
+  --sidebar-foreground: #b99598;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #2e1417;
+  --sidebar-accent: #451d22;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #432226;
+  --sidebar-ring: #8a2a2a;
+  --panel: #f7f0ee;
+  --hairline: #eadfdd;
+  --primary-hover: #6f2222; /* 시안에 hover 정의 없음 — 시그니처 색 파생 */
+  --border-strong: #241014;
+  --sidebar-muted: #b99598; /* 부제·직함·비활성 배역명 — 시안은 sidebar-foreground 톤 */
+  --sidebar-caption: #8b6669; /* 캡션·카운트 */
+  --sidebar-icon: #8b6669;
+  --sidebar-avatar: #ffffff; /* 4a 시안 아바타 = 흰색 */
+  --sidebar-avatar-foreground: #2e1417;
+}
+
+/* ── 4B 잉크 네이비 ───────────────────────────────── */
+:root[data-theme="navy"] {
+  --background: #edf1f8;
+  --foreground: #15223a;
+  --card: #ffffff;
+  --card-foreground: #15223a;
+  --popover: #ffffff;
+  --popover-foreground: #15223a;
+  --primary: #2a5cb8;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f4fb;
+  --secondary-foreground: #5c5c5c;
+  --muted: #f1f4fb;
+  --muted-foreground: #8a8a8a;
+  --accent: #f1f4fb;
+  --accent-foreground: #15223a;
+  --border: #e2e8f2;
+  --input: #e2e8f2;
+  --ring: #2a5cb8;
+  --chart-1: #15223a;
+  --chart-5: #e2e8f2;
+  --sidebar: #15223a;
+  --sidebar-foreground: #93a3be;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #15223a;
+  --sidebar-accent: #22334f;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #22304a;
+  --sidebar-ring: #2a5cb8;
+  --panel: #f1f4fb;
+  --hairline: #e2e8f2;
+  --primary-hover: #234c99;
+  --border-strong: #15223a;
+  --sidebar-muted: #93a3be;
+  --sidebar-caption: #6e7ea0;
+  --sidebar-icon: #5c6c86;
+}
+
+/* ── 4C 딥 포레스트 ───────────────────────────────── */
+:root[data-theme="forest"] {
+  --background: #edf1ec;
+  --foreground: #16281f;
+  --card: #ffffff;
+  --card-foreground: #16281f;
+  --popover: #ffffff;
+  --popover-foreground: #16281f;
+  --primary: #1f7a50;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f4ef;
+  --secondary-foreground: #5c5c5c;
+  --muted: #f1f4ef;
+  --muted-foreground: #8a8a8a;
+  --accent: #f1f4ef;
+  --accent-foreground: #16281f;
+  --border: #e4e9e0;
+  --input: #e4e9e0;
+  --ring: #1f7a50;
+  --chart-1: #16281f;
+  --chart-5: #e4e9e0;
+  --sidebar: #16281f;
+  --sidebar-foreground: #9db6a7;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #16281f;
+  --sidebar-accent: #21382c;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #213830;
+  --sidebar-ring: #1f7a50;
+  --panel: #f1f4ef;
+  --hairline: #e4e9e0;
+  --primary-hover: #196441;
+  --border-strong: #16281f;
+  --sidebar-muted: #9db6a7;
+  --sidebar-caption: #6e8577;
+  --sidebar-icon: #61786b;
+}
+
+/* ── 4D 웜 에디토리얼 ─────────────────────────────── */
+:root[data-theme="editorial"] {
+  --background: #f1e9dc;
+  --foreground: #2a2521;
+  --card: #ffffff;
+  --card-foreground: #2a2521;
+  --popover: #ffffff;
+  --popover-foreground: #2a2521;
+  --primary: #c05a2e;
+  --primary-foreground: #ffffff;
+  --secondary: #f5efe4;
+  --secondary-foreground: #5c5c5c;
+  --muted: #f5efe4;
+  --muted-foreground: #8a8a8a;
+  --accent: #f5efe4;
+  --accent-foreground: #2a2521;
+  --border: #ebe2d3;
+  --input: #ebe2d3;
+  --ring: #c05a2e;
+  --chart-1: #2a2521;
+  --chart-5: #ebe2d3;
+  --sidebar: #211e1a;
+  --sidebar-foreground: #b3a899;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #211e1a;
+  --sidebar-accent: #302b25;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #2e2a24;
+  --sidebar-ring: #c05a2e;
+  --panel: #f5efe4;
+  --hairline: #ebe2d3;
+  --primary-hover: #a04a25;
+  --border-strong: #2a2521;
+  --sidebar-muted: #b3a899;
+  --sidebar-caption: #857a6b;
+  --sidebar-icon: #766d5f;
+}
+
+/* ── 4E 시네마틱 (상태별 색) ──────────────────────── */
+:root[data-theme="cinematic"] {
+  --background: #f1f1f1;
+  --foreground: #141414;
+  --card: #ffffff;
+  --card-foreground: #141414;
+  --popover: #ffffff;
+  --popover-foreground: #141414;
+  --primary: #141414;
+  --primary-foreground: #ffffff;
+  --secondary: #f6f6f6;
+  --secondary-foreground: #5c5c5c;
+  --muted: #f6f6f6;
+  --muted-foreground: #8a8a8a;
+  --accent: #f6f6f6;
+  --accent-foreground: #141414;
+  --destructive: #c0392b;
+  --border: #ececec;
+  --input: #ececec;
+  --ring: #141414;
+  --chart-1: #141414;
+  --chart-5: #ececec;
+  --sidebar: #1a1a1a;
+  --sidebar-foreground: #9a9a9a;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #1a1a1a;
+  --sidebar-accent: #2a2a2a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #2c2c2c;
+  --sidebar-ring: #141414;
+  --panel: #f6f6f6;
+  --hairline: #ececec;
+  --primary-hover: #2a2a2a;
+  --border-strong: #141414;
+  --sidebar-muted: #9a9a9a;
+  --sidebar-caption: #6a6a6a;
+  --sidebar-icon: #6a6a6a;
+  --sidebar-avatar: #c0392b; /* 4e 시안 아바타 = 시네마틱 레드 — primary(#141414)는 다크 사이드바에 묻힘 */
+  --sidebar-avatar-foreground: #ffffff;
+}
+
+/* 4E 컨셉의 핵심 — 배역 상태칩만 상태별 컬러 아웃라인(시안 statusChip 실측).
+   다른 테마는 StatusBadge의 기존 모노크롬 variant를 그대로 쓴다. */
+:root[data-theme="cinematic"] [data-status] {
+  background: transparent;
+  border: 1px solid var(--status-chip);
+  color: var(--status-chip);
+}
+:root[data-theme="cinematic"] [data-status="open"] {
+  --status-chip: #2a6fb0; /* 모집중 */
+}
+:root[data-theme="cinematic"] [data-status="review"] {
+  --status-chip: #c08a1e; /* 검토중 */
+}
+:root[data-theme="cinematic"] [data-status="confirm"] {
+  --status-chip: #c0392b; /* 감독컨펌 */
+}
+:root[data-theme="cinematic"] [data-status="audition"] {
+  --status-chip: #1f8a7a; /* 오디션 */
+}
+:root[data-theme="cinematic"] [data-status="cast"] {
+  --status-chip: #2e8b4e; /* 확정 */
+}
+:root[data-theme="cinematic"] [data-status="closed"] {
+  --status-chip: #9a9a9a; /* 종료 */
+}
+
+/* ── 4F 컬러 팝 (유일하게 뉴트럴까지 틴트) ────────── */
+:root[data-theme="pop"] {
+  --background: #edeff7;
+  --foreground: #1f2749;
+  --card: #ffffff;
+  --card-foreground: #1f2749;
+  --popover: #ffffff;
+  --popover-foreground: #1f2749;
+  --primary: #4c63b6;
+  --primary-foreground: #ffffff;
+  --secondary: #eef1f9;
+  --secondary-foreground: #7e86a0;
+  --muted: #eef1f9;
+  --muted-foreground: #8891ad;
+  --accent: #eef1f9;
+  --accent-foreground: #1f2749;
+  --border: #e0e3f0;
+  --input: #e0e3f0;
+  --ring: #4c63b6;
+  --chart-1: #1f2749;
+  --chart-2: #5a6280;
+  --chart-3: #8891ad;
+  --chart-4: #c3c9de; /* 시안 틴트 뉴트럴 — 누락 시 스택바 '제외'만 무채색으로 끊김 */
+  --chart-5: #e0e3f0;
+  --sidebar: #2b3a67;
+  --sidebar-foreground: #aab4d6;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #2b3a67;
+  --sidebar-accent: #3a4b7e;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #38477a;
+  --sidebar-ring: #4c63b6;
+  --panel: #eef1f9;
+  --hairline: #e0e3f0;
+  --faint: #9aa1bc;
+  --icon-mute: #aeb4cc;
+  --primary-hover: #3a4e9a; /* 시안 a:hover 실측 */
+  --border-strong: #1f2749;
+  --sidebar-muted: #aab4d6;
+  --sidebar-caption: #8794bc;
+  --sidebar-icon: #7e8bb4;
+  --sidebar-avatar: #d79a2b; /* 4f 시안 아바타 = 골드 (2차 액센트) */
+  --sidebar-avatar-foreground: #2b3a67;
+}

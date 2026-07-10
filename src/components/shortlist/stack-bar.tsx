@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
 
-/* 판정 분포 가로 스택바 — 좋아요 잉크 / 보류 회색 / 제외 연회색 / 미응답 헤어라인 */
+/* 판정 분포 가로 스택바 — 좋아요 잉크 / 보류 회색 / 제외 연회색 / 미응답 헤어라인 (차트 토큰 램프, 테마 연동) */
 const SEGMENTS = [
-  { key: "like", color: "#141414" },
-  { key: "hold", color: "#8a8a8a" },
-  { key: "pass", color: "#c9c9c9" },
-  { key: "none", color: "#e7e7e7" },
+  { key: "like", color: "var(--chart-1)" },
+  { key: "hold", color: "var(--chart-3)" },
+  { key: "pass", color: "var(--chart-4)" },
+  { key: "none", color: "var(--chart-5)" },
 ] as const;
 
 export interface VerdictCounts {

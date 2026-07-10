@@ -110,7 +110,7 @@ export function ApplicantDetail({
             />
           ) : (
             <div className="flex aspect-video w-full items-center justify-center rounded-sm border border-border bg-secondary">
-              <span className="font-mono text-[11px] text-[#b0b0b0]">
+              <span className="font-mono text-[11px] text-faint">
                 영상 없음
               </span>
             </div>
@@ -148,7 +148,7 @@ export function ApplicantDetail({
             <Info label="첨부" value={attachmentLabel} />
           </div>
           {application.intro ? (
-            <p className="m-0 mt-4 border-t border-hairline pt-3.5 text-[13px] leading-relaxed text-[#4a4a4a]">
+            <p className="m-0 mt-4 border-t border-hairline pt-3.5 text-[13px] leading-relaxed text-secondary-foreground">
               {application.intro}
             </p>
           ) : null}

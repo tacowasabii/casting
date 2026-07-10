@@ -59,7 +59,7 @@ export function ActorReviewCard({
       </div>
 
       {intro ? (
-        <p className="m-0 px-[22px] py-4 text-[13px] leading-relaxed text-[#4a4a4a]">
+        <p className="m-0 px-[22px] py-4 text-[13px] leading-relaxed text-secondary-foreground">
           “{intro}”
         </p>
       ) : null}

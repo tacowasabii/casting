@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+/* 테마 오버라이드는 unlayered여야 @layer utilities(4E 상태칩 등)를 캐스케이드에서 이긴다 — layer() 지정 금지 */
+@import "./themes.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -42,6 +44,19 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  /* 3a 모노크롬 확장 토큰 — 테마 전환을 위해 :root 변수로 간접화 */
+  --color-panel: var(--panel);
+  --color-hairline: var(--hairline);
+  --color-faint: var(--faint);
+  --color-icon-mute: var(--icon-mute);
+  --color-primary-hover: var(--primary-hover);
+  --color-border-strong: var(--border-strong);
+  /* 다크 사이드바 테마용 — 사이드바 안 보조 텍스트·캡션·아이콘·아바타 전용 */
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-caption: var(--sidebar-caption);
+  --color-sidebar-icon: var(--sidebar-icon);
+  --color-sidebar-avatar: var(--sidebar-avatar);
+  --color-sidebar-avatar-foreground: var(--sidebar-avatar-foreground);
   /* 3a radius: 칩 3px / 카드·버튼·인풋 4px — 필·과한 라운딩 금지 */
   --radius-sm: 0.1875rem;
   --radius-md: 0.1875rem;
@@ -53,13 +68,7 @@
 }
 
 @theme {
-  /* 3a 모노크롬 — 깊이는 섀도가 아니라 1px 헤어라인과 톤 레이어링으로만 표현 */
-  --color-panel: #fafafa; /* 리스트 패널·테이블 헤더 행 */
-  --color-hairline: #ededed; /* 옅은 구분선 (#EDEDED/#EEEEEE/#EFEFEF 통합) */
-  --color-faint: #a0a0a0; /* mono 캡션·3차 뮤트 */
-  --color-icon-mute: #b7b7b7; /* 비활성 메뉴 아이콘 */
-  --color-primary-hover: #2a2a2a;
-  --color-border-strong: #141414; /* 섹션 헤더 하단 1.5px 보더 */
+  /* 3a 모노크롬 — 깊이는 섀도가 아니라 1px 헤어라인과 톤 레이어링으로만 표현 (테마 불변) */
   --shadow-2xs: 0 0 #0000;
   --shadow-xs: 0 0 #0000;
   --shadow-sm: 0 0 #0000;
@@ -102,6 +111,19 @@
   --sidebar-accent-foreground: #141414;
   --sidebar-border: #e7e7e7;
   --sidebar-ring: #141414;
+  /* 3a 모노크롬 확장 토큰 실값 */
+  --panel: #fafafa; /* 리스트 패널·테이블 헤더 행 */
+  --hairline: #ededed; /* 옅은 구분선 (#EDEDED/#EEEEEE/#EFEFEF 통합) */
+  --faint: #a0a0a0; /* mono 캡션·3차 뮤트 */
+  --icon-mute: #b7b7b7; /* 비활성 메뉴 아이콘 */
+  --primary-hover: #2a2a2a;
+  --border-strong: #141414; /* 섹션 헤더 하단 1.5px 보더 */
+  --sidebar-muted: #9a9a9a; /* 사이드바 부제·직함·비활성 항목명 */
+  --sidebar-caption: #b0b0b0; /* 사이드바 캡션 라벨·카운트 */
+  --sidebar-icon: #b7b7b7; /* 사이드바 비활성 아이콘 */
+  /* 사이드바 푸터 아바타 — 다크 사이드바 테마에서 primary가 배경에 묻히면 테마가 오버라이드 */
+  --sidebar-avatar: var(--primary);
+  --sidebar-avatar-foreground: var(--primary-foreground);
 }
 
 @layer base {
@@ -116,12 +138,12 @@
     color-scheme: light;
   }
   ::selection {
-    background: #141414;
-    color: #f5f5f5;
+    background: var(--foreground);
+    color: var(--background);
   }
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-faint) transparent;
+    scrollbar-color: var(--faint) transparent;
   }
   ::-webkit-scrollbar {
     width: 4px;
@@ -131,10 +153,10 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-faint);
+    background: var(--faint);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #7a7a7a;
+    background: var(--muted-foreground);
   }
 }
 
@@ -145,14 +167,14 @@
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-faint);
+  color: var(--faint);
 }
 @utility caption-sm {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-faint);
+  color: var(--faint);
 }
 @utility num-display {
   font-weight: 800;

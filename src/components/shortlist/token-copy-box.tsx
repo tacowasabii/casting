@@ -15,7 +15,7 @@ export function TokenCopyBox({ token }: { token: string }) {
       }}
       className="flex cursor-pointer items-center gap-2 rounded border border-border bg-secondary px-3.5 py-[9px] transition-colors hover:border-primary"
     >
-      <span className="font-mono text-[11.5px] text-[#6b6b6b]">{token}</span>
+      <span className="font-mono text-[11.5px] text-secondary-foreground">{token}</span>
       <span className="text-[11px] font-semibold text-foreground">복사</span>
     </button>
   );

@@ -88,7 +88,7 @@ export function TriageBoard({
               <h2 className="m-0 truncate text-2xl font-extrabold tracking-[-.015em] text-foreground">
                 {role.name}
               </h2>
-              <span className="hidden whitespace-nowrap text-xs text-[#9a9a9a] lg:inline">
+              <span className="hidden whitespace-nowrap text-xs text-muted-foreground lg:inline">
                 {conditionLine(role)}
               </span>
             </div>

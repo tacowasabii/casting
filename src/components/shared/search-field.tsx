@@ -19,17 +19,17 @@ export function SearchField({
         className,
       )}
     >
-      <span className="text-sm text-[#aeaeae]">⌕</span>
+      <span className="text-sm text-faint">⌕</span>
       {onChange ? (
         <input
           type="search"
           value={value ?? ""}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full bg-transparent text-[13px] text-foreground outline-none placeholder:text-[#aeaeae]"
+          className="w-full bg-transparent text-[13px] text-foreground outline-none placeholder:text-faint"
         />
       ) : (
-        <span className="text-[13px] text-[#aeaeae]">{placeholder}</span>
+        <span className="text-[13px] text-faint">{placeholder}</span>
       )}
     </div>
   );

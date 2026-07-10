@@ -19,7 +19,8 @@ export default async function DashboardPage() {
   return (
     <div className="flex min-h-0 flex-1 flex-col overflow-y-auto">
       {/* 톱바 — 검색은 장식(셸), 알림 벨 + 잉크 점 */}
-      <div className="flex shrink-0 items-center justify-between gap-3 border-b border-border bg-sidebar px-10 py-[15px]">
+      {/* 톱바는 다크 사이드바 테마에서도 라이트 유지 (시안 공통 #FCFCFC) — bg-sidebar 금지 */}
+      <div className="flex shrink-0 items-center justify-between gap-3 border-b border-border bg-card px-10 py-[15px]">
         <div className="flex min-w-0 items-center gap-3">
           <SidebarTrigger className="md:hidden" />
           <SearchField
@@ -117,7 +118,7 @@ function MetricCard({
       }
     >
       <CaptionLabel
-        className={inverted ? "text-muted-foreground" : undefined}
+        className={inverted ? "text-primary-foreground/60" : undefined}
       >
         {label}
       </CaptionLabel>
@@ -127,7 +128,11 @@ function MetricCard({
         >
           {value}
         </span>
-        <span className="text-[13px] text-[#9a9a9a]">{sub}</span>
+        <span
+          className={`text-[13px] ${inverted ? "text-primary-foreground/65" : "text-muted-foreground"}`}
+        >
+          {sub}
+        </span>
       </div>
     </div>
   );

@@ -4,12 +4,12 @@ import {
   AlignJustify,
   Bookmark,
   LayoutGrid,
-  SlidersHorizontal,
   UserRound,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { ThemePicker } from "@/components/layout/theme-picker";
 import {
   Sidebar,
   SidebarContent,
@@ -17,6 +17,7 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar";
 import type { SidebarData } from "@/lib/data";
+import type { ThemeId } from "@/lib/themes";
 import { MOCK_USER } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -29,7 +30,13 @@ const MENU = [
   { title: "숏리스트", href: "/shortlists", icon: Bookmark, exact: false },
 ] as const;
 
-export function AppSidebar({ data }: { data: SidebarData }) {
+export function AppSidebar({
+  data,
+  theme,
+}: {
+  data: SidebarData;
+  theme: ThemeId;
+}) {
   const pathname = usePathname();
   const segments = pathname.split("/").filter(Boolean);
 
@@ -40,7 +47,7 @@ export function AppSidebar({ data }: { data: SidebarData }) {
           <div className="text-2xl font-extrabold leading-none tracking-tight text-sidebar-primary">
             CASTBOARD
           </div>
-          <div className="mt-2 text-[11px] tracking-[.04em] text-[#9a9a9a]">
+          <div className="mt-2 text-[11px] tracking-[.04em] text-sidebar-muted">
             캐스팅 워크스페이스
           </div>
         </Link>
@@ -66,14 +73,14 @@ export function AppSidebar({ data }: { data: SidebarData }) {
                 <item.icon
                   className={cn(
                     "size-[18px]",
-                    active ? "text-sidebar-primary" : "text-icon-mute",
+                    active ? "text-sidebar-primary" : "text-sidebar-icon",
                   )}
                   strokeWidth={1.4}
                 />
                 <span>{item.title}</span>
                 {item.href === "/shortlists" &&
                 data.pendingShortlistCount > 0 ? (
-                  <span className="ml-auto rounded-full bg-muted px-[7px] py-px font-mono text-[10px] text-muted-foreground">
+                  <span className="ml-auto rounded-full bg-sidebar-accent px-[7px] py-px font-mono text-[10px] text-sidebar-muted">
                     {data.pendingShortlistCount}
                   </span>
                 ) : null}
@@ -93,19 +100,16 @@ export function AppSidebar({ data }: { data: SidebarData }) {
       </SidebarContent>
 
       <SidebarFooter className="gap-0 px-7 pb-5">
-        <div className="flex cursor-default items-center gap-[13px] py-[11px] text-sm font-medium text-sidebar-foreground">
-          <SlidersHorizontal className="size-[18px] text-icon-mute" strokeWidth={1.4} />
-          <span>설정</span>
-        </div>
-        <div className="mt-3.5 flex items-center gap-3 border-t border-hairline pt-4">
-          <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
+        <ThemePicker initialTheme={theme} />
+        <div className="mt-3.5 flex items-center gap-3 border-t border-sidebar-border pt-4">
+          <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-sidebar-avatar text-sm font-semibold text-sidebar-avatar-foreground">
             {MOCK_USER.name.charAt(0)}
           </div>
           <div className="min-w-0 leading-snug">
             <div className="truncate text-[13px] font-bold text-sidebar-primary">
               {MOCK_USER.name}
             </div>
-            <div className="truncate text-[11px] text-[#9a9a9a]">
+            <div className="truncate text-[11px] text-sidebar-muted">
               {MOCK_USER.role}
             </div>
           </div>
@@ -143,7 +147,7 @@ function ContextSection({
                   "flex items-center gap-2.5 rounded-sm px-2.5 py-2",
                   active
                     ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                    : "text-muted-foreground hover:text-sidebar-primary",
+                    : "text-sidebar-muted hover:text-sidebar-primary",
                 )}
               >
                 <span
@@ -154,7 +158,7 @@ function ContextSection({
                 <span
                   className={cn(
                     "ml-auto font-mono text-[10.5px]",
-                    active ? "text-sidebar-primary" : "text-[#b0b0b0]",
+                    active ? "text-sidebar-primary" : "text-sidebar-caption",
                   )}
                 >
                   {role.totalApplications}
@@ -175,7 +179,7 @@ function ContextSection({
           {data.tags.slice(0, 8).map(({ tag, count }) => (
             <span
               key={tag}
-              className="rounded-sm bg-sidebar-accent px-[9px] py-1 text-[11px] text-secondary-foreground"
+              className="rounded-sm bg-sidebar-accent px-[9px] py-1 text-[11px] text-sidebar-foreground"
             >
               {tag} {count}
             </span>
@@ -207,10 +211,10 @@ function ContextSection({
                   {sl.title}
                 </div>
                 <div className="mt-1 flex items-center justify-between gap-2">
-                  <span className="truncate text-[10.5px] text-[#9a9a9a]">
+                  <span className="truncate text-[10.5px] text-sidebar-muted">
                     {sl.role.name} · {sl.project.title}
                   </span>
-                  <span className="shrink-0 font-mono text-[10px] text-muted-foreground">
+                  <span className="shrink-0 font-mono text-[10px] text-sidebar-caption">
                     {sl.reviewedCount}/{sl.itemCount}
                   </span>
                 </div>
@@ -234,8 +238,8 @@ function ContextFrame({
 }) {
   return (
     <div className="px-7">
-      <div className="my-[18px] h-px bg-hairline" />
-      <div className="caption-sm pb-3 tracking-[.12em] text-[#b0b0b0]">
+      <div className="my-[18px] h-px bg-sidebar-border" />
+      <div className="caption-sm pb-3 tracking-[.12em] text-sidebar-caption">
         {label}
       </div>
       {children}

@@ -35,11 +35,11 @@ export function RoleCard({ role }: { role: RoleWithStats }) {
           <div className="num-display text-[22px] text-foreground">
             {role.totalApplications}
           </div>
-          <div className="mt-[3px] text-[10.5px] text-[#9a9a9a]">지원</div>
+          <div className="mt-[3px] text-[10.5px] text-muted-foreground">지원</div>
         </div>
       </div>
       <div className="mt-[13px] flex items-center justify-between border-t border-hairline pt-[11px]">
-        <span className="font-mono text-[11px] text-[#9a9a9a]">
+        <span className="font-mono text-[11px] text-muted-foreground">
           {extraLabel(role)}
         </span>
         <span className="text-[12.5px] font-bold text-foreground">

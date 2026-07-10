@@ -13,7 +13,7 @@ export default async function ApplyDonePage({
     <div className="flex flex-1 flex-col">
       {/* 지원 폼 헤더의 에코 — 작은 검정 블록 */}
       <header className="bg-primary px-6 pb-5 pt-6">
-        <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#8a8a8a]">
+        <div className="font-mono text-[10px] uppercase tracking-[.14em] text-primary-foreground/55">
           지원 완료
         </div>
         <h1 className="m-0 mt-2 text-xl font-extrabold tracking-[-.01em] text-primary-foreground">

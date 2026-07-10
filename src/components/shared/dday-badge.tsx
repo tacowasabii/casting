@@ -23,7 +23,7 @@ export function DdayBadge({
       className={cn(
         "inline-flex items-center whitespace-nowrap rounded-sm px-[9px] py-[3px] font-mono text-[11px] font-bold",
         d < 0 && variant !== "solid"
-          ? "bg-muted text-[#a8a8a8]"
+          ? "bg-muted text-faint"
           : solid
             ? "bg-primary text-primary-foreground"
             : "border border-input bg-card text-secondary-foreground",

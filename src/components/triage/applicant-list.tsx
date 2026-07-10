@@ -67,7 +67,7 @@ export function ApplicantList({
         <button
           type="button"
           onClick={onSortChange}
-          className="ml-auto shrink-0 cursor-pointer whitespace-nowrap font-mono text-[10px] text-[#b0b0b0] transition-colors hover:text-foreground"
+          className="ml-auto shrink-0 cursor-pointer whitespace-nowrap font-mono text-[10px] text-faint transition-colors hover:text-foreground"
         >
           {sort} ↓
         </button>
@@ -114,13 +114,13 @@ export function ApplicantList({
                       {ageOf(app.actor.birthYear)}세·{app.actor.height}cm
                     </span>
                   </div>
-                  <div className="mt-[5px] truncate text-[11px] text-[#9a9a9a]">
+                  <div className="mt-[5px] truncate text-[11px] text-muted-foreground">
                     {noteLine(app)}
                   </div>
                 </div>
                 <div className="flex shrink-0 flex-col items-end gap-[7px]">
                   <TriageChip triage={triageMap[app.id] ?? null} />
-                  <span className="whitespace-nowrap font-mono text-[10px] text-[#b0b0b0]">
+                  <span className="whitespace-nowrap font-mono text-[10px] text-faint">
                     {app.videoDuration ?? "영상 없음"}
                   </span>
                 </div>

@@ -11,6 +11,16 @@ const VARIANT: Record<RoleStatus, ChipVariant> = {
   종료: "muted",
 };
 
+/* 테마 CSS 훅용 영문 키 — themes.css의 [data-status="…"] 선택자와 대응 (4E 상태별 색) */
+const STATUS_KEY: Record<RoleStatus, string> = {
+  모집중: "open",
+  검토중: "review",
+  감독컨펌: "confirm",
+  오디션: "audition",
+  확정: "cast",
+  종료: "closed",
+};
+
 export function StatusBadge({
   status,
   className,
@@ -19,7 +29,11 @@ export function StatusBadge({
   className?: string;
 }) {
   return (
-    <Chip variant={VARIANT[status]} className={className}>
+    <Chip
+      variant={VARIANT[status]}
+      className={className}
+      data-status={STATUS_KEY[status]}
+    >
       {status}
     </Chip>
   );

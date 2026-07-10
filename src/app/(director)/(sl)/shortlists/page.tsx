@@ -21,7 +21,7 @@ export default async function ShortlistsIndexPage() {
         </div>
         <div className="mt-2 flex items-baseline gap-3">
           <h2 className="title-page m-0 text-foreground">숏리스트</h2>
-          <span className="text-[13px] text-[#9a9a9a]">
+          <span className="text-[13px] text-muted-foreground">
             공유 중 {shortlists.length}건
           </span>
         </div>
@@ -48,7 +48,7 @@ export default async function ShortlistsIndexPage() {
                   <div className="truncate text-sm font-bold text-foreground">
                     {sl.title}
                   </div>
-                  <div className="mt-1 truncate text-[11.5px] text-[#9a9a9a]">
+                  <div className="mt-1 truncate text-[11.5px] text-muted-foreground">
                     {sl.role.name} · {sl.project.title} · 후보 {sl.itemCount} ·
                     생성 {formatRelativeDays(sl.createdAt)}
                   </div>

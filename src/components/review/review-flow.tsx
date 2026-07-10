@@ -79,7 +79,7 @@ export function ReviewFlow({
             {index + 1} / {total}
           </span>
         </div>
-        <div className="mt-[5px] text-[11.5px] text-[#9a9a9a]">
+        <div className="mt-[5px] text-[11.5px] text-muted-foreground">
           {project.title} · {project.production} · {formatDeadlineLabel(deadline)}
         </div>
         <div className="mt-3 flex gap-1">
@@ -88,7 +88,7 @@ export function ReviewFlow({
               key={it.item.id}
               className={cn(
                 "h-[3px] flex-1 rounded-[2px]",
-                i <= index ? "bg-primary" : "bg-[#e4e4e4]",
+                i <= index ? "bg-primary" : "bg-input",
               )}
             />
           ))}

@@ -67,7 +67,7 @@ export function ResultsTable({ items }: { items: ShortlistDetailItem[] }) {
                 <>
                   <div className="font-mono text-[11.5px] text-secondary-foreground">
                     {review ? formatSeconds(review.watchSeconds) : "0:00"}{" "}
-                    <span className="text-[#b8b8b8]">
+                    <span className="text-icon-mute">
                       / {application.videoDuration}
                     </span>
                   </div>
@@ -79,12 +79,12 @@ export function ResultsTable({ items }: { items: ShortlistDetailItem[] }) {
                   </div>
                 </>
               ) : (
-                <span className="font-mono text-[11px] text-[#b0b0b0]">
+                <span className="font-mono text-[11px] text-faint">
                   영상 없음
                 </span>
               )}
             </div>
-            <div className="min-w-0 text-[12.5px] leading-normal text-[#6b6b6b]">
+            <div className="min-w-0 text-[12.5px] leading-normal text-secondary-foreground">
               {review?.comment ?? "—"}
             </div>
           </GridTableRow>

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 /* 모노 해치 패턴 — 사진이 없는 모든 자리의 공통 질감 */
 function hatch(stripe: number): React.CSSProperties {
   return {
-    backgroundImage: `repeating-linear-gradient(45deg, #e6e6e6, #e6e6e6 ${stripe}px, #efefef ${stripe}px, #efefef ${stripe * 2}px)`,
+    backgroundImage: `repeating-linear-gradient(45deg, var(--border), var(--border) ${stripe}px, var(--muted) ${stripe}px, var(--muted) ${stripe * 2}px)`,
   };
 }
 
@@ -49,7 +49,7 @@ export function AvatarPlaceholder({
     return (
       <div
         className={cn(
-          "flex shrink-0 flex-col items-center justify-center font-semibold text-[#a8a8a8]",
+          "flex shrink-0 flex-col items-center justify-center font-semibold text-faint",
           className,
         )}
         style={hatch(stripe ?? 6)}
@@ -67,7 +67,7 @@ export function AvatarPlaceholder({
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center justify-center rounded-full text-sm font-semibold text-[#a8a8a8]",
+        "flex shrink-0 items-center justify-center rounded-full text-sm font-semibold text-faint",
         className,
       )}
       style={hatch(stripe ?? 4)}

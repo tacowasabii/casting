@@ -30,7 +30,7 @@ export default async function ReviewLandingPage({
         <p className="m-0 mt-5 text-[13px] text-muted-foreground">
           {MOCK_USER.name} {MOCK_USER.role}님이 후보 검토를 요청했습니다
         </p>
-        <p className="m-0 mt-7 text-[13px] text-[#9a9a9a]">
+        <p className="m-0 mt-7 text-[13px] text-muted-foreground">
           〈{project.title}〉
         </p>
         <h1 className="m-0 mt-2 text-2xl font-extrabold tracking-[-.02em] text-foreground">

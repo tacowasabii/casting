@@ -77,7 +77,7 @@ export function ActorLibrary({ actors }: { actors: ActorWithSummary[] }) {
             </div>
             <div className="mt-2 flex items-baseline gap-3">
               <h2 className="title-page m-0 text-foreground">배우 라이브러리</h2>
-              <span className="text-[13px] text-[#9a9a9a]">
+              <span className="text-[13px] text-muted-foreground">
                 총 {actors.length}명
               </span>
             </div>
@@ -124,7 +124,7 @@ export function ActorLibrary({ actors }: { actors: ActorWithSummary[] }) {
               {tag}
             </FilterChip>
           ))}
-          <span className="ml-auto font-mono text-[11px] text-[#b0b0b0]">
+          <span className="ml-auto font-mono text-[11px] text-faint">
             최근 지원 ↓
           </span>
         </div>
@@ -173,7 +173,7 @@ export function ActorLibrary({ actors }: { actors: ActorWithSummary[] }) {
               <span className="font-mono text-[12.5px] text-secondary-foreground">
                 {actor.height}
               </span>
-              <span className="truncate text-[12.5px] text-[#6b6b6b]">
+              <span className="truncate text-[12.5px] text-secondary-foreground">
                 {actor.agency ?? "—"}
               </span>
               <div className="flex min-w-0 gap-1.5 overflow-hidden">

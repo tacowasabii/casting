@@ -33,7 +33,7 @@ export function BreadcrumbBar({
         <span className="text-[13px]">←</span>
         <span className="text-[12.5px]">{parentLabel}</span>
       </Link>
-      <span className="text-[12.5px] text-[#cfcfcf]">/</span>
+      <span className="text-[12.5px] text-icon-mute">/</span>
       <span className="truncate text-[12.5px] font-semibold text-foreground">
         {current}
       </span>

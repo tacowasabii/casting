@@ -26,7 +26,7 @@ function Field({
       <CaptionLabel size="sm" className="mb-[7px] tracking-[.06em]">
         {label}
         {optional ? (
-          <span className="ml-1 normal-case tracking-normal text-[#c4c4c4]">
+          <span className="ml-1 normal-case tracking-normal text-icon-mute">
             (선택)
           </span>
         ) : null}
@@ -81,10 +81,10 @@ export function ApplyForm({ roleId }: { roleId: string }) {
         <Field label="프로필 · 연기 영상">
           <button
             type="button"
-            className="w-full cursor-pointer rounded border border-dashed border-[#d0d0d0] px-4 py-[18px] text-center transition-colors hover:border-primary"
+            className="w-full cursor-pointer rounded border border-dashed border-input px-4 py-[18px] text-center transition-colors hover:border-primary"
           >
-            <span className="block text-xl leading-none text-[#c4c4c4]">＋</span>
-            <span className="mt-1 block text-[11.5px] text-[#9a9a9a]">
+            <span className="block text-xl leading-none text-icon-mute">＋</span>
+            <span className="mt-1 block text-[11.5px] text-muted-foreground">
               파일 첨부 또는 유튜브·드라이브 링크
             </span>
           </button>

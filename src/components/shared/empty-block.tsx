@@ -15,7 +15,7 @@ export function EmptyBlock({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center gap-2 rounded border border-dashed border-[#d0d0d0] px-6 py-10 text-center",
+        "flex flex-col items-center justify-center gap-2 rounded border border-dashed border-input px-6 py-10 text-center",
         className,
       )}
     >

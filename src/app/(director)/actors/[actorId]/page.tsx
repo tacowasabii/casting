@@ -120,13 +120,13 @@ export default async function ActorProfilePage({
                   href={`/roles/${app.roleId}`}
                   className="flex items-center gap-4 border-b border-hairline px-0.5 py-4 transition-colors hover:bg-panel"
                 >
-                  <div className="w-16 shrink-0 font-mono text-[11px] text-[#b0b0b0]">
+                  <div className="w-16 shrink-0 font-mono text-[11px] text-faint">
                     {formatRelativeDays(app.createdAt)}
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="truncate text-[14.5px] font-bold text-foreground">
                       {app.role.name}{" "}
-                      <span className="text-xs font-normal text-[#9a9a9a]">
+                      <span className="text-xs font-normal text-muted-foreground">
                         · {app.project.title}
                       </span>
                     </div>

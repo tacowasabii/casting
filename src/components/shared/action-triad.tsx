@@ -14,13 +14,13 @@ export interface TriadOption<T extends string> {
 const DEFAULT_STYLES = [
   "bg-primary text-primary-foreground hover:bg-primary-hover",
   "border border-primary bg-card text-foreground hover:bg-accent",
-  "border border-input bg-card text-[#b0b0b0] hover:text-foreground hover:border-primary",
+  "border border-input bg-card text-faint hover:text-foreground hover:border-primary",
 ] as const;
 
 const UNSELECTED_STYLES = [
   "border border-primary bg-card text-foreground hover:bg-accent",
   "border border-primary bg-card text-foreground hover:bg-accent",
-  "border border-input bg-card text-[#b0b0b0] hover:text-foreground hover:border-primary",
+  "border border-input bg-card text-faint hover:text-foreground hover:border-primary",
 ] as const;
 
 /** 관심/보류/제외 · 좋아요/보류/제외 3버튼 액션 바 */

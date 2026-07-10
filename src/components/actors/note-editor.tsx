@@ -16,7 +16,7 @@ export function NoteEditor({ defaultValue, placeholder }: NoteEditorProps) {
       <Textarea
         defaultValue={defaultValue}
         placeholder={placeholder ?? "배우에 대한 메모를 남겨보세요"}
-        className="min-h-24 resize-none border-none bg-transparent p-0 text-[13px] leading-relaxed text-[#4a4a4a] shadow-none focus-visible:ring-0"
+        className="min-h-24 resize-none border-none bg-transparent p-0 text-[13px] leading-relaxed text-secondary-foreground shadow-none focus-visible:ring-0"
       />
       <div className="mt-2 flex justify-end">
         <button

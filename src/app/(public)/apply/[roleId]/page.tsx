@@ -14,7 +14,7 @@ export default async function ApplyPage({
     <div className="flex flex-1 flex-col">
       {/* 검정 헤더 블록 — 배역·조건·마감을 반전 위계로 */}
       <header className="bg-primary px-6 pb-5 pt-6">
-        <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#8a8a8a]">
+        <div className="font-mono text-[10px] uppercase tracking-[.14em] text-primary-foreground/55">
           지원서
         </div>
         <h1 className="m-0 mt-2 text-xl font-extrabold tracking-[-.01em] text-primary-foreground">

@@ -71,12 +71,12 @@ export default async function ShortlistResultPage({
           <div className="min-w-0 flex-1">
             <StackBar counts={counts} />
             <div className="mt-[11px] flex gap-[18px] text-xs">
-              <span className="text-[#6b6b6b]">
+              <span className="text-secondary-foreground">
                 <b className="text-foreground">좋아요 {counts.like}</b>
               </span>
-              <span className="text-[#6b6b6b]">보류 {counts.hold}</span>
-              <span className="text-[#6b6b6b]">제외 {counts.pass}</span>
-              <span className="text-[#b0b0b0]">미응답 {counts.none}</span>
+              <span className="text-secondary-foreground">보류 {counts.hold}</span>
+              <span className="text-secondary-foreground">제외 {counts.pass}</span>
+              <span className="text-faint">미응답 {counts.none}</span>
             </div>
           </div>
         </div>

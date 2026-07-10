@@ -70,7 +70,7 @@ export function MediaPlaceholder({
       className={cn("rounded-sm", className)}
       style={{
         backgroundImage:
-          "repeating-linear-gradient(45deg, #e6e6e6, #e6e6e6 6px, #efefef 6px, #efefef 12px)",
+          "repeating-linear-gradient(45deg, var(--border), var(--border) 6px, var(--muted) 6px, var(--muted) 12px)",
       }}
     />
   );
