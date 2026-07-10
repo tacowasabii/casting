@@ -66,14 +66,14 @@ export function AppSidebar({
                 className={cn(
                   "relative flex items-center gap-[13px] px-7 py-[11px] text-sm transition-colors",
                   active
-                    ? "font-bold text-sidebar-primary"
+                    ? "font-bold text-sidebar-active"
                     : "font-medium text-sidebar-foreground hover:text-sidebar-primary",
                 )}
               >
                 <item.icon
                   className={cn(
                     "size-[18px]",
-                    active ? "text-sidebar-primary" : "text-sidebar-icon",
+                    active ? "text-sidebar-active" : "text-sidebar-icon",
                   )}
                   strokeWidth={1.4}
                 />
@@ -85,7 +85,7 @@ export function AppSidebar({
                   </span>
                 ) : null}
                 {active ? (
-                  <span className="absolute right-0 top-1/2 h-5 w-0.5 -translate-y-1/2 bg-sidebar-primary" />
+                  <span className="absolute right-0 top-1/2 h-5 w-0.5 -translate-y-1/2 bg-sidebar-active" />
                 ) : null}
               </Link>
             );

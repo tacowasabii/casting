@@ -16,10 +16,22 @@ export const THEMES = [
     preview: { bg: "#F3EBE9", sidebar: "#2E1417", accent: "#8A2A2A" },
   },
   {
+    id: "oxblood-light",
+    label: "옥스블러드 라이트",
+    themeColor: "#F3EBE9",
+    preview: { bg: "#F3EBE9", sidebar: "#EBD3D1", accent: "#8A2A2A" },
+  },
+  {
     id: "navy",
     label: "잉크 네이비",
     themeColor: "#EDF1F8",
     preview: { bg: "#EDF1F8", sidebar: "#15223A", accent: "#2A5CB8" },
+  },
+  {
+    id: "navy-light",
+    label: "네이비 라이트",
+    themeColor: "#EDF1F8",
+    preview: { bg: "#EDF1F8", sidebar: "#DBE6F6", accent: "#2A5CB8" },
   },
   {
     id: "forest",
@@ -28,10 +40,22 @@ export const THEMES = [
     preview: { bg: "#EDF1EC", sidebar: "#16281F", accent: "#1F7A50" },
   },
   {
+    id: "forest-light",
+    label: "포레스트 라이트",
+    themeColor: "#EDF1EC",
+    preview: { bg: "#EDF1EC", sidebar: "#D9E8DE", accent: "#1F7A50" },
+  },
+  {
     id: "editorial",
     label: "웜 에디토리얼",
     themeColor: "#F1E9DC",
     preview: { bg: "#F1E9DC", sidebar: "#211E1A", accent: "#C05A2E" },
+  },
+  {
+    id: "editorial-light",
+    label: "에디토리얼 라이트",
+    themeColor: "#F1E9DC",
+    preview: { bg: "#F1E9DC", sidebar: "#EBDCC2", accent: "#C05A2E" },
   },
   {
     id: "cinematic",

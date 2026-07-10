@@ -55,6 +55,7 @@
   --color-sidebar-muted: var(--sidebar-muted);
   --color-sidebar-caption: var(--sidebar-caption);
   --color-sidebar-icon: var(--sidebar-icon);
+  --color-sidebar-active: var(--sidebar-active);
   --color-sidebar-avatar: var(--sidebar-avatar);
   --color-sidebar-avatar-foreground: var(--sidebar-avatar-foreground);
   /* 3a radius: 칩 3px / 카드·버튼·인풋 4px — 필·과한 라운딩 금지 */
@@ -124,6 +125,8 @@
   /* 사이드바 푸터 아바타 — 다크 사이드바 테마에서 primary가 배경에 묻히면 테마가 오버라이드 */
   --sidebar-avatar: var(--primary);
   --sidebar-avatar-foreground: var(--primary-foreground);
+  /* 활성 nav 텍스트·인디케이터 바 — 라이트 사이드바 변형만 크로마로 분리 오버라이드 */
+  --sidebar-active: var(--sidebar-primary);
 }
 
 @layer base {

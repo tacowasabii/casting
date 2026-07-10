@@ -46,6 +46,45 @@
   --sidebar-avatar-foreground: #2e1417;
 }
 
+/* ── 4A' 옥스블러드 라이트 (라이트 로즈 사이드바) — 본문은 4A와 동일 ── */
+:root[data-theme="oxblood-light"] {
+  --background: #f3ebe9;
+  --foreground: #241014;
+  --card: #ffffff;
+  --card-foreground: #241014;
+  --popover: #ffffff;
+  --popover-foreground: #241014;
+  --primary: #8a2a2a;
+  --primary-foreground: #ffffff;
+  --secondary: #f7f0ee;
+  --secondary-foreground: #5c5c5c;
+  --muted: #f7f0ee;
+  --muted-foreground: #8a8a8a;
+  --accent: #f7f0ee;
+  --accent-foreground: #241014;
+  --border: #eadfdd;
+  --input: #eadfdd;
+  --ring: #8a2a2a;
+  --chart-1: #241014;
+  --chart-5: #eadfdd;
+  --sidebar: #ebd3d1;
+  --sidebar-foreground: #9c7e7b;
+  --sidebar-primary: #241014; /* 로고·사용자명·활성 카운트 = 잉크 */
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffffff;
+  --sidebar-accent-foreground: #8a2a2a; /* 활성 컨텍스트 항목 = 크로마 */
+  --sidebar-border: #ddbdba;
+  --sidebar-ring: #8a2a2a;
+  --panel: #f7f0ee;
+  --hairline: #eadfdd;
+  --primary-hover: #6f2222;
+  --border-strong: #241014;
+  --sidebar-muted: #9c7e7b;
+  --sidebar-caption: #b99895;
+  --sidebar-icon: #b99895;
+  --sidebar-active: #8a2a2a; /* 활성 nav 텍스트·바 = 크로마 (시안 실측) */
+}
+
 /* ── 4B 잉크 네이비 ───────────────────────────────── */
 :root[data-theme="navy"] {
   --background: #edf1f8;
@@ -82,6 +121,45 @@
   --sidebar-muted: #93a3be;
   --sidebar-caption: #6e7ea0;
   --sidebar-icon: #5c6c86;
+}
+
+/* ── 4B' 네이비 라이트 — 본문은 4B와 동일 ─────────── */
+:root[data-theme="navy-light"] {
+  --background: #edf1f8;
+  --foreground: #15223a;
+  --card: #ffffff;
+  --card-foreground: #15223a;
+  --popover: #ffffff;
+  --popover-foreground: #15223a;
+  --primary: #2a5cb8;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f4fb;
+  --secondary-foreground: #5c5c5c;
+  --muted: #f1f4fb;
+  --muted-foreground: #8a8a8a;
+  --accent: #f1f4fb;
+  --accent-foreground: #15223a;
+  --border: #e2e8f2;
+  --input: #e2e8f2;
+  --ring: #2a5cb8;
+  --chart-1: #15223a;
+  --chart-5: #e2e8f2;
+  --sidebar: #dbe6f6;
+  --sidebar-foreground: #7385a2;
+  --sidebar-primary: #15223a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffffff;
+  --sidebar-accent-foreground: #2a5cb8;
+  --sidebar-border: #c4d4ee;
+  --sidebar-ring: #2a5cb8;
+  --panel: #f1f4fb;
+  --hairline: #e2e8f2;
+  --primary-hover: #234c99;
+  --border-strong: #15223a;
+  --sidebar-muted: #7385a2;
+  --sidebar-caption: #9daac6;
+  --sidebar-icon: #9daac6;
+  --sidebar-active: #2a5cb8;
 }
 
 /* ── 4C 딥 포레스트 ───────────────────────────────── */
@@ -122,6 +200,45 @@
   --sidebar-icon: #61786b;
 }
 
+/* ── 4C' 포레스트 라이트 — 본문은 4C와 동일 ────────── */
+:root[data-theme="forest-light"] {
+  --background: #edf1ec;
+  --foreground: #16281f;
+  --card: #ffffff;
+  --card-foreground: #16281f;
+  --popover: #ffffff;
+  --popover-foreground: #16281f;
+  --primary: #1f7a50;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f4ef;
+  --secondary-foreground: #5c5c5c;
+  --muted: #f1f4ef;
+  --muted-foreground: #8a8a8a;
+  --accent: #f1f4ef;
+  --accent-foreground: #16281f;
+  --border: #e4e9e0;
+  --input: #e4e9e0;
+  --ring: #1f7a50;
+  --chart-1: #16281f;
+  --chart-5: #e4e9e0;
+  --sidebar: #d9e8de;
+  --sidebar-foreground: #6f8577;
+  --sidebar-primary: #16281f;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffffff;
+  --sidebar-accent-foreground: #1f7a50;
+  --sidebar-border: #c2d8c9;
+  --sidebar-ring: #1f7a50;
+  --panel: #f1f4ef;
+  --hairline: #e4e9e0;
+  --primary-hover: #196441;
+  --border-strong: #16281f;
+  --sidebar-muted: #6f8577;
+  --sidebar-caption: #9dafa2;
+  --sidebar-icon: #9dafa2;
+  --sidebar-active: #1f7a50;
+}
+
 /* ── 4D 웜 에디토리얼 ─────────────────────────────── */
 :root[data-theme="editorial"] {
   --background: #f1e9dc;
@@ -158,6 +275,45 @@
   --sidebar-muted: #b3a899;
   --sidebar-caption: #857a6b;
   --sidebar-icon: #766d5f;
+}
+
+/* ── 4D' 에디토리얼 라이트 — 본문은 4D와 동일 ──────── */
+:root[data-theme="editorial-light"] {
+  --background: #f1e9dc;
+  --foreground: #2a2521;
+  --card: #ffffff;
+  --card-foreground: #2a2521;
+  --popover: #ffffff;
+  --popover-foreground: #2a2521;
+  --primary: #c05a2e;
+  --primary-foreground: #ffffff;
+  --secondary: #f5efe4;
+  --secondary-foreground: #5c5c5c;
+  --muted: #f5efe4;
+  --muted-foreground: #8a8a8a;
+  --accent: #f5efe4;
+  --accent-foreground: #2a2521;
+  --border: #ebe2d3;
+  --input: #ebe2d3;
+  --ring: #c05a2e;
+  --chart-1: #2a2521;
+  --chart-5: #ebe2d3;
+  --sidebar: #ebdcc2;
+  --sidebar-foreground: #8c7b5e;
+  --sidebar-primary: #2a2521;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffffff;
+  --sidebar-accent-foreground: #c05a2e;
+  --sidebar-border: #dac8a6;
+  --sidebar-ring: #c05a2e;
+  --panel: #f5efe4;
+  --hairline: #ebe2d3;
+  --primary-hover: #a04a25;
+  --border-strong: #2a2521;
+  --sidebar-muted: #8c7b5e;
+  --sidebar-caption: #b3a07e;
+  --sidebar-icon: #b3a07e;
+  --sidebar-active: #c05a2e;
 }
 
 /* ── 4E 시네마틱 (상태별 색) ──────────────────────── */
