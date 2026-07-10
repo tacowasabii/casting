@@ -32,8 +32,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next-dist/types/**/*.ts",
-    ".next-dist/dev/types/**/*.ts",
+    ".next-dist2/types/**/*.ts",
+    ".next-dist2/dev/types/**/*.ts",
     "**/*.mts"
   ],
   "exclude": [
