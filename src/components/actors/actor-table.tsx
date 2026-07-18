@@ -1,5 +1,6 @@
 "use client";
 
+import { LayoutGrid, List } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
@@ -16,12 +17,14 @@ import { ageOf } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 type QuickFilter = "전체" | "관심 이력" | "소속사 있음";
+type ViewMode = "grid" | "list";
 
 export function ActorLibrary({ actors }: { actors: ActorWithSummary[] }) {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [quick, setQuick] = useState<QuickFilter>("전체");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [view, setView] = useState<ViewMode>("grid");
 
   const allTags = useMemo(
     () => [...new Set(actors.flatMap((a) => a.tags))],
@@ -124,13 +127,29 @@ export function ActorLibrary({ actors }: { actors: ActorWithSummary[] }) {
               {tag}
             </FilterChip>
           ))}
-          <span className="ml-auto font-mono text-[11px] text-faint">
-            최근 지원 ↓
-          </span>
+          <div className="ml-auto flex items-center gap-3.5">
+            <div className="flex rounded-md border border-border bg-secondary p-0.5">
+              <ViewToggle
+                active={view === "list"}
+                onClick={() => setView("list")}
+                icon={<List className="size-3.5" />}
+              >
+                리스트
+              </ViewToggle>
+              <ViewToggle
+                active={view === "grid"}
+                onClick={() => setView("grid")}
+                icon={<LayoutGrid className="size-3.5" />}
+              >
+                그리드
+              </ViewToggle>
+            </div>
+            <span className="font-mono text-[11px] text-faint">최근 지원 ↓</span>
+          </div>
         </div>
       </div>
 
-      {/* 테이블 */}
+      {/* 본문 — 리스트(테이블) / 그리드(카드) */}
       {filtered.length === 0 ? (
         <div className="px-[30px] py-8">
           <EmptyBlock
@@ -138,7 +157,7 @@ export function ActorLibrary({ actors }: { actors: ActorWithSummary[] }) {
             description="조건에 맞는 배우가 없습니다. 검색어나 필터를 조정해 보세요."
           />
         </div>
-      ) : (
+      ) : view === "list" ? (
         <GridTable
           columns="2.2fr 52px 52px 1.1fr 1.6fr 64px 88px"
           headers={[
@@ -201,8 +220,115 @@ export function ActorLibrary({ actors }: { actors: ActorWithSummary[] }) {
             </GridTableRow>
           ))}
         </GridTable>
+      ) : (
+        <div className="grid grid-cols-2 gap-4 px-[30px] pb-[30px] pt-[22px] sm:grid-cols-3 xl:grid-cols-4">
+          {filtered.map((actor) => (
+            <ActorCard
+              key={actor.id}
+              actor={actor}
+              onClick={() => router.push(`/actors/${actor.id}`)}
+            />
+          ))}
+        </div>
       )}
     </div>
+  );
+}
+
+function ActorCard({
+  actor,
+  onClick,
+}: {
+  actor: ActorWithSummary;
+  onClick: () => void;
+}) {
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+      className="group cursor-pointer overflow-hidden rounded-[7px] border border-border bg-card transition-colors hover:border-primary"
+    >
+      <div className="relative">
+        <AvatarPlaceholder
+          name={actor.name}
+          photo={actor.photo}
+          variant="photo"
+          stripe={7}
+          className="aspect-[3/4] w-full text-[48px]"
+        />
+        <span className="absolute right-2.5 top-2.5 rounded-[10px] bg-card/90 px-2 py-0.5 font-mono text-[10px] font-bold text-foreground">
+          지원 {actor.applicationCount}
+        </span>
+        <div className="absolute bottom-2.5 left-2.5">
+          <TriageChip triage={actor.lastTriage} />
+        </div>
+      </div>
+      <div className="px-3.5 pb-3.5 pt-[13px]">
+        <div className="flex items-baseline justify-between gap-1.5">
+          <span className="truncate text-[15px] font-bold text-foreground">
+            {actor.name}
+          </span>
+          <span className="shrink-0 font-mono text-[10.5px] text-faint">
+            {ageOf(actor.birthYear)}세·{actor.height}cm
+          </span>
+        </div>
+        <div className="mt-[5px] truncate text-[11.5px] text-muted-foreground">
+          {actor.agency ?? "—"}
+        </div>
+        <div className="mt-2.5 flex min-w-0 gap-1.5 overflow-hidden">
+          {actor.tags.slice(0, 2).map((tag) => (
+            <Chip
+              key={tag}
+              variant="outline"
+              className="shrink-0 px-[9px] text-[10px] font-normal"
+            >
+              {tag}
+            </Chip>
+          ))}
+          {actor.tags.length > 2 ? (
+            <span className="shrink-0 self-center font-mono text-[10px] text-faint">
+              +{actor.tags.length - 2}
+            </span>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ViewToggle({
+  active,
+  onClick,
+  icon,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={cn(
+        "flex cursor-pointer items-center gap-1.5 rounded-[4px] px-3 py-[6px] text-[12px] font-semibold transition-colors",
+        active
+          ? "bg-primary text-primary-foreground"
+          : "text-muted-foreground hover:text-foreground",
+      )}
+    >
+      {icon}
+      {children}
+    </button>
   );
 }
 
