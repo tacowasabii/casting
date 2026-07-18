@@ -221,7 +221,7 @@ export function ActorLibrary({ actors }: { actors: ActorWithSummary[] }) {
           ))}
         </GridTable>
       ) : (
-        <div className="grid grid-cols-2 gap-4 px-[30px] pb-[30px] pt-[22px] sm:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))] gap-4 px-[30px] pb-[30px] pt-[22px]">
           {filtered.map((actor) => (
             <ActorCard
               key={actor.id}
